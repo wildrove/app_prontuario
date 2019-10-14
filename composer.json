@@ -1,0 +1,17 @@
+{
+    "name": "vendor/biblioteca",
+    "authors": [
+        {
+            "name": "Wilder Vagner Gaspar",
+            "email": "wilderagner@gmail.com"
+        }
+    ],
+    "require": {},
+
+    "autoload": {
+        "psr-4": {
+            "Classes\\": "Classes"
+
+        }
+    }
+}
