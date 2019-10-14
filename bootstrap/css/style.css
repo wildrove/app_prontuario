@@ -1,0 +1,41 @@
+body{
+
+	background-color: #0364a8 !important;
+}
+
+/* ========================= Div principal Login ================================= */
+
+.login-principal {
+	width: 400px;
+	margin-top: 70px;
+}
+
+.page-footer {
+	margin-top: -30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ============================ Média Queries ======================================= */
+
+@media (max-width: 576px) {
+	.login-principal {
+		width: 300px;
+		margin-top: 50px;
+		padding: 10px;
+	}
+
+	.page-footer {
+		margin-top: -30px;
+	}
+}
