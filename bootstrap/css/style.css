@@ -1,14 +1,60 @@
-body{
-
-	background-color: #0364a8 !important;
+body {
+	background-color: #fff !important;
 }
 
-/* ========================= Div principal Login ================================= */
+/*========================== CSS Header.php ================================ */
+
+.navbar-header {
+	background-color: #2b96cc;
+	font-family: "Open Sans", sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 21px;
+}
+
+ul, li, a, .logout-text {
+	color: #fff;
+}
+
+ul, li, a, .logout-text:hover {
+	color: #f90023;
+	transition-property: color;
+	transition-duration: 0.5s;
+	transition-delay: 0.1s;
+}
+
+ul, li, span {
+	color: #fff;
+}
+
+ul, li, span:hover {
+	color: #4db3e7;
+	transition-property: color;
+	transition-duration: 0.3s;
+	transition-delay: 0.1s;
+}
+
+ .divisor-nav {
+	border-right: 1.5px solid #fff;
+	height: 35px;
+	margin-top: 7px;
+
+}
+
+
+/* ========================= CSS Index.php ================================= */
+
+.body-index{
+
+	background-color: #2b96cc !important;
+}
 
 .login-principal {
 	width: 400px;
 	margin-top: 70px;
 }
+
+/* ======================= Index Footer ===================================== */
 
 .page-footer {
 	margin-top: -30px;
@@ -16,19 +62,10 @@ body{
 
 
 
+/* ============================ Média Queries 575.98px ======================================= */
 
-
-
-
-
-
-
-
-
-
-/* ============================ Média Queries ======================================= */
-
-@media (max-width: 576px) {
+/* Dispositivos extra small (telefones em modo retrato, com menos de 576px) */
+@media (max-width: 575.98px) {
 	.login-principal {
 		width: 300px;
 		margin-top: 50px;
@@ -38,4 +75,48 @@ body{
 	.page-footer {
 		margin-top: -30px;
 	}
+
+	.nav-header {
+		font-size: 5px !important;
+	}
+
+	.divisor-nav{
+		border: none;
+		display: none;
+	}
 }
+
+/* ============================== Média Queries 576px and 767.98px ================================ */
+
+/* Dispositivos small (telefones em modo paisagem, com 576px ou mais) */
+@media (min-width: 576px) and (max-width: 767.98px){
+
+	.divisor-nav{
+		border: none;
+		display: none !important;
+	}
+}
+
+/* ============================== Média Queries 768px and 991.98px ================================ */
+
+
+/* Dispositivos médios (tablets com 768px ou mais) */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+
+ }
+
+ /* ============================== Média Queries 992px and 119.98px ================================ */
+
+
+/* Dispositivos large (desktops com 992px ou mais) */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+
+ }
+
+ /* ============================== Média Queries 1200px ================================ */
+
+
+ /* Dispositivos extra large (desktops grandes com 1200px ou mais) */
+@media (min-width: 1200px) { 
+
+ }

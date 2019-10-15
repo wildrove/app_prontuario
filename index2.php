@@ -2,7 +2,10 @@
 	
 	require 'vendor/autoload.php';
 	use Classes\FirebirdConnection\FirebirdConnection;
+	use Classes\TesteConsulta\TesteConsulta;
 
-	$db = new FirebirdConnection();
+	$test = new TesteConsulta();
 
+	echo '<pre>';
+	print_r($test->testeConsulta());
 

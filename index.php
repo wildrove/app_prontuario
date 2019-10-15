@@ -3,7 +3,6 @@
 <htm>
   <head>
      <meta charset="UTF-8">
-     <link rel="stylesheet" type="text/css" href="css/style.css">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Consultar prontuário</title>
      
@@ -18,12 +17,12 @@
         
       </script>
   </head>
-  <body>  
+  <body class="body-index">  
 
   	<div class="container shadow-lg p-3 mb-5 bg-white rounded login-principal">
-	  	<form method="post" action="Actions/User/validateUser.php">
-	  		<div class="text-center">
-	  			<img src="img/hospital-logo.jpg" class="img-fluid">
+	  	<form method="post" action="home.php">
+	  		<div class="text-center p-5">
+	  			<img src="img/hospital-header-logo.png" class="img-fluid">
 	  		</div>
 	  		<div class="input-group">
 	  			<i class="fas fa-user fa-lg p-2 border rounded-left mb-3" style="color: #0364a7"></i>
