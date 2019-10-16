@@ -2,6 +2,19 @@ body {
 	background-color: #fff !important;
 }
 
+
+/* ========================= CSS Index.php ================================= */
+
+.body-index{
+
+	background-color: #2b96cc !important;
+}
+
+.login-principal {
+	width: 400px;
+	margin-top: 70px;
+}
+
 /*========================== CSS Header.php ================================ */
 
 .navbar-header {
@@ -36,22 +49,26 @@ ul, li, span:hover {
 
  .divisor-nav {
 	border-right: 1.5px solid #fff;
-	height: 35px;
-	margin-top: 7px;
+	height: 25px;
+	margin-top: 12px;
 
 }
 
+/* ======================= Content-Home.php ================================== */
 
-/* ========================= CSS Index.php ================================= */
-
-.body-index{
-
-	background-color: #2b96cc !important;
+.main-section {
+	margin-top: 130px;
+	padding: 10px;
 }
 
-.login-principal {
-	width: 400px;
-	margin-top: 70px;
+.card-titulo {
+	background-color: ;
+	text-align: center;
+	font-family: "Open Sans", sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 21px;
+
 }
 
 /* ======================= Index Footer ===================================== */
@@ -127,7 +144,7 @@ ul, li, span:hover {
 		width: 50px;
 		position: relative;
 		left: 100px;
-		bottom: 45px;
+		bottom: 40px;
 	}
 }
 
@@ -157,7 +174,7 @@ ul, li, span:hover {
 		width: 50px;
 		position: relative;
 		left: 120px;
-		bottom: 45px;
+		bottom: 41px;
 	}
 
  }

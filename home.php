@@ -18,6 +18,7 @@
 	<?php 
 
 		require_once('forms/header.php');
+		require_once('forms/content-home.php');
 	?>
 </body>
 </html>

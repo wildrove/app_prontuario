@@ -9,7 +9,7 @@ namespace Classes\TesteConsulta;
 		{
 			$connection = new FirebirdConnection();
 
-			$sql = "SELECT * FROM PEP_EVOLUCAO_MEDICA WHERE ID = 29";
+			$sql = "SELECT * FROM PEP_EVOLUCAO_MEDICA WHERE ID = 38";
 
 			$data = $connection->conn->query($sql);
 
