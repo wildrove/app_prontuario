@@ -22,7 +22,7 @@
   				<h5 class="card-header card-titulo">Prontuário Médico Eletrônico</h5>
  					<div class="card-body">
     					<legend  class="card-title">Filtros para Localizar Paciente</legend>
-    						<form method="post" action="Actions/User/findPacient.php">
+    						<form method="post" action="Actions/Pacient/findPacient.php">
     							<div class="row">
     								<div class="col">
     									<div class="form-group">
@@ -34,18 +34,6 @@
     									<div class="form-group">
     										<label for="nascimento">Data Nascimento:</label>
     										<input type="date" class="form-control" name="dtNasc" placeholder="data nascimento">
-    									</div>
-    								</div>
-    								<div class="col">
-    									<div class="form-group">
-    										<label for="tipoPaciente">Tipo Paciente:</label>
-    										<select class="form-control" name="tipoPaciente">
-    											<option></option>
-    											<option>Interno</option>
-    											<option>Interno C/Alta</option>
-    											<option>Ps/Ambulatório</option>
-    											<option>Ps(C/Alta)</option>
-    										</select>
     									</div>
     								</div>
     								<div class="col">

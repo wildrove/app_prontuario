@@ -16,7 +16,6 @@ use PDO;
 
 				$this->conn = new \PDO("$driverName:dbname=$hostName", $user, $pass);
 				$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-				echo '<h1>Conectado com sucesso!</h1>';
 
 			}catch(PDOException $e){
 				echo 'Não foi possível conectar!' . $e->getMessage();
