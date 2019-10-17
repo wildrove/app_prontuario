@@ -36,7 +36,7 @@
     										<input type="date" class="form-control" name="dtNasc" placeholder="data nascimento" autocomplete="off">
     									</div>
     								</div>
-    								<div class="col">
+    								<div class="col-3">
     									<div class="form-group mt-2">
     										<label for="pesquisar"></label>
     										<input type="submit" class="form-control btn btn-primary" value="Pesquisar">

@@ -1,8 +1,3 @@
-<?php 
-	
-	require_once('./Actions/User/validateAccessFile.php');
-
-?>
 
 <!DOCTYPE html>
 <html>
@@ -18,8 +13,7 @@
      <!-- Fontawesome link -->
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/v4-shims.css">
-        
-      </script>
+
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top navbar-header">
