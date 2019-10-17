@@ -23,7 +23,7 @@ namespace Classes\Pacient;
 			$this->$atribute = $value;
 		}
 
-		public function findPacient($nome, $dataNasc)
+		public function findPacient($nome = 'wilder', $dataNasc = '1984-06-10')
 		{
 			$connection = new FirebirdConnection();
 
@@ -32,7 +32,7 @@ namespace Classes\Pacient;
 
 			if($this->dataNascimento == ''){
 
-				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,TELEFONE FROM PRONTUARIO WHERE NOME LIKE '%".$this->nomePaciente."%'";
+				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '%".$this->nomePaciente."%'";
 
 				$data = $connection->conn->query($sql);
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -47,8 +47,8 @@ namespace Classes\Pacient;
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 				return $result;
-			}
 
+			}
 				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,TELEFONE FROM PRONTUARIO WHERE NOME LIKE '%".$this->nomePaciente."%' AND DATA_NASCIMENTO = '".$this->dataNascimento."'";
 
 				$data = $connection->conn->query($sql);

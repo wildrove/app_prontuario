@@ -1,3 +1,9 @@
+<?php 
+	
+	require_once('./Actions/User/validateAccessFile.php');
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +28,7 @@
 		</div>
 		<ul class="navbar-nav ml-auto nav-items">
 			<li class="nav-item bem-vindo-nav">
-				<span class="nav-link"><?php echo 'Bem vindo ' . ucfirst($_POST['userName']) . ' !' ?></span>
+				<span class="nav-link"><?php echo "Bem Vindo " . ucfirst($_SESSION['nome_usuario']) . " !" ?></span>
 			</li>
 			<div class="divisor-nav"></div>
 			<li class="nav-item logout-nav">

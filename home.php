@@ -1,3 +1,9 @@
+<?php 
+
+	require_once('Actions/User/validateAccessFile.php');
+
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +24,10 @@
 	<?php 
 
 		require_once('forms/header.php');
+
+		if(isset($_GET['invalid_search']) && $_GET['invalid_search'] == 'YES'){
+			require_once('./Alerts/searchInvalid.html');
+		}
 		require_once('forms/content-home.php');
 	?>
 </body>

@@ -9,5 +9,12 @@
 
 	$pacient = new Pacient();
 
+	if($nomePaciente == null && $dataNascimento == null){
+
+		
+		
+
+	}
+
 	echo '<pre>';
 	print_r($pacient->findPacient($nomePaciente, $dataNascimento));
