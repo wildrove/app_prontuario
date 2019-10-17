@@ -23,19 +23,37 @@ namespace Classes\Pacient;
 			$this->$atribute = $value;
 		}
 
-		public function findPacient($nome)
+		public function findPacient($nome, $dataNasc)
 		{
 			$connection = new FirebirdConnection();
 
 			$this->nomePaciente = $nome;
-			//$this->dataNascimento = $dataNasc;
+			$this->dataNascimento = $dataNasc;
 
-			$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,TELEFONE FROM PRONTUARIO WHERE NOME LIKE '%".$this->nomePaciente."%' ";
+			if($this->dataNascimento == ''){
 
-			$data = $connection->conn->query($sql);
+				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,TELEFONE FROM PRONTUARIO WHERE NOME LIKE '%".$this->nomePaciente."%'";
 
-			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				$data = $connection->conn->query($sql);
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
-			return $result;
+				return $result;
+
+			} elseif ($this->nomePaciente == '') {
+
+				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = '".$this->dataNascimento."'";
+
+				$data = $connection->conn->query($sql);
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+				return $result;
+			}
+
+				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,TELEFONE FROM PRONTUARIO WHERE NOME LIKE '%".$this->nomePaciente."%' AND DATA_NASCIMENTO = '".$this->dataNascimento."'";
+
+				$data = $connection->conn->query($sql);
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+				return $result;
 		}
 	}

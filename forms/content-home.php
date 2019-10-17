@@ -27,13 +27,13 @@
     								<div class="col">
     									<div class="form-group">
     										<label for="paciente">Paciente:</label>
-    										<input type="text" class="form-control" name="paciente" placeholder="Nome Paciente">
+    										<input type="text" class="form-control" name="paciente" placeholder="Nome Paciente" autocomplete="off">
     									</div>
     								</div>
     								<div class="col">
     									<div class="form-group">
     										<label for="nascimento">Data Nascimento:</label>
-    										<input type="date" class="form-control" name="dtNasc" placeholder="data nascimento">
+    										<input type="date" class="form-control" name="dtNasc" placeholder="data nascimento" autocomplete="off">
     									</div>
     								</div>
     								<div class="col">

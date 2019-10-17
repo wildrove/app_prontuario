@@ -4,10 +4,10 @@
 
 	use Classes\Pacient\Pacient;
 
-	$nomePaciente = $_POST['paciente'];
+	$nomePaciente = strtoupper($_POST['paciente']);
 	$dataNascimento = $_POST['dtNasc'];
 
 	$pacient = new Pacient();
 
 	echo '<pre>';
-	print_r($pacient->findPacient($nomePaciente));
+	print_r($pacient->findPacient($nomePaciente, $dataNascimento));
