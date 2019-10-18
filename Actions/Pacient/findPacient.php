@@ -1,5 +1,9 @@
 <?php	
+
+	session_start();
+	require_once '../../forms/headerUserPacientList.php';
 	require '../../vendor/autoload.php';
+
 	use Classes\Pacient\Pacient;
 
 	$nomePaciente = strtoupper($_POST['paciente']);
@@ -13,14 +17,34 @@
 
 	if(($resultData) AND ($count != 0)){
 ?>		
-	
+
+<!DOCTYPE html>
+<html>
+<head>
+	    <head>  
+        <meta charset="utf-8">
+        <title>Listar Pacientes</title>
+
+        <!-- Bootstrap -->  
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<!-- Link Personal style.css -->
+		<link rel="stylesheet" type="text/css" href="../../bootstrap/css/style.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </head>
+</head>
+<body>
+
 	<div class="container-fluid">
-		<table class="table">
+		<table class="table" style="margin-top: 180px;">
 			  <thead class="thead-dark">
-			    <tr class="text-center">
-			      <th scope="col" class="border-right">REGISTRO PRONTUÁRIO</th>
+			    <tr class="text-center" style="font-size: 15px;">
+			      <th scope="col" class="border-right">REG. PRONTUÁRIO</th>
 			      <th scope="col" class="border-right">NOME PACIENTE</th>
-			      <th scope="col" class="border-right">DATA NASCIMENTO</th>
+			      <th scope="col" class="border-right">DT NASCIMENTO</th>
 			      <th scope="col" class="border-right">Nº DOCUMENTO</th>
 			      <th scope="col" class="border-right">NOME MÃE</th>
 			      <th scope="col" class="border-right">Nº TELEFONE</th>
