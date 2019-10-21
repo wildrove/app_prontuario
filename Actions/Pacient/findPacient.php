@@ -14,7 +14,7 @@
 	$resultData = $pacient->findPacient($nomePaciente, $dataNascimento);
 	$numRows = count($resultData);
 	//itens por página
-	$itemsPerPage = 1;
+	$itemsPerPage = 3;
 	//pegar página atual
 	$currentPage = intval($_GET['page']);
 	// pega a quantidade total de objetos no banco de dados
