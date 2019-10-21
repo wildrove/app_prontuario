@@ -57,4 +57,18 @@ namespace Classes\Pacient;
 				return $result;
 
 		}
+
+		public function getTotalPacient()
+		{
+			$connection = new FirebirdConnection();
+
+			$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO ";
+
+			$data = $connection->conn->prepare($sql);
+			$data->execute();
+			
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result = count($result);
 	}
+}	

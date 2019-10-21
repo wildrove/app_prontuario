@@ -12,6 +12,16 @@
 	$pacient = new Pacient();
 
 	$resultData = $pacient->findPacient($nomePaciente, $dataNascimento);
+	$numRows = count($resultData);
+	//itens por página
+	$itemsPerPage = 2;
+	//pegar página atual
+	$currentPage = intval($_GET['page']);
+	// pega a quantidade total de objetos no banco de dados
+	$totalRows = $pacient->getTotalPacient();
+	// definir numero de páginas
+	$numPages = ceil($numRows / $itemsPerPage);
+
 
 	$count = (is_array($resultData) ? count($resultData) : 0);
 
@@ -70,8 +80,27 @@
 				}?>
 			  </tbody>
 		</table>
+		<nav>
+			<ul class="pagination">
+				<li class="page-item">
+				   <a class="page-link" href="findPacient.php?page=0">Anterior</a>
+				</li>
+				<?php 
+				for($i=0;$i<$numPages;$i++){
+				$style = "";
+				if($currentPage == $i)
+				    $style = "class=\"active page-item\"";
+				?>
+				<li <?php echo $style; ?> ><a class="page-link" href="findPacient.php?page=<?php echo $i; ?>"><?php echo $i+1; ?></a></li>
+				<?php } ?>
+				<li class="page-item">
+				   <a class="page-link" href="findPacient.php?page=<?php echo $numPages-1; ?>">Próximo</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
 <?php	
 }else{
 	echo "<div class='alert alert-danger' role='alert'>Nenhum usuário encontrado!</div>";
 }
+?>
