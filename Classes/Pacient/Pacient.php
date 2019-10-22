@@ -38,10 +38,11 @@ namespace Classes\Pacient;
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 				return $result;
+				exit;
 
 			} elseif ($this->nomePaciente == '') {
 
-				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = '".$this->dataNascimento."' ORDER BY NOME ASC";
+				$sql = "SELECT FIRST $page SKIP $limite REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = '".$this->dataNascimento."' ORDER BY NOME ASC";
 
 				$data = $connection->conn->query($sql);
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -50,28 +51,80 @@ namespace Classes\Pacient;
 				exit;
 
 			}
-				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->nomePaciente."%' AND DATA_NASCIMENTO = '".$this->dataNascimento."' ORDER BY NOME ASC";
+				$sql = "SELECT FIRST $page SKIP $limite REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->nomePaciente."%' AND DATA_NASCIMENTO = '".$this->dataNascimento."' ORDER BY NOME ASC";
 
 				$data = $connection->conn->query($sql);
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 				return $result;
+				exit;
 
 
 		}
 
-		public function getTotalPacient($nome)
+		public function getTotalPacient($nome, $dtNasc)
 		{
-			$connection = new FirebirdConnection();
+			try {
+					$connection = new FirebirdConnection();
 
-			$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$nome."%' ";
+					if ($dtNasc == '') {
+					
+						$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$nome."%' ";
 
-			$data = $connection->conn->prepare($sql);
-			$data->execute();
-			
-			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+						$data = $connection->conn->prepare($sql);
+						$data->execute();
+				
+						$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
-			return $result = count($result);
-	}
+						return $result = count($result);
+						exit;
+					}
 
-}	
+					if ($nome == '') {
+					
+						$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE,TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = '".$dtNasc."' ";
+
+						$data = $connection->conn->prepare($sql);
+						$data->execute();
+				
+						$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+						return $result = count($result);
+						exit;
+					}
+
+					if ($dtNasc == '') {
+					
+						$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$nome."%' ";
+
+						$data = $connection->conn->prepare($sql);
+						$data->execute();
+				
+						$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+						return $result = count($result);
+						exit;
+					}
+
+					if ($dtNasc == '' && $nome == '') {
+					
+						echo "<div class='container text-center m-auto'>Nenhum dado encontrado!</div>";
+						exit;
+					}
+
+					$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$nome."%' AND DATA_NASCIMENTO = '".$dtNasc."' ";
+
+					$data = $connection->conn->prepare($sql);
+						$data->execute();
+				
+					$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+					return $result = count($result);
+					exit;
+
+			}catch(PDOException $e){
+
+				echo $e . getMessage();
+			}		
+		}
+	}	
