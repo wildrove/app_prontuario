@@ -8,24 +8,25 @@
 
 	$nomePaciente = strtoupper($_POST['paciente']);
 	$dataNascimento = $_POST['dtNasc'];
+	//pegar página atual
+	$currentPage = (isset($_GET['page'])) ? $_GET['page'] : 0;
+	//itens por página
+	$itemsPerPage = 3;
+
 
 	$pacient = new Pacient();
 
-	$resultData = $pacient->findPacient($nomePaciente, $dataNascimento);
+	$resultData = $pacient->findPacient($nomePaciente, $dataNascimento, $itemsPerPage, $currentPage);
 	$numRows = count($resultData);
-	//itens por página
-	$itemsPerPage = 1;
-	//pegar página atual
-	$currentPage = intval($_GET['page']);
 	// pega a quantidade total de objetos no banco de dados
-	$totalRows = $pacient->getTotalPacient();
+	$totalRows = $pacient->getTotalPacient($nomePaciente);
 	// definir numero de páginas
-	$numPages = ceil($numRows / $itemsPerPage);
+	$numPages = ceil($totalRows / $itemsPerPage);
 
 
 	$count = (is_array($resultData) ? count($resultData) : 0);
 
-	if(($resultData) AND ($count != 0)){
+	if(($resultData) AND ($count > 0)){
 ?>		
 
 <!DOCTYPE html>
@@ -103,4 +104,5 @@
 }else{
 	echo "<div class='alert alert-danger' role='alert'>Nenhum usuário encontrado!</div>";
 }
+	echo $totalRows;
 ?>

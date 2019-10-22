@@ -23,7 +23,7 @@ namespace Classes\Pacient;
 			$this->$atribute = $value;
 		}
 
-		public function findPacient($nome, $dataNasc)
+		public function findPacient($nome, $dataNasc, $page, $limite)
 		{
 			$connection = new FirebirdConnection();
 
@@ -32,7 +32,7 @@ namespace Classes\Pacient;
 
 			if($this->dataNascimento == ''){
 
-				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->nomePaciente."%' ORDER BY NOME ASC";
+				$sql = "SELECT FIRST $page SKIP $limite REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->nomePaciente."%' ORDER BY NOME ASC";
 
 				$data = $connection->conn->query($sql);
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -47,6 +47,7 @@ namespace Classes\Pacient;
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 				return $result;
+				exit;
 
 			}
 				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->nomePaciente."%' AND DATA_NASCIMENTO = '".$this->dataNascimento."' ORDER BY NOME ASC";
@@ -56,13 +57,14 @@ namespace Classes\Pacient;
 
 				return $result;
 
+
 		}
 
-		public function getTotalPacient()
+		public function getTotalPacient($nome)
 		{
 			$connection = new FirebirdConnection();
 
-			$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO ";
+			$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$nome."%' ";
 
 			$data = $connection->conn->prepare($sql);
 			$data->execute();
@@ -71,4 +73,5 @@ namespace Classes\Pacient;
 
 			return $result = count($result);
 	}
+
 }	
