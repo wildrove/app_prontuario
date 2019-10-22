@@ -12,14 +12,16 @@
 	$dataNascimento = $_POST['dtNasc'];
 	//pegar página atual
 	$currentPage = (isset($_GET['page'])) ? $_GET['page'] : 0;
+	//pegar nome do paciente
+	$nome = (isset($_GET['paciente'])) ? $_GET['paciente'] : 'WILDER';
 	//itens por página
 	$itemsPerPage = 3;
 
 	$pacient = new Pacient();
 
-	$resultData = $pacient->findPacient($nomePaciente, $dataNascimento, $itemsPerPage, $currentPage);
+	$resultData = $pacient->findPacient($nome, $dataNascimento, $itemsPerPage, $currentPage);
 	// pega a quantidade total de objetos no banco de dados
-	$totalRows = $pacient->getTotalPacient($nomePaciente, $dataNascimento);
+	$totalRows = $pacient->getTotalPacient($nome, $dataNascimento);
 	// definir numero de páginas
 	$numPages = ceil($totalRows / $itemsPerPage);
 
@@ -84,7 +86,7 @@
 		<nav>
 			<ul class="pagination">
 				<li class="page-item">
-				   <a class="page-link" href="findPacient.php?page=0">Anterior</a>
+				   <a class="page-link" href="findPacient.php?page=0&paciente=WILDER">Anterior</a>
 				</li>
 				<?php 
 				for($i=0;$i<$numPages;$i++){
@@ -92,10 +94,10 @@
 				if($currentPage == $i)
 				    $style = "class=\"active page-item\"";
 				?>
-				<li <?php echo $style; ?> ><a class="page-link" href="findPacient.php?page=<?php echo $i; ?>"><?php echo $i+1; ?></a></li>
+				<li <?php echo $style; ?> ><a class="page-link" href="findPacient.php?page=<?php echo $i; ?>&paciente=WILDER"><?php echo $i+1; ?></a></li>
 				<?php } ?>
 				<li class="page-item">
-				   <a class="page-link" href="findPacient.php?page=<?php echo $numPages-1; ?>">Próximo</a>
+				   <a class="page-link" href="findPacient.php?page=<?php echo $numPages-1;?>&paciente=WILDER">Próximo</a>
 				</li>
 			</ul>
 		</nav>
@@ -104,8 +106,11 @@
 }else{
 	echo "<div class='alert alert-danger' role='alert'>Nenhum usuário encontrado!</div>";
 }
-	echo "Pagina atual: " . $currentPage . "<br>";
-	echo "Itens por página: " . $itemsPerPage . "<br>";
-	echo "Nome: " . $nomePaciente . "<br>";
-	echo var_dump($dataNascimento) . "<br>";
+	echo "<div style='padding: 10px'>";
+	echo "<h6>Pagina atual: " . $currentPage . "<br></h6>";
+	echo "<h6>Itens por página: " . $itemsPerPage . "<br></h6>";
+	echo "<h6>Nome: " . $nomePaciente . "<br></h6>";
+	echo "<h6>Get Nome: " . $nome . "<br></h6>";
+	echo "<h6>" . var_dump($dataNascimento) . "</h6>";
+	echo "</div>";
 ?>
