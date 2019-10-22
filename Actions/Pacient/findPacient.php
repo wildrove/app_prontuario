@@ -19,7 +19,7 @@
 
 	$pacient = new Pacient();
 
-	$resultData = $pacient->findPacient($nome, $dataNascimento, $itemsPerPage, $currentPage);
+	$resultData = $pacient->findPacient($nome, $dataNascimento, $currentPage, $itemsPerPage);
 	// pega a quantidade total de objetos no banco de dados
 	$totalRows = $pacient->getTotalPacient($nome, $dataNascimento);
 	// definir numero de páginas

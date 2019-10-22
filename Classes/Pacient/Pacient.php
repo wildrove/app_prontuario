@@ -25,22 +25,23 @@ namespace Classes\Pacient;
 
 		public function findPacient($nome, $dataNasc, $page, $limite)
 		{
+
 			$connection = new FirebirdConnection();
 
 			$this->nomePaciente = $nome;
 			$this->dataNascimento = $dataNasc;
 
-			if($this->dataNascimento == ''){
-
-				$sql = "SELECT FIRST $page SKIP $limite REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->nomePaciente."%' ORDER BY NOME ASC";
+			//if($this->dataNascimento == ''){
+				$teste = $page * $limite;
+				$sql = "SELECT FIRST $limite SKIP $teste REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->nomePaciente."%' ORDER BY NOME ASC";
 
 				$data = $connection->conn->query($sql);
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
-
+				
 				return $result;
-				exit;
+			
 
-			} elseif ($this->nomePaciente == '') {
+			/*} elseif ($this->nomePaciente == '') {
 
 				$sql = "SELECT FIRST $page SKIP $limite REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = '".$this->dataNascimento."' ORDER BY NOME ASC";
 
@@ -57,7 +58,7 @@ namespace Classes\Pacient;
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 				return $result;
-				exit;
+				exit;*/
 
 
 		}
