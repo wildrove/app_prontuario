@@ -5,8 +5,8 @@ namespace Classes\Pacient;
 
 	class Pacient{
 
-		private $nomePaciente = null;
-		private $dataNascimento = null;
+		private $pacientName = null;
+		private $pacientBirthday = null;
 
 		public function __construct()
 		{
@@ -23,27 +23,29 @@ namespace Classes\Pacient;
 			$this->$atribute = $value;
 		}
 
-		public function findPacient($nome, $dataNasc, $page, $limite)
+		public function findPacient($name, $birthDay, $page, $limit)
 		{
 
 			$connection = new FirebirdConnection();
 
-			$this->nomePaciente = $nome;
-			$this->dataNascimento = $dataNasc;
+			$this->pacientName = $name;
+			$this->pacientBirthday = $birthDay;
 
-			//if($this->dataNascimento == ''){
-				$teste = $page * $limite;
-				$sql = "SELECT FIRST $limite SKIP $teste REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->nomePaciente."%' ORDER BY NOME ASC";
+			if($this->pacientBirthday == ''){
+				//$teste = $page * $limite;
+				$sql = "SELECT FIRST $limit SKIP $page REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->pacientName."%' ORDER BY NOME ASC";
 
 				$data = $connection->conn->query($sql);
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 				
-				return $result;
-			
+				return $result;		
 
-			/*} elseif ($this->nomePaciente == '') {
+			}
 
-				$sql = "SELECT FIRST $page SKIP $limite REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = '".$this->dataNascimento."' ORDER BY NOME ASC";
+			if($this->pacientName == '') {
+
+				$sql = "SELECT FIRST $limit SKIP $page
+				REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = '".$this->pacientBirthday."' ORDER BY NOME ASC";
 
 				$data = $connection->conn->query($sql);
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -52,25 +54,27 @@ namespace Classes\Pacient;
 				exit;
 
 			}
-				$sql = "SELECT FIRST $page SKIP $limite REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->nomePaciente."%' AND DATA_NASCIMENTO = '".$this->dataNascimento."' ORDER BY NOME ASC";
+
+				$sql = "SELECT FIRST $limit SKIP $page
+				REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->pacientName."%' AND DATA_NASCIMENTO = '".$this->pacientBirthday."' ORDER BY NOME ASC";
 
 				$data = $connection->conn->query($sql);
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 				return $result;
-				exit;*/
-
-
+				exit;
 		}
 
-		public function getTotalPacient($nome, $dtNasc)
+
+
+		public function getTotalPacient($name, $birthDay)
 		{
 			try {
 					$connection = new FirebirdConnection();
 
-					if ($dtNasc == '') {
+					if ($birthDay == '') {
 					
-						$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$nome."%' ";
+						$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$name."%' ";
 
 						$data = $connection->conn->prepare($sql);
 						$data->execute();
@@ -81,9 +85,9 @@ namespace Classes\Pacient;
 						exit;
 					}
 
-					if ($nome == '') {
+					if ($name == '') {
 					
-						$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE,TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = '".$dtNasc."' ";
+						$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE,TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = '".$birthDay."' ";
 
 						$data = $connection->conn->prepare($sql);
 						$data->execute();
@@ -94,26 +98,13 @@ namespace Classes\Pacient;
 						exit;
 					}
 
-					if ($dtNasc == '') {
-					
-						$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$nome."%' ";
-
-						$data = $connection->conn->prepare($sql);
-						$data->execute();
-				
-						$result = $data->fetchAll(PDO::FETCH_ASSOC);
-
-						return $result = count($result);
-						exit;
-					}
-
-					if ($dtNasc == '' && $nome == '') {
+					if ($birthDay == '' && $name == '') {
 					
 						echo "<div class='container text-center m-auto'>Nenhum dado encontrado!</div>";
 						exit;
 					}
 
-					$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$nome."%' AND DATA_NASCIMENTO = '".$dtNasc."' ";
+					$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$name."%' AND DATA_NASCIMENTO = '".$birthDay."' ";
 
 					$data = $connection->conn->prepare($sql);
 						$data->execute();

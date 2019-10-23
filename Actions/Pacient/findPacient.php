@@ -6,25 +6,31 @@
 
 	use Classes\Pacient\Pacient;
 
-	// Nome recebido por POST
-	//$nomePaciente = strtoupper($_GET['paciente']);
-	//Data Recebido por POST
-	$dataNascimento = $_GET['dtNasc'];
+	// Pegar data do formulario content-home.php
+	$birthday = (isset($_GET['dtNasc'])) ? $_GET['dtNasc'] : '';
+	//pegar nome do paciente
+	$name = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : '';
+	//itens por página
+	$itemsPerPage = 30;
 	//pegar página atual
 	$currentPage = (isset($_GET['page'])) ? $_GET['page'] : 0;
-	//pegar nome do paciente
-	$nome = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : $_GET['paciente'];
-	//itens por página
-	$itemsPerPage = 3;
+
+	// multiplica pagina atual * limite por página para gerar paginação
+	$page = $currentPage * $itemsPerPage;
 
 	$pacient = new Pacient();
 
-	$resultData = $pacient->findPacient($nome, $dataNascimento, $currentPage, $itemsPerPage);
+	// verifica se nome e data nascimento são vazios
+	if(($name === '') && ($birthday === '')){
+		header('Location: ../../AlertsHTML/alertInvalidPacient.html');
+		exit;
+	}
+
+	$resultData = $pacient->findPacient($name, $birthday, $page, $itemsPerPage);
 	// pega a quantidade total de objetos no banco de dados
-	$totalRows = $pacient->getTotalPacient($nome, $dataNascimento);
+	$totalRows = $pacient->getTotalPacient($name, $birthday);
 	// definir numero de páginas
 	$numPages = ceil($totalRows / $itemsPerPage);
-
 
 	$count = (is_array($resultData) ? count($resultData) : 0);
 
@@ -34,19 +40,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	    <head>  
-        <meta charset="utf-8">
-        <title>Listar Pacientes</title>
+    <title>Listar Pacientes</title>
+    <meta charset="utf-8">
+    <!-- Bootstrap -->  
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Link Personal style.css -->
+	<link rel="stylesheet" type="text/css" href="../../bootstrap/css/style.css">
 
-        <!-- Bootstrap -->  
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-		<!-- Link Personal style.css -->
-		<link rel="stylesheet" type="text/css" href="../../bootstrap/css/style.css">
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     </head>
 </head>
 <body>
@@ -86,7 +89,7 @@
 		<nav>
 			<ul class="pagination">
 				<li class="page-item">
-				   <a class="page-link" href="findPacient.php?page=0&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $nome); echo $_SESSION['nomeP']; ?>">Anterior</a>
+				   <a class="page-link" href="findPacient.php?page=0&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>">Primeira</a>
 				</li>
 				<?php 
 				for($i=0;$i<$numPages;$i++){
@@ -94,17 +97,15 @@
 				if($currentPage == $i)
 				    $style = "class=\"active page-item\"";
 				?>
-				<li <?php echo $style; ?> ><a class="page-link" href="findPacient.php?page=<?php echo $i; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $nome); echo $_SESSION['nomeP']; ?>"><?php echo $i+1; ?></a></li>
+				<li <?php echo $style; ?> ><a class="page-link" href="findPacient.php?page=<?php echo $i; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>"><?php echo $i+1; ?></a></li>
 				<?php } ?>
 				<li class="page-item">
-				   <a class="page-link" href="findPacient.php?page=<?php echo $numPages-1;?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $nome); echo $_SESSION['nomeP']; ?>">Próximo</a>
+				   <a class="page-link" href="findPacient.php?page=<?php echo $numPages-1;?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>">Última</a>
 				</li>
 			</ul>
 		</nav>
 	</div>
 <?php	
-}else{
-	echo "<div class='alert alert-danger' role='alert'>Nenhum usuário encontrado!</div>";
 }
 	echo "<div style='padding: 10px'>";
 	echo "<button class='btn btn-primary'><a class='text-light' href='../../home.php'>voltar</a></button>";
