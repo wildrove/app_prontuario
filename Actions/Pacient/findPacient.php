@@ -7,13 +7,13 @@
 	use Classes\Pacient\Pacient;
 
 	// Nome recebido por POST
-	$nomePaciente = strtoupper($_POST['paciente']);
+	//$nomePaciente = strtoupper($_GET['paciente']);
 	//Data Recebido por POST
-	$dataNascimento = $_POST['dtNasc'];
+	$dataNascimento = $_GET['dtNasc'];
 	//pegar página atual
 	$currentPage = (isset($_GET['page'])) ? $_GET['page'] : 0;
 	//pegar nome do paciente
-	$nome = (isset($_GET['paciente'])) ? $_GET['paciente'] : 'WILDER';
+	$nome = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : $_GET['paciente'];
 	//itens por página
 	$itemsPerPage = 3;
 
@@ -86,7 +86,7 @@
 		<nav>
 			<ul class="pagination">
 				<li class="page-item">
-				   <a class="page-link" href="findPacient.php?page=0&paciente=WILDER">Anterior</a>
+				   <a class="page-link" href="findPacient.php?page=0&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $nome); echo $_SESSION['nomeP']; ?>">Anterior</a>
 				</li>
 				<?php 
 				for($i=0;$i<$numPages;$i++){
@@ -94,10 +94,10 @@
 				if($currentPage == $i)
 				    $style = "class=\"active page-item\"";
 				?>
-				<li <?php echo $style; ?> ><a class="page-link" href="findPacient.php?page=<?php echo $i; ?>&paciente=WILDER"><?php echo $i+1; ?></a></li>
+				<li <?php echo $style; ?> ><a class="page-link" href="findPacient.php?page=<?php echo $i; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $nome); echo $_SESSION['nomeP']; ?>"><?php echo $i+1; ?></a></li>
 				<?php } ?>
 				<li class="page-item">
-				   <a class="page-link" href="findPacient.php?page=<?php echo $numPages-1;?>&paciente=WILDER">Próximo</a>
+				   <a class="page-link" href="findPacient.php?page=<?php echo $numPages-1;?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $nome); echo $_SESSION['nomeP']; ?>">Próximo</a>
 				</li>
 			</ul>
 		</nav>
@@ -107,10 +107,6 @@
 	echo "<div class='alert alert-danger' role='alert'>Nenhum usuário encontrado!</div>";
 }
 	echo "<div style='padding: 10px'>";
-	echo "<h6>Pagina atual: " . $currentPage . "<br></h6>";
-	echo "<h6>Itens por página: " . $itemsPerPage . "<br></h6>";
-	echo "<h6>Nome: " . $nomePaciente . "<br></h6>";
-	echo "<h6>Get Nome: " . $nome . "<br></h6>";
-	echo "<h6>" . var_dump($dataNascimento) . "</h6>";
+	echo "<button class='btn btn-primary'><a class='text-light' href='../../home.php'>voltar</a></button>";
 	echo "</div>";
 ?>
