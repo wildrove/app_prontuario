@@ -11,9 +11,9 @@
 	//pegar nome do paciente
 	$name = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : '';
 	//itens por página
-	$itemsPerPage = 3;
+	$itemsPerPage = 1;
 	//pegar página atual
-	$currentPage = (isset($_GET['page'])) ? $_GET['page'] : 0;
+	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 0;
 
 	// multiplica pagina atual * limite por página para gerar paginação
 	$page = ($currentPage * $itemsPerPage);
@@ -25,6 +25,10 @@
 	$totalRows = $pacient->getTotalPacient($name, $birthday);
 	// definir numero de páginas
 	$numPages = ceil($totalRows / $itemsPerPage);
+	$maxLinks = 10;
+	$paginationLimit = ceil($maxLinks / 2);
+	$start = $currentPage - $paginationLimit;
+	$limit = $currentPage + $paginationLimit;
 
 
 	// verifica se nome e data nascimento são vazios
@@ -104,13 +108,19 @@
 				   <a class="page-link" href="findPacient.php?page=0&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>">Primeira</a>
 				</li>
 				<?php 
-				for($i=0;$i<$numPages;$i++){
+				for($i=$start;$i<=$limit;$i++){
 				$style = "";
-				if($currentPage == $i)
+				if($i == $currentPage){
 				    $style = "class=\"active page-item\"";
+				
 				?>
-				<li <?php echo $style; ?> ><a class="page-link" href="findPacient.php?page=<?php echo $i; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>"><?php echo $i+1; ?></a></li>
-				<?php } ?>
+				<li <?php echo $style; ?> ><a class="page-link" href="findPacient.php?page=<?php echo $i; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>"><?php echo $i; ?></a></li>
+				<?php }else{
+					if ($i >= 1 && $i <= $numPages) {
+						echo " <a href=\"paginacao.php?page=" . $i . "\">" . $i . "</a> ";
+					}
+				}}
+				 ?>
 				<li class="page-item">
 				   <a class="page-link" href="findPacient.php?page=<?php echo $numPages-1;?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>">Última</a>
 				</li>
