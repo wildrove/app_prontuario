@@ -11,20 +11,14 @@
 	//pegar nome do paciente
 	$name = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : '';
 	//itens por página
-	$itemsPerPage = 30;
+	$itemsPerPage = 3;
 	//pegar página atual
 	$currentPage = (isset($_GET['page'])) ? $_GET['page'] : 0;
 
 	// multiplica pagina atual * limite por página para gerar paginação
-	$page = $currentPage * $itemsPerPage;
+	$page = ($currentPage * $itemsPerPage);
 
 	$pacient = new Pacient();
-
-	// verifica se nome e data nascimento são vazios
-	if(($name === '') && ($birthday === '')){
-		header('Location: ../../AlertsHTML/alertInvalidPacient.html');
-		exit;
-	}
 
 	$resultData = $pacient->findPacient($name, $birthday, $page, $itemsPerPage);
 	// pega a quantidade total de objetos no banco de dados
@@ -32,6 +26,24 @@
 	// definir numero de páginas
 	$numPages = ceil($totalRows / $itemsPerPage);
 
+
+	// verifica se nome e data nascimento são vazios
+	if(($name === '') && ($birthday === '')){
+		header('Location: ../../AlertsHTML/alertInvalidPacient.html');
+		exit;
+	}
+
+	// verifca se a data é inválido
+	if(($birthday !== $resultData) && ($name === '')){
+		header('Location: ../../AlertsHTML/invalidDate.html');
+		exit;
+	}
+
+	// validar se o nome é inválido
+
+	
+	
+	// verifica se o a variavel é um array e atribui ao contador
 	$count = (is_array($resultData) ? count($resultData) : 0);
 
 	if(($resultData) AND ($count > 0)){
