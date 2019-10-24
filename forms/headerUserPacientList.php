@@ -5,7 +5,7 @@
 	<title></title>
 	 <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="../bootstrap/css/style.css">
+     <link rel="stylesheet" href="./bootstrap/css/style.css">
 
      <!-- Bootstrap link -->
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -18,7 +18,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top navbar-header">
 		<div class="navbar-brand img-fluid img-nav">
-			<img src="../../img/hospital-header-logo.png" width="" height="">
+			<img src="./img/hospital-header-logo.png" width="" height="">
 		</div>
 		<ul class="navbar-nav ml-auto nav-items">
 			<li class="nav-item bem-vindo-nav">
@@ -26,7 +26,7 @@
 			</li>
 			<div class="divisor-nav"></div>
 			<li class="nav-item logout-nav">
-				<a href="../../Actions/User/logout.php" class="nav-link logout-text">Sair</a>
+				<a href="./Actions/User/logout.php" class="nav-link logout-text">Sair</a>
 			</li>
 		</ul>
 	</nav>

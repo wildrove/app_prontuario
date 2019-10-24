@@ -27,7 +27,7 @@
   				<h5 class="card-header card-titulo">Prontuário Médico Eletrônico</h5>
  					<div class="card-body">
     					<legend  class="card-title">Filtros para Localizar Paciente</legend>
-    						<form method="get" action="Actions/Pacient/findPacient.php">
+    						<form method="get" action="./findPacient.php">
     							<div class="row">
     								<div class="col">
     									<div class="form-group">
