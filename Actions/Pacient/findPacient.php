@@ -10,16 +10,17 @@
 	$birthday = (isset($_GET['dtNasc'])) ? $_GET['dtNasc'] : '';
 	//pegar nome do paciente
 	$name = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : '';
-
+   // pega a pagina atual
 	$pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
 	//itens por página
 	$quantidade = 10;
-
+   // calcula o inicio da consulta
 	$inicio = ($pagina * $quantidade) - $quantidade;
-
+   // função de consulta no banco
 	$result_pagina= $pacient->findPacient($name, $birthday, $inicio, $quantidade);
+   // função que pega o total de linhas no banco
 	$numTotal = $pacient->getTotalPacient($name, $birthday);
-
+   //calcula to total de paginas
 	$num_pagina = ceil($numTotal/$quantidade);
 
 
@@ -78,32 +79,33 @@
 			    </table>
 				<nav align="center" aria-label="Page navigation" style="margin-bottom: 20px;">
 					<ul class="pagination">
-					   <li class="page-item">
+					   <li class="page-item <?php if($pagina_anterior == 0){ echo 'disabled';} ?>">
 					   <?php 
 					   if($pagina_anterior != 0) { ?>
 					      <a href="findPacient.php?pagina=<?php echo $pagina_anterior; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>" style="text-decoration: none;">
 					         <span class="page-link" aria-hidden="true">Anterior</span>
 					      </a>
 					   <?php } else { ?>
-					         <span class="page-link" aria-hidden="true">Anterior</span>
+					         <span class="page-link" >Anterior</span>
 					   <?php } ?>
 					   </li>
 					   <?php
+
 					        if($pagina > 2){
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
 					        }
 					        if($pagina > 1){
 					        echo "<li class='page-item'><a class='page-link' href='findPacient.php?pagina=".$pagina_anterior."'>".$pagina_anterior."</a></li>";
 					        }
-					        echo "<li class='page-item'><a class='page-link' href='findPacient.php?pagina=".$pagina."'>".$pagina."</a></li>";
+					        echo "<li class='page-item active'><a class='page-link' href='findPacient.php?pagina=".$pagina."'>".$pagina."</a></li>";
 					        if($pagina_posterior <= $num_pagina){
-					            echo "<li class='page-item'><a class='page-link' href='findPacient.php?pagina=".$pagina_posterior ."'>".$pagina_posterior."</a></li>"; 
+					          echo "<li class='page-item'><a class='page-link' href='findPacient.php?pagina=".$pagina_posterior ."'>".$pagina_posterior."</a></li>"; 
 					        }
 					        if($pagina_posterior < $num_pagina){
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
 					        }
 					        ?>
-					   <li class="page-item">
+					   <li class="page-item <?php if($pagina_posterior > $num_pagina){echo 'disabled';} ?>">
 					       <?php 
 					       if($pagina_posterior <= $num_pagina) { ?>
 					          <a href="findPacient.php?pagina=<?php echo $pagina_posterior; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>" aria-label="Previous" style="text-decoration: none">
@@ -115,7 +117,7 @@
 					    </li>
 					</ul>
 				</nav>
-				<a class="btn btn-primary btn-lg mb-5 shadow-lg" href="../../home.php">Voltar</a>
+				<a class="btn btn-primary  mb-5 shadow-lg" href="../../home.php">Voltar</a>
 			</div>
 	</body>
 </html>	
