@@ -1,4 +1,4 @@
 <?php
 
-$pacientProntuary = intval($_GET['registro']);
+$pacientProntuary = intval($_GET['prontuario']);
 var_dump($pacientProntuary);

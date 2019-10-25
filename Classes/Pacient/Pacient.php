@@ -33,7 +33,7 @@ namespace Classes\Pacient;
 
 			if($this->pacientBirthday == ''){
 				//$teste = $page * $limite;
-				$sql = "SELECT FIRST $limit SKIP $page REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->pacientName."%' ORDER BY NOME ASC";
+				$sql = "SELECT FIRST $limit SKIP $page REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '%".$this->pacientName."%' ORDER BY NOME ASC";
 
 				$data = $connection->conn->query($sql);
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);

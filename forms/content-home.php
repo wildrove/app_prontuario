@@ -24,9 +24,9 @@
 
 		<section class="main-section">
 			<div class="card">
-  				<h5 class="card-header card-titulo">Prontuário Médico Eletrônico</h5>
+  				<h5 class="card-header card-titulo bg-dark text-light">Prontuário Médico Eletrônico</h5>
  					<div class="card-body">
-    					<legend  class="card-title">Filtros para Localizar Paciente</legend>
+    					<legend  class="card-title">Filtros para Localizar Paciente:</legend>
     						<form method="get" action="Actions/Pacient/findPacient.php">
     							<div class="row">
     								<div class="col">

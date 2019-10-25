@@ -17,16 +17,26 @@
    // calcula o inicio da consulta
 	$inicio = ($pagina * $quantidade) - $quantidade;
    // função de consulta no banco
-	$result_pagina= $pacient->findPacient($name, $birthday, $inicio, $quantidade);
+	$result_pagina = $pacient->findPacient($name, $birthday, $inicio, $quantidade);
    // função que pega o total de linhas no banco
 	$numTotal = $pacient->getTotalPacient($name, $birthday);
    //calcula to total de paginas
 	$num_pagina = ceil($numTotal/$quantidade);
 
+   if($name == '' && $birthday == ''){
+      header('Location: ../../AlertsHTML/alertInvalidPacient.html');
+      exit;
+   }
+
+   if(in_array($birthday, $result_pagina)){
+      header('Location: ../../AlertsHTML/invalidDate.html');
+      exit;
+   }
 
 	$pagina_anterior = $pagina -1;
 	$pagina_posterior = $pagina + 1;
-   $registro = null;
+   // enviar o prontuario do paciente para consulta de evolução
+   $prontuario = null;
 
 	?>
 	<!DOCTYPE html>
@@ -74,7 +84,7 @@
 			              <td class="border-right"><?php echo $rowPacient['NOME_MAE']; ?></td>
 			              <td class="border-right"><?php echo $rowPacient['TELEFONE']; ?></td>
 			              <td>
-			                <a href="findProntuary.php?registro=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a>
+			                <a href="findProntuary.php?prontuario=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a>
 			              </td>
 			            </tr>
 			            <?php
@@ -127,7 +137,5 @@
 	</body>
 </html>
 
-<?php
-
-echo $registro;	
+   
 
