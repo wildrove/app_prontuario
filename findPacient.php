@@ -119,6 +119,3 @@ $pagina_posterior = $pagina + 1;
 <?php
   echo "Total : " . $numTotal;
 ?>
-<div class="container-fluid">
-  <a class="btn btn-primary" href="./home.php">Voltar</a>
-</div>
