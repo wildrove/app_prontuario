@@ -69,8 +69,8 @@ namespace Classes\Pacient;
 				REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE ? AND DATA_NASCIMENTO = ? ORDER BY NOME ASC";
 
 				$data = $connection->conn->prepare($sql);
-				$data->bindParam(1, $likeStringName);
-				$data->bindParam(2, $likeStringDate);
+				$data->bindParam(1, $likeStringName, PDO::PARAM_STR);
+				$data->bindParam(2, $likeStringDate, PDO::PARAM_STR);
 
 				$data->execute();
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
