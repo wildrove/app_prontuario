@@ -52,7 +52,7 @@ namespace Classes\Pacient;
 				REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = ? ORDER BY NOME ASC";
 
 				$data = $connection->conn->prepare($sql);
-				$data->bindParam(1, $likeString);
+				$data->bindParam(1, $likeString, PDO::PARAM_STR);
 				$data->execute();
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
@@ -62,10 +62,17 @@ namespace Classes\Pacient;
 
 			if (!empty($this->pacientName) && !empty($this->pacientBirthday)) {
 
-				$sql = "SELECT FIRST $limit SKIP $page
-				REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->pacientName."%' AND DATA_NASCIMENTO = '".$this->pacientBirthday."' ORDER BY NOME ASC";
+				$likeStringName = '%' . $this->pacientName . '%';
+				$likeStringDate = "$this->pacientBirthday";
 
-				$data = $connection->conn->query($sql);
+				$sql = "SELECT FIRST $limit SKIP $page
+				REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE ? AND DATA_NASCIMENTO = ? ORDER BY NOME ASC";
+
+				$data = $connection->conn->prepare($sql);
+				$data->bindParam(1, $likeStringName);
+				$data->bindParam(2, $likeStringDate);
+
+				$data->execute();
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 				return $result;
