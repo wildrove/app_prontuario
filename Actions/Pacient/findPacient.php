@@ -7,9 +7,9 @@
 	$pacient = new Pacient();
 
 	// Pegar data do formulario content-home.php
-	$birthday = (isset($_GET['dtNasc'])) ? $_GET['dtNasc'] : null;
+	$birthday = (isset($_GET['dtNasc'])) ? $_GET['dtNasc'] : '';
 	//pegar nome do paciente
-	$name = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : null;
+	$name = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : '';
    // pega a pagina atual
 	$pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
 	//itens por página
@@ -31,50 +31,35 @@
    $prontuario = null;
 
 
+   // Cria um array a partir da coluna NOME de $result_pagina
+   $nameColumn = array_column($result_pagina, 'NOME');
+   // Transforma array $nameColumn em uma String
+   $validateName = implode(",", $nameColumn);
+   // Cria um array a partir da coluna DATA_NASCMENTO de $result_pagina
+   $birthColumn = array_column($result_pagina, 'DATA_NASCIMENTO');
+   // Transforma array $birthColumn em uma String
+   $validateBirth = implode(',', $birthColumn);
 
-   // verifica se nome e data nascimento são vazios
+     // verifica se nome e data nascimento são vazios
    if(empty($name) && empty($birthday)){
       header('Location: ../../AlertsHTML/alertInvalidPacient.html');
       exit();
    }
 
-   // Transforma o array Paciente coluna NOME em uma String
-   $validarNome = implode(',', array_column($result_pagina, 'NOME'));
-   // transforma o array paciente coluna DATA_NASCIMENTO em uma String
-   $validarDtNasc = implode(',', array_column($result_pagina, 'DATA_NASCIMENTO'));
+   // Verifica se o Nome existe e se a data nascimento é vazia
+   if(($name === $validateName) && empty($birthday)){
    
-   // Verifica se existe o nome e se a data de nascimento é vazia
-   if(strrpos($validarNome, $name) && empty($birthday)){
-   
-   }
-   // verifica se o nome não existe e data de nascimento é vazia
-   if(!strrpos($validarNome, $name) && empty($birthday)){
-      header('Location: ../../AlertsHTML/alertInvalidName.html');
-      exit();
-   }
-   // Verifica se existe a data de nascimento e se o nome é vazio
-   if (strrpos($validarDtNasc, $birthday) && empty($name)) {
-   
-   }
-   // verifica se data de nascimento é inválida
-   if(!strrpos($validarDtNasc, $birthday) && empty($name)){
-      header('Location: ../../AlertsHTML/alertInvalidDate.html');
-      exit();
-   }
 
-   // verifica se o nome e data nascimento existem
-   if(strrpos($validarNome, $name) && strrpos($validarDtNasc, $birthday)){
-   
-   }
-   // Verifica se nome e data de nascimento são inválidos
-   if(!strrpos($validarNome, $name) && !strrpos($validarDtNasc, $birthday)){
+   }elseif(strpos($validateName, $name) && empty($birthday)){
+     
+
+   }elseif(($name !== $validateName) && empty($birthday)) {
       header('Location: ../../AlertsHTML/alertInvalidPacient.html');
       exit();
+
+   }elseif(($name === $validateName) && ($birthday === $validateBirth)) {
+
    }
-
-
-
-
 
 	?>
 	<!DOCTYPE html>
