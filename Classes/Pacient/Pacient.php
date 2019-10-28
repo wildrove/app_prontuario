@@ -31,7 +31,7 @@ namespace Classes\Pacient;
 			$this->pacientName = $name;
 			$this->pacientBirthday = $birthDay;
 
-			if($this->pacientBirthday == ''){
+			if(($this->pacientBirthday == '') && !empty($this->pacientName)){
 				//$teste = $page * $limite;
 				$sql = "SELECT FIRST $limit SKIP $page REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '%".$this->pacientName."%' ORDER BY NOME ASC";
 
@@ -42,7 +42,7 @@ namespace Classes\Pacient;
 
 			}
 
-			if($this->pacientName == '') {
+			if(($this->pacientName == '') && !empty($this->pacientBirthday)) {
 
 				$sql = "SELECT FIRST $limit SKIP $page
 				REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = '".$this->pacientBirthday."' ORDER BY NOME ASC";
@@ -55,6 +55,8 @@ namespace Classes\Pacient;
 
 			}
 
+			if (!empty($this->pacientName) && !empty($this->pacientBirthday)) {
+				
 				$sql = "SELECT FIRST $limit SKIP $page
 				REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->pacientName."%' AND DATA_NASCIMENTO = '".$this->pacientBirthday."' ORDER BY NOME ASC";
 
@@ -63,6 +65,7 @@ namespace Classes\Pacient;
 
 				return $result;
 				exit;
+			}
 		}
 
 

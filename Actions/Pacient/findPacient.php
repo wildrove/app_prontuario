@@ -7,26 +7,28 @@
 	$pacient = new Pacient();
 
 	// Pegar data do formulario content-home.php
-	$birthday = (isset($_GET['dtNasc'])) ? $_GET['dtNasc'] : '';
+	$birthday = (isset($_GET['dtNasc'])) ? $_GET['dtNasc'] : null;
 	//pegar nome do paciente
-	$name = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : '';
+	$name = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : null;
    // pega a pagina atual
 	$pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
 	//itens por página
 	$quantidade = 20;
    // calcula o inicio da consulta
 	$inicio = ($pagina * $quantidade) - $quantidade;
+
    // função de consulta no banco
 	$result_pagina = $pacient->findPacient($name, $birthday, $inicio, $quantidade);
    // função que pega o total de linhas no banco
-	$numTotal = $pacient->getTotalPacient($name, $birthday);
-   //calcula to total de paginas
-	$num_pagina = ceil($numTotal/$quantidade);
 
    if($name == '' && $birthday == ''){
       header('Location: ../../AlertsHTML/alertInvalidPacient.html');
       exit;
    }
+   
+	$numTotal = $pacient->getTotalPacient($name, $birthday);
+   //calcula to total de paginas
+	$num_pagina = ceil($numTotal/$quantidade);
 
 
 	$pagina_anterior = $pagina -1;
