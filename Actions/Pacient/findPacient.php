@@ -28,10 +28,6 @@
       exit;
    }
 
-   if(in_array($birthday, $result_pagina)){
-      header('Location: ../../AlertsHTML/invalidDate.html');
-      exit;
-   }
 
 	$pagina_anterior = $pagina -1;
 	$pagina_posterior = $pagina + 1;
