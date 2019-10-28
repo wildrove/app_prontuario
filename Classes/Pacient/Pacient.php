@@ -40,7 +40,7 @@ namespace Classes\Pacient;
 				$data->bindParam(1, $likeString, PDO::PARAM_STR);
 				$data->execute();
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
-				
+
 				return $result;		
 
 			}

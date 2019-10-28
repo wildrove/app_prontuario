@@ -38,7 +38,7 @@
     								<div class="col">
     									<div class="form-group">
     										<label for="nascimento">Data Nascimento:</label>
-    										<input type="date" class="form-control" name="dtNasc" placeholder="data nascimento" autocomplete="off">
+    										<input type="date" min="1900-01-01" max="2200-01-01" class="form-control" name="dtNasc" placeholder="data nascimento" autocomplete="off">
     									</div>
     								</div>
     								<div class="col-3">

@@ -19,13 +19,7 @@
 
    // função de consulta no banco
 	$result_pagina = $pacient->findPacient($name, $birthday, $inicio, $quantidade);
-   // função que pega o total de linhas no banco
-
-   if($name == '' && $birthday == ''){
-      header('Location: ../../AlertsHTML/alertInvalidPacient.html');
-      exit;
-   }
-   
+   // função que pega o total de linhas no banco   
 	$numTotal = $pacient->getTotalPacient($name, $birthday);
    //calcula to total de paginas
 	$num_pagina = ceil($numTotal/$quantidade);
@@ -35,6 +29,52 @@
 	$pagina_posterior = $pagina + 1;
    // enviar o prontuario do paciente para consulta de evolução
    $prontuario = null;
+
+
+
+   // verifica se nome e data nascimento são vazios
+   if(empty($name) && empty($birthday)){
+      header('Location: ../../AlertsHTML/alertInvalidPacient.html');
+      exit();
+   }
+
+   // Transforma o array Paciente coluna NOME em uma String
+   $validarNome = implode(',', array_column($result_pagina, 'NOME'));
+   // transforma o array paciente coluna DATA_NASCIMENTO em uma String
+   $validarDtNasc = implode(',', array_column($result_pagina, 'DATA_NASCIMENTO'));
+   
+   // Verifica se existe o nome e se a data de nascimento é vazia
+   if(strrpos($validarNome, $name) && empty($birthday)){
+   
+   }
+   // verifica se o nome não existe e data de nascimento é vazia
+   if(!strrpos($validarNome, $name) && empty($birthday)){
+      header('Location: ../../AlertsHTML/alertInvalidName.html');
+      exit();
+   }
+   // Verifica se existe a data de nascimento e se o nome é vazio
+   if (strrpos($validarDtNasc, $birthday) && empty($name)) {
+   
+   }
+   // verifica se data de nascimento é inválida
+   if(!strrpos($validarDtNasc, $birthday) && empty($name)){
+      header('Location: ../../AlertsHTML/alertInvalidDate.html');
+      exit();
+   }
+
+   // verifica se o nome e data nascimento existem
+   if(strrpos($validarNome, $name) && strrpos($validarDtNasc, $birthday)){
+   
+   }
+   // Verifica se nome e data de nascimento são inválidos
+   if(!strrpos($validarNome, $name) && !strrpos($validarDtNasc, $birthday)){
+      header('Location: ../../AlertsHTML/alertInvalidPacient.html');
+      exit();
+   }
+
+
+
+
 
 	?>
 	<!DOCTYPE html>
