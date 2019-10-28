@@ -33,9 +33,12 @@ namespace Classes\Pacient;
 
 			if(($this->pacientBirthday == '') && !empty($this->pacientName)){
 				//$teste = $page * $limite;
-				$sql = "SELECT FIRST $limit SKIP $page REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '%".$this->pacientName."%' ORDER BY NOME ASC";
+				$likeString = '%' . $this->pacientName . '%';
+				$sql = "SELECT FIRST $limit SKIP $page REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE ? ORDER BY NOME ASC";
 
-				$data = $connection->conn->query($sql);
+				$data = $connection->conn->prepare($sql);
+				$data->bindParam(1, $likeString, PDO::PARAM_STR);
+				$data->execute();
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 				
 				return $result;		
@@ -56,7 +59,7 @@ namespace Classes\Pacient;
 			}
 
 			if (!empty($this->pacientName) && !empty($this->pacientBirthday)) {
-				
+
 				$sql = "SELECT FIRST $limit SKIP $page
 				REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE '".$this->pacientName."%' AND DATA_NASCIMENTO = '".$this->pacientBirthday."' ORDER BY NOME ASC";
 
