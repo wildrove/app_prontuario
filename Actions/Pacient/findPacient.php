@@ -10,24 +10,24 @@
 	//pegar nome do paciente
 	$name = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : '';
    // pega a pagina atual
-	$pagina = (isset($_GET['pagina'])) ? (int)$_GET['pagina'] : 1;
+	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
-	$quantidade = 20;
+	$itemsPerPage = 20;
    // calcula o inicio da consulta
-	$inicio = ($pagina * $quantidade) - $quantidade;
+	$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
    $pacient = new Pacient();
 
    // função de consulta no banco
-	$result_pagina = $pacient->findPacient($name, $birthday, $inicio, $quantidade);
+	$resultPage = $pacient->findPacient($name, $birthday, $start, $itemsPerPage);
    // função que pega o total de linhas no banco   
-	$numTotal = $pacient->getTotalPacient($name, $birthday);
+	$totalRowsQuery = $pacient->getTotalPacient($name, $birthday);
    //calcula to total de paginas
-	$num_pagina = ceil($numTotal/$quantidade);
+	$totalPages = ceil($totalRowsQuery/$itemsPerPage);
 
 
-	$pagina_anterior = $pagina -1;
-	$pagina_posterior = $pagina + 1;
+	$previousPage = $currentPage -1;
+	$nextPage = $currentPage + 1;
    // enviar o prontuario do paciente para consulta de evolução
    $prontuario = null;
 
@@ -38,12 +38,12 @@
       exit();
    }
    //verifica se data de nascimento é válida
-   if ($birthday && count($result_pagina) == 0) {
+   if ($birthday && count($resultPage) == 0) {
       header('Location: ../../AlertsHTML/alertInvalidPacient.html');
       exit();
    }
    // verifica se nome do paciente é válido
-   if ($name && count($result_pagina) == 0) {
+   if ($name && count($resultPage) == 0) {
      header('Location: ../../AlertsHTML/alertInvalidPacient.html');
       exit();
    }
@@ -86,7 +86,7 @@
 			        </thead>
 			        <tbody>
 			        <?php 
-			        foreach($result_pagina as $rowPacient) {
+			        foreach($resultPage as $rowPacient) {
 			            ?>
 			            <tr class="text-center border font-italic">
 			              <th scope="row" class="border-right "><?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?></th>
@@ -106,10 +106,10 @@
             </div>
 				<nav align="center" aria-label="Page navigation" style="margin-bottom: 20px;">
 					<ul class="pagination mt-3">
-					   <li class="page-item <?php if($pagina_anterior == 0){ echo 'disabled';} ?>">
+					   <li class="page-item <?php if($previousPage == 0){ echo 'disabled';} ?>">
 					   <?php 
-					   if($pagina_anterior != 0) { ?>
-					      <a href="findPacient.php?pagina=<?php echo $pagina_anterior; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>" style="text-decoration: none;">
+					   if($previousPage != 0) { ?>
+					      <a href="findPacient.php?page=<?php echo $previousPage; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>" style="text-decoration: none;">
 					         <span class="page-link bg-primary text-light" aria-hidden="true">Anterior</span>
 					      </a>
 					   <?php } else { ?>
@@ -118,24 +118,24 @@
 					   </li>
 					   <?php
 
-					        if($pagina > 2){
+					        if($currentPage > 2){
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
 					        }
-					        if($pagina > 1){
-					        echo "<li class='page-item'><a class='page-link' href='findPacient.php?pagina=".$pagina_anterior."&paciente=".$_SESSION['nomeP']."&data=".$_SESSION['data']."'>".$pagina_anterior."</a></li>";
+					        if($currentPage > 1){
+					        echo "<li class='page-item'><a class='page-link' href='findPacient.php?page=".$previousPage."&paciente=".$_SESSION['nomeP']."&data=".$_SESSION['data']."'>".$previousPage."</a></li>";
 					        }
-					        echo "<li class='page-item active'><a class='page-link' href=''>".$pagina."</a></li>";
-					        if($pagina_posterior <= $num_pagina){
-					          echo "<li class='page-item'><a class='page-link' href='findPacient.php?pagina=".$pagina_posterior ."&paciente=".$_SESSION['nomeP']."&data=".$_SESSION['data']."'>".$pagina_posterior."</a></li>"; 
+					        echo "<li class='page-item active'><a class='page-link' href=''>".$currentPage."</a></li>";
+					        if($nextPage <= $totalPages){
+					          echo "<li class='page-item'><a class='page-link' href='findPacient.php?page=".$nextPage ."&paciente=".$_SESSION['nomeP']."&data=".$_SESSION['data']."'>".$nextPage."</a></li>"; 
 					        }
-					        if($pagina_posterior < $num_pagina){
+					        if($nextPage < $totalPages){
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
 					        }
 					        ?>
-					      <li class="page-item <?php if($pagina_posterior > $num_pagina){echo 'disabled';} ?>">
+					      <li class="page-item <?php if($nextPage > $totalPages){echo 'disabled';} ?>">
 					       <?php 
-					       if($pagina_posterior <= $num_pagina) { ?>
-					          <a href="findPacient.php?pagina=<?php echo $pagina_posterior; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>" aria-label="Previous" style="text-decoration: none">
+					       if($nextPage <= $totalPages) { ?>
+					          <a href="findPacient.php?page=<?php echo $nextPage; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>" aria-label="Previous" style="text-decoration: none">
 					             <span class="page-link bg-primary text-light" aria-hidden="true">Próximo</span>
 					          </a>
 					       <?php } else { ?>
