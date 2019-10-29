@@ -4,7 +4,6 @@
 	require '../../vendor/autoload.php';
 	
 	use Classes\Pacient\Pacient;
-	$pacient = new Pacient();
 
 	// Pegar data do formulario content-home.php
 	$birthday = (isset($_GET['dtNasc'])) ? $_GET['dtNasc'] : '';
@@ -16,6 +15,8 @@
 	$quantidade = 20;
    // calcula o inicio da consulta
 	$inicio = ($pagina * $quantidade) - $quantidade;
+
+   $pacient = new Pacient();
 
    // função de consulta no banco
 	$result_pagina = $pacient->findPacient($name, $birthday, $inicio, $quantidade);
@@ -31,35 +32,23 @@
    $prontuario = null;
 
 
-   // Cria um array a partir da coluna NOME de $result_pagina
-   $nameColumn = array_column($result_pagina, 'NOME');
-   // Transforma array $nameColumn em uma String
-   $validateName = implode(",", $nameColumn);
-   // Cria um array a partir da coluna DATA_NASCMENTO de $result_pagina
-   $birthColumn = array_column($result_pagina, 'DATA_NASCIMENTO');
-   // Transforma array $birthColumn em uma String
-   $validateBirth = implode(',', $birthColumn);
-
-     // verifica se nome e data nascimento são vazios
+   // verifica se nome e data nascimento são vazios
    if(empty($name) && empty($birthday)){
       header('Location: ../../AlertsHTML/alertInvalidPacient.html');
       exit();
    }
-
-   // Verifica se o Nome existe e se a data nascimento é vazia
-   if(($name === $validateName) && empty($birthday)){
-   
-
-   }elseif(strpos($validateName, $name) && empty($birthday)){
-     
-
-   }elseif(($name !== $validateName) && empty($birthday)) {
+   //verifica se data de nascimento é válida
+   if ($birthday && count($result_pagina) == 0) {
       header('Location: ../../AlertsHTML/alertInvalidPacient.html');
       exit();
-
-   }elseif(($name === $validateName) && ($birthday === $validateBirth)) {
-
    }
+   // verifica se nome do paciente é válido
+   if ($name && count($result_pagina) == 0) {
+     header('Location: ../../AlertsHTML/alertInvalidPacient.html');
+      exit();
+   }
+
+      
 
 	?>
 	<!DOCTYPE html>
