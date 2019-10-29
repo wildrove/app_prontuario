@@ -92,9 +92,15 @@
 			              <th scope="row" class="border-right "><?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?></th>
 			              <td class="border-right"><?php echo $rowPacient['NOME']; ?></td>
 			              <td class="border-right"><?php echo date('d-m-Y', strtotime($rowPacient['DATA_NASCIMENTO'])); ?></td>
-			              <td class="border-right"><?php echo $rowPacient['DOCUMENTO']; ?></td>
-			              <td class="border-right"><?php echo $rowPacient['NOME_MAE']; ?></td>
-			              <td class="border-right"><?php echo $rowPacient['TELEFONE']; ?></td>
+			              <td class="border-right"><?php if(empty($rowPacient['DOCUMENTO'])){
+                        echo '<b>-</b>';
+                       } echo $rowPacient['DOCUMENTO']; ?></td>
+			              <td class="border-right"><?php if (empty($rowPacient['NOME_MAE'])) {
+                          echo '<b>-</b>';
+                       } echo $rowPacient['NOME_MAE']; ?></td>
+			              <td class="border-right"><?php if (empty($rowPacient['TELEFONE'])) {
+                          echo '<b>-</b>';
+                       } echo $rowPacient['TELEFONE']; ?></td>
 			              <td>
 			                <a href="findProntuary.php?prontuario=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a>
 			              </td>

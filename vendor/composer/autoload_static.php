@@ -20,11 +20,20 @@ class ComposerStaticInit67deef0fdc1bc323bd556c28f86c0fc7
         ),
     );
 
+    public static $classMap = array (
+        'Classes\\AbstractModel\\AbstractModel' => __DIR__ . '/../..' . '/Classes/AbstractModel/AbstractModel.php',
+        'Classes\\FirebirdConnection\\FirebirdConnection' => __DIR__ . '/../..' . '/Classes/FirebirdConnection/FirebirdConnection.php',
+        'Classes\\Pacient\\Pacient' => __DIR__ . '/../..' . '/Classes/Pacient/Pacient.php',
+        'Classes\\Pacient\\PacientEvolution\\PacientEvolution' => __DIR__ . '/../..' . '/Classes/Pacient/PacientEvolution.php',
+        'Classes\\Users\\Users' => __DIR__ . '/../..' . '/Classes/Users/Users.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit67deef0fdc1bc323bd556c28f86c0fc7::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit67deef0fdc1bc323bd556c28f86c0fc7::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit67deef0fdc1bc323bd556c28f86c0fc7::$classMap;
 
         }, null, ClassLoader::class);
     }
