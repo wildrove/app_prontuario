@@ -5,11 +5,12 @@
 
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
 
-	$x = new PacientEvolution();
+	$pacientRegistry = intval($_GET['prontuario']);
 
-	$x->teste();
+	$pacientEvolution = new PacientEvolution();
 
-$pacientProntuary = intval($_GET['prontuario']);
-var_dump($pacientProntuary);
+	echo '<pre>';
+	var_dump($pacientEvolution->findPacientEvolution($pacientRegistry));
 
-echo "<br><a href='../../home.php'><h3>Voltar</h3></a>";
+
+

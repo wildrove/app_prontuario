@@ -6,8 +6,38 @@ namespace Classes\Pacient\PacientEvolution;
 
 	class PacientEvolution {
 
-			public function teste()
-			{
-				echo '<h1>Olá mundo!</h1>';
-			}
+		private $connection = null;
+
+		public function __construct()
+		{
+			$this->connection = new FireBirdConnection();
+		}
+
+		public function __get($atribute)
+		{
+			return $this->$atribute;
+		}
+
+		public function __set($atribute, $value)
+		{
+			$this->$atribute = $value;
+		}
+
+		public function findPacientEvolution($regProntuary)
+		{
+			$sql = "SELECT REGISTRO_PRONTUARIO, EVOLUCAO FROM PEP_EVOLUCAO_MEDICA WHERE REGISTRO_PRONTUARIO = ? GROUP BY EVOLUCAO, REGISTRO_PRONTUARIO";
+
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $regProntuary);
+			$data->execute();
+
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;
+
+		}
+
+
+
+
 	}

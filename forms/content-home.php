@@ -14,11 +14,6 @@
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/v4-shims.css">
         
-      <script type="text/javascript">
-          function carregarLoad(){
-            $.load()
-          }
-      </script>
 </head>
 	<body>
 
