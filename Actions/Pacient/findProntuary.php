@@ -34,18 +34,29 @@
 
 	foreach ($pacientEvo as $key => $value) {
 		if ($pacientEvo[$key]['EVOLUCAO']) {
+			//$pacientEvo[$key]['EVOLUCAO'] = preg_replace("[\'e7]", "ç", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\par", " ", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\'e7", "ç", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\'f3", "ó", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\rtf1", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\rtf1", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\ansi\ansicpg1252\\deff0\\deflang1046", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("{{", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\viewkind4\\uc1 d\\fs18", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("}", "", $pacientEvo[$key]['EVOLUCAO']);
+
+
 			echo "<pre>";
-			print_r($pacientEvo[$key]['EVOLUCAO']);
-			exit();
+			var_dump($pacientEvo[$key]['EVOLUCAO']);
+			
 		}
 	}
 
+	//strip_tags(html_entity_decode($pacientEvo[$key]['EVOLUCAO']));
+	// $pacientEvo[$key]['EVOLUCAO'] = str_replace("\\", "", $pacientEvo[$key]['EVOLUCAO']);
 
 
-
-	$x = strip_tags(html_entity_decode($pacientEvo['EVOLUCAO']));
-
-	print_r($x);
 
 
 
