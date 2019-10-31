@@ -32,7 +32,7 @@ namespace Classes\Pacient;
 			$this->pacientBirthday = $birthDay;
 
 			if(($this->pacientBirthday == '') && !empty($this->pacientName)){
-				//$teste = $page * $limite;
+				
 				$likeString = '%' . $this->pacientName . '%';
 				$sql = "SELECT FIRST $limit SKIP $page REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE ? ORDER BY NOME ASC";
 

@@ -25,13 +25,14 @@ namespace Classes\Pacient\PacientEvolution;
 
 		public function findPacientEvolution($regProntuary)
 		{
-			$sql = "SELECT REGISTRO_PRONTUARIO, EVOLUCAO FROM PEP_EVOLUCAO_MEDICA WHERE REGISTRO_PRONTUARIO = ? GROUP BY EVOLUCAO, REGISTRO_PRONTUARIO";
+			$sql = "SELECT TIPO, REGISTRO_PRONTUARIO, REGISTRO_PACIENTE, DATA_EVOLUCAO, EVOLUCAO FROM PEP_EVOLUCAO_MEDICA WHERE REGISTRO_PRONTUARIO = ? OR REGISTRO_PACIENTE = ?";
 
 			$data = $this->connection->conn->prepare($sql);
 			$data->bindParam(1, $regProntuary);
+			$data->bindParam(2, $regProntuary);
 			$data->execute();
-
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
 
 			return $result;
 
