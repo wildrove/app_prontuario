@@ -37,18 +37,34 @@
 			//$pacientEvo[$key]['EVOLUCAO'] = preg_replace("[\'e7]", "ç", $pacientEvo[$key]['EVOLUCAO']);
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\par", " ", $pacientEvo[$key]['EVOLUCAO']);
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\'e7", "ç", $pacientEvo[$key]['EVOLUCAO']);
-			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\'f3", "ó", $pacientEvo[$key]['EVOLUCAO']);
-			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\rtf1", "", $pacientEvo[$key]['EVOLUCAO']);
-			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\rtf1", "", $pacientEvo[$key]['EVOLUCAO']);
-			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\ansi\ansicpg1252\\deff0\\deflang1046", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\'f3", "o", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\'e9", "e", $pacientEvo[$key]['EVOLUCAO']);
+
+		
+
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("{{", "", $pacientEvo[$key]['EVOLUCAO']);
-			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}", "", $pacientEvo[$key]['EVOLUCAO']);
-			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\viewkind4\\uc1 d\\fs18", "", $pacientEvo[$key]['EVOLUCAO']);
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("}", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("}", "", $pacientEvo[$key]['EVOLUCAO']);
+
+			
+
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\fonttbl{\f0\fnil\fcharset0 Arial;", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\ansi\ansicpg1252\\deff0\\deflang1046", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\rtf1", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\rtf1", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\viewkind4\\uc1 d\\fs18", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\kerning0", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\kerning1", "", $pacientEvo[$key]['EVOLUCAO']);
+
+
 
 
 			echo "<pre>";
-			var_dump($pacientEvo[$key]['EVOLUCAO']);
+			var_dump($pacientEvo);
+
+			echo "<pre>";
+			echo '<h1>Qunatidade: </h1>' . '<h1>' . count($pacientEvo) . '</h1>';
 			
 		}
 	}
