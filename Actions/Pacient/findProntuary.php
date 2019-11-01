@@ -33,9 +33,10 @@
 		}
 	}
 
+	$evolution = null;
 
 	foreach ($pacientEvo as $key => $value) {
-		if ($pacientEvo[$key]['EVOLUCAO']) {
+	/*	if ($pacientEvo[$key]['EVOLUCAO']) {
 			
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\par", " ", $pacientEvo[$key]['EVOLUCAO']);
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\'e7", "Ç", $pacientEvo[$key]['EVOLUCAO']);
@@ -129,12 +130,21 @@
 		
 			
 		}
+	*/	
+
+		if ($pacientEvo[$key]['EVOLUCAO']) {
+			$evolution = $pacientEvo[$key]['EVOLUCAO'];
+		}
 	}
 
-	//strip_tags(html_entity_decode($pacientEvo[$key]['EVOLUCAO']));
-	// $pacientEvo[$key]['EVOLUCAO'] = str_replace("\\", "", $pacientEvo[$key]['EVOLUCAO']);
-	//$pacientEvo[$key]['EVOLUCAO'] = preg_replace("[\'e7]", "ç", $pacientEvo[$key]['EVOLUCAO']);
-	//echo "<center><a href='javascript:window.history.go(-1)' class='btn btn-primary'>Voltar</a>";
+	require('../../cleanRtf.php');
+
+	echo "<pre>";
+	print_r(rtf2text($evolution));exit();
+
+
+
+
 
 
 
