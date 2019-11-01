@@ -71,7 +71,7 @@
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\f2\\fswiss\\fprq2\\fcharset0 Arial;", "", $pacientEvo[$key]['EVOLUCAO']);
 			$pacientEvo[$key]['EVOLUCAO'] = preg_replace("[{{{}{}{}}]", "", $pacientEvo[$key]['EVOLUCAO']);
 			$pacientEvo[$key]['EVOLUCAO'] = preg_replace("[{{{}}]", "", $pacientEvo[$key]['EVOLUCAO']);
-			
+
 
 
 			echo "<pre>";
@@ -90,7 +90,7 @@
 	//strip_tags(html_entity_decode($pacientEvo[$key]['EVOLUCAO']));
 	// $pacientEvo[$key]['EVOLUCAO'] = str_replace("\\", "", $pacientEvo[$key]['EVOLUCAO']);
 	//$pacientEvo[$key]['EVOLUCAO'] = preg_replace("[\'e7]", "ç", $pacientEvo[$key]['EVOLUCAO']);
-	echo "<center><a href='javascript:window.history.go(-1)' class='btn btn-primary'>Voltar</a>";
+	//echo "<center><a href='javascript:window.history.go(-1)' class='btn btn-primary'>Voltar</a>";
 
 
 
