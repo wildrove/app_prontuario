@@ -38,7 +38,31 @@ namespace Classes\Pacient\PacientEvolution;
 
 		}
 
+		public function changeColumnType($arrayColumn, String $columnName)
+		{
+			foreach ($arrayColumn as $key => $value) {
 
+				if ($arrayColumn[$key][$columnName] == 'CRM') {
+					$arrayColumn[$key][$columnName] = 'MÉDICO';
 
+				}elseif ($arrayColumn[$key][$columnName] == 'CRN') {
+					$arrayColumn[$key][$columnName] = 'NUTRICIONISTA';
+					
 
+				}elseif ($arrayColumn[$key][$columnName] == 'CRP ') {
+					$arrayColumn[$key][$columnName] = 'PSICÓLOGO';
+				
+
+				}elseif ($arrayColumn[$key][$columnName] == 'COREN') {
+					$arrayColumn[$key][$columnName] = 'ENFERMAGEM';
+					
+
+				}elseif ($arrayColumn[$key][$columnName] == 'CREFITO') {
+					$arrayColumn[$key][$columnName] = 'FISIOTERAPEUTA';
+					
+				}
+			}
+
+			return $arrayColumn;
+		}
 	}
