@@ -50,6 +50,10 @@
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\'c7\\'d5", "çõ", $pacientEvo[$key]['EVOLUCAO']);
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\'c1", "á", $pacientEvo[$key]['EVOLUCAO']);
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\'e2", "â", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\f1\\u225?\\f0 ", "á", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\f1\\u231?\\u227?\\f0 ", "çã", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\f1\\u237?\\f0 ", "í", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\f1\\u233?\\f0 ", "é", $pacientEvo[$key]['EVOLUCAO']);
 
 
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\rtf1\\ansi\\ansicpg1252\\deff0\\deflang1046", "", $pacientEvo[$key]['EVOLUCAO']);
@@ -64,6 +68,10 @@
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\b", "", $pacientEvo[$key]['EVOLUCAO']);
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\kerning1", "", $pacientEvo[$key]['EVOLUCAO']);
 			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\kerning0", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = str_replace("\\f2\\fswiss\\fprq2\\fcharset0 Arial;", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = preg_replace("[{{{}{}{}}]", "", $pacientEvo[$key]['EVOLUCAO']);
+			$pacientEvo[$key]['EVOLUCAO'] = preg_replace("[{{{}}]", "", $pacientEvo[$key]['EVOLUCAO']);
+			
 
 
 			echo "<pre>";
@@ -82,6 +90,7 @@
 	//strip_tags(html_entity_decode($pacientEvo[$key]['EVOLUCAO']));
 	// $pacientEvo[$key]['EVOLUCAO'] = str_replace("\\", "", $pacientEvo[$key]['EVOLUCAO']);
 	//$pacientEvo[$key]['EVOLUCAO'] = preg_replace("[\'e7]", "ç", $pacientEvo[$key]['EVOLUCAO']);
+	echo "<center><a href='javascript:window.history.go(-1)' class='btn btn-primary'>Voltar</a>";
 
 
 
