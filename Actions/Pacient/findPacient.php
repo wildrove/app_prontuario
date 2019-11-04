@@ -12,7 +12,7 @@
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
-	$itemsPerPage = 20;
+	$itemsPerPage = 5;
    // calcula o inicio da consulta
 	$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
@@ -102,7 +102,7 @@
                           echo '<b>-</b>';
                        } echo $rowPacient['TELEFONE']; ?></td>
 			              <td>
-			                <a href="findProntuary.php?prontuario=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a>
+			                <a href="findProntuaryDate.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a>
 			              </td>
 			            </tr>
 			            <?php
