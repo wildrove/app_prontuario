@@ -2,14 +2,13 @@
 	
 	session_start();
 	require '../../vendor/autoload.php';
-	require('../../cleanRtf.php');
+	require('../../RtfCleanText/cleanRtf.php');
 
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
 
 	$pacientRegistry = intval($_GET['prontuario']);
 
 	$pacientEvolution = new PacientEvolution();
-
 
 	// FindPacientEvolution faz uma consulta no banco para encontrar a evolução do paciente, e changeColummnValue altera o valor da coluna TIPO.
 	$pacientEvo = $pacientEvolution->changeColumnValue($pacientEvolution->findPacientEvolution($pacientRegistry), 'TIPO');

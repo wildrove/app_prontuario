@@ -102,7 +102,7 @@
                           echo '<b>-</b>';
                        } echo $rowPacient['TELEFONE']; ?></td>
 			              <td>
-			                <a href="findProntuary.php?prontuario=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a>
+			                <a href="findProntuaryDate.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a>
 			              </td>
 			            </tr>
 			            <?php
