@@ -12,7 +12,7 @@
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
-	$itemsPerPage = 20;
+	$itemsPerPage = 5;
    // calcula o inicio da consulta
 	$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 

@@ -2,9 +2,10 @@
 namespace Classes\Pacient\PacientEvolution;
 
 	use Classes\FireBirdConnection\FireBirdConnection;
+	use Classes\Pacient\Pacient;
 	use PDO;
 
-	class PacientEvolution {
+	class PacientEvolution extends Pacient {
 
 		private $connection = null;
 
@@ -38,7 +39,7 @@ namespace Classes\Pacient\PacientEvolution;
 
 		}
 
-		public function changeColumnType($arrayColumn, String $columnName)
+		public function changeColumnValue($arrayColumn, String $columnName)
 		{
 			foreach ($arrayColumn as $key => $value) {
 
