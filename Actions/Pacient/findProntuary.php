@@ -6,7 +6,7 @@
 
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
 
-	$pacientRegistry = intval($_GET['prontuario']);
+	$pacientRegistry = intval($_GET['regProntuary']);
 
 	$pacientEvolution = new PacientEvolution();
 
