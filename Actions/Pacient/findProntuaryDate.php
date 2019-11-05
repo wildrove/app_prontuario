@@ -6,11 +6,12 @@
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
     use Classes\Pacient\Pacient;
 
+    $_SESSION['regValue'] = '';
 	$regProntuary = intval($_GET['regProntuary']);
     // pega a pagina atual
     $currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
     //itens por página
-    $itemsPerPage = 1;
+    $itemsPerPage = 30;
     // calcula o inicio da consulta
     $start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
@@ -26,8 +27,6 @@
     $totalPages = ceil($totalRows/$itemsPerPage);
     $previousPage = $currentPage -1;
     $nextPage = $currentPage + 1;
-
-
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +48,7 @@
         <?php 
             require_once '../../forms/headerUserPacientList.php';
         ?>
-        <h1 class="text-center mb-3" style="margin-top: 130px">Lista de Evoluções</h1>    
+        <h1 class="text-center mb-3" style="margin-top: 130px">*Lista de Evoluções*</h1>    
         <div>
 			 <table class="table shadow-lg table-hover table-striped table-bordered">
 			     <thead class="thead-dark">
@@ -119,7 +118,7 @@
 					      </li>
 					</ul>
 			</nav>
-			<a class="btn btn-primary  mb-5 shadow-lg" href="../../home.php">Voltar</a>
+			<a class="btn btn-primary  mb-5 shadow-lg" href="javascript:history.back()">Voltar</a>
 	</div>
 </body>
 </html>	

@@ -4,7 +4,8 @@
 	require '../../vendor/autoload.php';
 	
 	use Classes\Pacient\Pacient;
-
+	$_SESSION['nomeP'] = '';
+	$_SESSION['data'] = '';
 	// Pegar data do formulario content-home.php
 	$birthday = (isset($_GET['dtNasc'])) ? $_GET['dtNasc'] : '';
 	//pegar nome do paciente
@@ -12,7 +13,7 @@
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
-	$itemsPerPage = 5;
+	$itemsPerPage = 10;
    // calcula o inicio da consulta
 	$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
@@ -28,8 +29,6 @@
 
 	$previousPage = $currentPage -1;
 	$nextPage = $currentPage + 1;
-   // enviar o prontuario do paciente para consulta de evolução
-   $prontuario = null;
 
 
    // verifica se nome e data nascimento são vazios
@@ -70,7 +69,7 @@
             <?php 
                require_once '../../forms/headerUserPacientList.php';
             ?>
-            <h1 class="text-center mb-3" style="margin-top: 130px">Lista de Pacientes</h1>    
+            <h1 class="text-center mb-3" style="margin-top: 130px">*Lista de Pacientes*</h1>    
             <div>
 			    <table class="table shadow-lg table-hover table-striped table-bordered">
 			        <thead class="thead-dark">
