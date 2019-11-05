@@ -31,7 +31,7 @@ namespace Classes\Pacient\PacientEvolution;
 			$sql = "SELECT TIPO, REGISTRO_PRONTUARIO, REGISTRO_PACIENTE, DATA_EVOLUCAO, EVOLUCAO FROM PEP_EVOLUCAO_MEDICA WHERE  REGISTRO_PRONTUARIO = ?";
 
 			$data = $this->connection->conn->prepare($sql);
-			$data->bindParam(1, $this->regProntuary);
+			$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
 			//$data->bindParam(2, $regProntuary);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -47,14 +47,14 @@ namespace Classes\Pacient\PacientEvolution;
 			try{	
 					$this->regProntuary = $regProntuary;
 
-					$sql = "SELECT PEP.DATA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, CO.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP INNER JOIN PRONTUARIO P
-					ON PEP.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO INNER JOIN USUARIO CO
-					ON PEP.CODIGO_USUARIO = CO.CODIGO_USUARIO
+					$sql = "SELECT PEP.DATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP INNER JOIN PRONTUARIO P
+					ON PEP.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO INNER JOIN USUARIO US
+					ON PEP.CODIGO_USUARIO = US.CODIGO_USUARIO
 					WHERE PEP.REGISTRO_PRONTUARIO = ?
 					ORDER BY PEP.DATA_EVOLUCAO DESC ";
 
 					$data = $this->connection->conn->prepare($sql);
-					$data->bindParam(1, $this->regProntuary);
+					$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
 					$data->execute();
 					$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
