@@ -7,7 +7,11 @@
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
 
 	$pacientRegistry = intval($_GET['regProntuary']);
+	$hourEvo = $_GET['hourEvolution'];
 
+	var_dump($pacientRegistry) . '<br>';
+	var_dump($hourEvo);
+/*
 	$pacientEvolution = new PacientEvolution();
 
 	// FindPacientEvolution faz uma consulta no banco para encontrar a evolução do paciente, e changeColummnValue altera o valor da coluna TIPO.
@@ -27,7 +31,7 @@
 	echo "<pre>";
 	print_r($pacientEvo);
 
-
+*/
 
 
 

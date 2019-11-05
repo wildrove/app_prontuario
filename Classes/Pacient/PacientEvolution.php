@@ -42,12 +42,12 @@ namespace Classes\Pacient\PacientEvolution;
 		}
 
 
-		public function findEvolutionDate($regProntuary)
+		public function findEvolutionDate($regProntuary, $page, $limit)
 		{
 			try{	
 					$this->regProntuary = $regProntuary;
 
-					$sql = "SELECT PEP.DATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP INNER JOIN PRONTUARIO P
+					$sql = "SELECT FIRST $limit SKIP $page PEP.REGISTRO_PRONTUARIO, PEP.DATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP INNER JOIN PRONTUARIO P
 					ON PEP.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO INNER JOIN USUARIO US
 					ON PEP.CODIGO_USUARIO = US.CODIGO_USUARIO
 					WHERE PEP.REGISTRO_PRONTUARIO = ?
@@ -66,6 +66,23 @@ namespace Classes\Pacient\PacientEvolution;
 			}
 		}
 
+		public function findTotalDate($regProntuary)
+		{
+			$this->regProntuary = $regProntuary;
+
+			$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.DATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP INNER JOIN PRONTUARIO P
+				ON PEP.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO INNER JOIN USUARIO US
+				ON PEP.CODIGO_USUARIO = US.CODIGO_USUARIO
+				WHERE PEP.REGISTRO_PRONTUARIO = ?
+				ORDER BY PEP.DATA_EVOLUCAO DESC ";
+
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+				return $result = count($result);	
+		}
 		
 
 		public function changeColumnValue($arrayColumn, String $columnName)
