@@ -35,10 +35,12 @@
 <head>
 	<title></title>
 	<meta charset="utf-8">
-      <!-- Link Personal style.css -->
-    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/style.css">
-	    <!-- Bootstrap -->  
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Bootstrap Online -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Bootstrap Local -->  
+	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+    <!-- Link Personal style.css -->
+    <link rel="stylesheet"  href="../../bootstrap/css/style.css">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -49,7 +51,7 @@
         <?php 
             require_once '../../forms/headerUserPacientList.php';
         ?>
-        <h1 class="text-center mb-3" style="margin-top: 130px">*Lista de Evoluções*</h1>    
+        <h1 class="text-center mb-3"  style="margin-top: 120px;">*Lista de Evoluções*</h1>    
         <div>
 			 <table class="table shadow-lg table-hover table-striped table-bordered">
 			     <thead class="thead-dark">
