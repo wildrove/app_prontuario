@@ -61,7 +61,7 @@ namespace Classes\Pacient\PacientEvolution;
 					return $result;
 
 			}catch(Exception $e){
-				throw new Exception("Erro ao realizar a consulta", $e);
+					throw new Exception("Erro ao realizar a consulta", $e);
 				
 			}
 		}

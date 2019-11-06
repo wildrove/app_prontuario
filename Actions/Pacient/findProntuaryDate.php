@@ -7,6 +7,7 @@
     use Classes\Pacient\Pacient;
 
     $_SESSION['regValue'] = '';
+    // Registro vindo do formulário
 	$regProntuary = intval($_GET['regProntuary']);
     // pega a pagina atual
     $currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -16,7 +17,7 @@
     $start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
 	$findDate = new PacientEvolution();
-
+    //Encontrar a evolução por data e trocar o valor da coluna TIPO
 	$evolutionDate = $findDate->changeColumnValue($findDate->findEvolutionDate($regProntuary, $start, $itemsPerPage), 'TIPO');
 
 	if (empty($evolutionDate)) {
@@ -70,7 +71,7 @@
 			              <td class="border-right"><?php echo $rowPacient['TIPO']; ?></td>
 			              <td class="border-right"><?php echo $rowPacient['NOME_COMPLETO']; ?></td>
 			              <td>
-			                <a href="findProntuary.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>" class="btn btn-primary">Visualizar</a>
+			                <a href="findProntuary.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>" class="btn btn-success">Visualizar</a>
 			              </td>
 			         </tr>
 			            <?php
@@ -84,7 +85,7 @@
 					       <?php 
 					           if($previousPage != 0) { ?>
 					               <a href="findProntuaryDate.php?page=<?php echo $previousPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_SESSION['regValue'];?>" style="text-decoration: none;">
-					               <span class="page-link bg-primary text-light" aria-hidden="true">Anterior</span>
+					               <span class="page-link bg-success text-light" aria-hidden="true">Anterior</span>
 					               </a>
 					       <?php } else { ?>
 					         <span class="page-link" >Anterior</span>
@@ -96,9 +97,9 @@
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
 					        }
 					        if($currentPage > 1){
-					        echo "<li class='page-item'><a class='page-link' href='findProntuaryDate.php?page=".$previousPage."&regProntuary=".$_SESSION['regValue']."&data=".$_SESSION['data']."'>".$previousPage."</a></li>";
+					        echo "<li class='page-item'><a class='page-link ' href='findProntuaryDate.php?page=".$previousPage."&regProntuary=".$_SESSION['regValue']."&data=".$_SESSION['data']."'>".$previousPage."</a></li>";
 					        }
-					        echo "<li class='page-item active'><a class='page-link' href=''>".$currentPage."</a></li>";
+					        echo "<li class='page-item active'><a class='page-link ' href=''>".$currentPage."</a></li>";
 					        if($nextPage <= $totalPages){
 					          echo "<li class='page-item'><a class='page-link' href='findProntuaryDate.php?page=".$nextPage ."&regProntuary=".$_SESSION['regValue']."&data=".$_SESSION['data']."'>".$nextPage."</a></li>"; 
 					        }
@@ -110,7 +111,7 @@
 					           <?php 
 					               if($nextPage <= $totalPages) { ?>
 					                   <a href="findProntuaryDate.php?page=<?php echo $nextPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_SESSION['regValue'];?>" style="text-decoration: none;">
-					                   <span class="page-link bg-primary text-light" aria-hidden="true">Próximo</span>
+					                   <span class="page-link bg-success text-light" aria-hidden="true">Próximo</span>
 					                   </a>
 					           <?php } else { ?>
 					           <span class="page-link" aria-hidden="true">Próximo</span>
@@ -118,7 +119,7 @@
 					      </li>
 					</ul>
 			</nav>
-			<a class="btn btn-primary  mb-5 shadow-lg" href="javascript:history.back()">Voltar</a>
+			<a class="btn btn-success  mb-5 shadow-lg" href="javascript:history.back()">Voltar</a>
 	</div>
 </body>
 </html>	
