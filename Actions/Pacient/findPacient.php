@@ -71,7 +71,7 @@
             <?php 
                require_once '../../forms/headerUserPacientList.php';
             ?>
-            <h1 class="text-center mb-3" style="margin-top: 130px">*Lista de Pacientes*</h1>    
+            <h1 class="text-center mb-3" style="margin-top: 140px">Lista de Pacientes</h1>    
             <div>
 			    <table class="table shadow-lg table-hover table-striped table-bordered">
 			        <thead class="thead-dark">
