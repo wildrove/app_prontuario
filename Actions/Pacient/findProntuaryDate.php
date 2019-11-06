@@ -12,7 +12,7 @@
     // pega a pagina atual
     $currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
     //itens por página
-    $itemsPerPage = 30;
+    $itemsPerPage = 5;
     // calcula o inicio da consulta
     $start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
@@ -26,6 +26,8 @@
 
 
     $totalRows = $findDate->findTotalDate($regProntuary);
+
+
     $totalPages = ceil($totalRows/$itemsPerPage);
     $previousPage = $currentPage -1;
     $nextPage = $currentPage + 1;
