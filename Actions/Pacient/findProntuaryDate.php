@@ -24,6 +24,7 @@
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
 	}
 
+
     $totalRows = $findDate->findTotalDate($regProntuary);
     $totalPages = ceil($totalRows/$itemsPerPage);
     $previousPage = $currentPage -1;
@@ -73,7 +74,7 @@
 			              <td class="border-right"><?php echo $rowPacient['TIPO']; ?></td>
 			              <td class="border-right"><?php echo $rowPacient['NOME_COMPLETO']; ?></td>
 			              <td>
-			                <a href="findProntuary.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>" class="btn btn-success">Visualizar</a>
+			                <a href="findProntuary.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>&dateEvolution=<?php echo $rowPacient['DATA_EVOLUCAO']; ?>" class="btn btn-success">Visualizar</a>
 			              </td>
 			         </tr>
 			            <?php

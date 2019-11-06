@@ -47,14 +47,25 @@ namespace Classes\Pacient\PacientEvolution;
 			try{	
 					$this->regProntuary = $regProntuary;
 
-					$sql = "SELECT FIRST $limit SKIP $page PEP.REGISTRO_PRONTUARIO, PEP.DATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP INNER JOIN PRONTUARIO P
-					ON PEP.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO INNER JOIN USUARIO US
-					ON PEP.CODIGO_USUARIO = US.CODIGO_USUARIO
-					WHERE PEP.REGISTRO_PRONTUARIO = ?
-					ORDER BY PEP.DATA_EVOLUCAO DESC ";
+					$sql = "
+							SELECT FIRST $limit SKIP $page PEP.REGISTRO_PRONTUARIO, PEP.DATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP
+							INNER join PRONTUARIO P
+							ON PEP.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO INNER JOIN USUARIO US
+							ON PEP.CODIGO_USUARIO = US.CODIGO_USUARIO
+							WHERE PEP.REGISTRO_PRONTUARIO = ?
+							UNION ALL
+							SELECT FIRST $limit SKIP $page EW.REGISTRO_PRONTUARIO, EW.DATAEVOLUCAO, EW.HORAEVOLUCAO, EW.NROATEND,
+							 EW.TIPOATEND, EW.PRESTADOR FROM EVOLUCAO_WARELINE EW
+							 INNER JOIN PRONTUARIO P
+							 ON EW.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO
+							 WHERE EW.REGISTRO_PRONTUARIO = ?
+							 ORDER BY 2 DESC;
+
+							";
 
 					$data = $this->connection->conn->prepare($sql);
 					$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
+					$data->bindParam(2, $this->regProntuary, PDO::PARAM_INT);
 					$data->execute();
 					$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
@@ -107,6 +118,14 @@ namespace Classes\Pacient\PacientEvolution;
 				}elseif ($arrayColumn[$key][$columnName] == 'CREFITO') {
 					$arrayColumn[$key][$columnName] = 'FISIOTERAPEUTA';
 					
+				}elseif ($arrayColumn[$key][$columnName] == 'A') {
+					$arrayColumn[$key][$columnName] = 'AMBULATÓRIO';
+
+				}elseif ($arrayColumn[$key][$columnName] == 'E') {
+					$arrayColumn[$key][$columnName] = 'EXTERNO';
+
+				}elseif ($arrayColumn[$key][$columnName] == 'I') {
+					$arrayColumn[$key][$columnName] = 'INTERNO';
 				}
 			}
 

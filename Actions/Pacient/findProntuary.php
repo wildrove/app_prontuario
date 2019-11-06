@@ -8,9 +8,11 @@
 
 	$pacientRegistry = intval($_GET['regProntuary']);
 	$hourEvo = $_GET['hourEvolution'];
+	$dateEvo = $_GET['dateEvolution'];
 
 	var_dump($pacientRegistry) . '<br>';
-	var_dump($hourEvo);
+	var_dump($hourEvo) . '<br>';
+	var_dump($dateEvo);
 /*
 	$pacientEvolution = new PacientEvolution();
 
