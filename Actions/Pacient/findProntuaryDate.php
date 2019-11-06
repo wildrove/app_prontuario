@@ -12,7 +12,7 @@
     // pega a pagina atual
     $currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
     //itens por página
-    $itemsPerPage = 5;
+    $itemsPerPage = 60;
     // calcula o inicio da consulta
     $start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
@@ -27,17 +27,21 @@
 
     $totalRows = $findDate->findTotalDate($regProntuary);
 
-
     $totalPages = ceil($totalRows/$itemsPerPage);
     $previousPage = $currentPage -1;
     $nextPage = $currentPage + 1;
+
+    // Pegar url atual
+    $var = $_SERVER['PHP_SELF'];
+    
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
-	<meta charset="utf-8">
+	<meta charset="ISO-8859-1">
     <!-- Bootstrap Online -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- Bootstrap Local -->  
