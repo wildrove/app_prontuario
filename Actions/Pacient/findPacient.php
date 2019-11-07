@@ -77,10 +77,10 @@
 			          <tr class="text-center" style="font-size: 15px">
 			            <th scope="col" class="border-right">REG. PRONTUÁRIO</th>
 			            <th scope="col" class="border-right">NOME PACIENTE</th>
-			            <th scope="col" class="border-right">DT NASCIMENTO</th>
-			            <th scope="col" class="border-right">Nº DOCUMENTO</th>
+			            <th scope="col" class="border-right">DATA NASCIMENTO</th>
+			            <th scope="col" class="border-right">DOCUMENTO</th>
 			            <th scope="col" class="border-right">NOME MÃE</th>
-			            <th scope="col" class="border-right">Nº TELEFONE</th>
+			            <th scope="col" class="border-right">TELEFONE</th>
 			            <th scope="col">EVOLUÇÃO</th>
 			          </tr>
 			        </thead>

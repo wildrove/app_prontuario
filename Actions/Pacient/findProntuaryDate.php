@@ -32,8 +32,7 @@
     $nextPage = $currentPage + 1;
 
     // Pegar url atual
-    $var = $_SERVER['PHP_SELF'];
-    
+    $var = $_SERVER['PHP_SELF'];   
 
 ?>
 
