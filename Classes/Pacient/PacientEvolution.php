@@ -2,10 +2,10 @@
 namespace Classes\Pacient\PacientEvolution;
 
 	use Classes\FireBirdConnection\FireBirdConnection;
-	use Classes\Pacient\Pacient;
+	use Classes\AbstractModel\AbstractModel;
 	use PDO;
 
-	class PacientEvolution extends Pacient {
+	class PacientEvolution extends AbstractModel {
 
 		private $connection = null;
 		private $regProntuary = null;
@@ -143,6 +143,11 @@ namespace Classes\Pacient\PacientEvolution;
 
 				echo $e . getMessage();
 			}
+		}
+
+		public function convertEvoLetter($arrayEvo, $columnName)
+		{
+			return $this->convertCaractereToLetter($arrayEvo, $columnName);
 		}
 		
 
