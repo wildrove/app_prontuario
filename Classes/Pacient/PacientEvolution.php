@@ -114,9 +114,9 @@ namespace Classes\Pacient\PacientEvolution;
 						";
 
 						$data = $this->connection->conn->prepare($sql);
-						$data->bindParam(1, $regProntuary);
-						$data->bindParam(2, $dateEvo);
-						$data->bindParam(3, $hourEvo);
+						$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
+						$data->bindParam(2, $dateEvo, PDO::PARAM_STR);
+						$data->bindParam(3, $hourEvo, PDO::PARAM_STR);
 						$data->execute();
 						$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
@@ -128,16 +128,17 @@ namespace Classes\Pacient\PacientEvolution;
 							";
 
 							$data = $this->connection->conn->prepare($sql);
-							$data->bindParam(1, $regProntuary);
-							$data->bindParam(2, $dateEvo);
-							$data->bindParam(3, $hourEvo);
+							$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
+							$data->bindParam(2, $dateEvo, PDO::PARAM_STR);
+							$data->bindParam(3, $hourEvo, PDO::PARAM_STR);
 							$data->execute();
 							$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 							return $result;
 						}
 
-						var_dump($result);exit();
+						return $result;
+
 			}catch(Exception $e){
 
 				echo $e . getMessage();
