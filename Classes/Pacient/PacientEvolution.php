@@ -102,50 +102,45 @@ namespace Classes\Pacient\PacientEvolution;
 				return $result = count($result);	
 		}
 
-		public function PacientEvolution($regProntuary,$dateEvo,$hourEvo)
+		public function pacientEvo($regProntuary,$dateEvo,$hourEvo)
 		{	
-			$result = null;
 
 			try {
 
-				if (!empty($dateEvo)) {
+				$sql = "SELECT PEP.EVOLUCAO FROM PEP_EVOLUCAO_MEDICA PEP 
+						WHERE PEP.REGISTRO_PRONTUARIO = ? 
+						AND PEP.DATA_EVOLUCAO = ?
+						AND PEP.HORA_EVOLUCAO = ?
+						";
 
-					$sql = "SELECT PEP.EVOLUCAO FROM PEP_EVOLUCAO_MEDICA PEP 
-							WHERE PEP.REGISTRO_PRONTUARIO = ?
-							AND PEP.DATA_EVOLUCAO = ?
-							AND PEP.HORA_EVOLUCAO = ?
-							";
-							$data = $this->connection->conn->prepare($sql);
-							$data->bindParam(1, $regProntuary);
-							$data->bindParam(2, '$dateEvo');
-							$data->bindParam(3, '$hourEvo');
-							$data->execute();
+						$data = $this->connection->conn->prepare($sql);
+						$data->bindParam(1, $regProntuary);
+						$data->bindParam(2, $dateEvo);
+						$data->bindParam(3, $hourEvo);
+						$data->execute();
+						$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
-							$result = $data->fetchAll(PDO::FETCH_ASSOC);
-
-					if (count($result) != 0) {
-						return $result;
-
-					}elseif (count($result) == 0) {
-
-					$sql = "SELECT EW.EVOLUCAO FROM EVOLUCAO_WARELINE EW 
-							WHERE EW.REGISTRO_PRONTUARIO = ?
+						if(count($result) == 0){
+							$sql = "SELECT EW.EVOLUCAO FROM EVOLUCAO_WARELINE EW  
+							WHERE EW.REGISTRO_PRONTUARIO = ? 
 							AND EW.DATAEVOLUCAO = ?
 							AND EW.HORAEVOLUCAO = ?
 							";
+
 							$data = $this->connection->conn->prepare($sql);
 							$data->bindParam(1, $regProntuary);
-							$data->bindParam(2, '$dateEvo');
-							$data->bindParam(3, '$hourEvo');
-							$data->execute();	
+							$data->bindParam(2, $dateEvo);
+							$data->bindParam(3, $hourEvo);
+							$data->execute();
 							$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 							return $result;
-					}		
-				}
-				
-			} catch (Exception $e) {
-				echo "Nenhum dado encontrado " . getMessage($e);
+						}
+
+						var_dump($result);exit();
+			}catch(Exception $e){
+
+				echo $e . getMessage();
 			}
 		}
 		

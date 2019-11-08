@@ -19,7 +19,7 @@
 	$pacientEvolution = new PacientEvolution();
 
 	echo "<pre>";
-	print_r($pacientEvolution->pacientEvolution($pacientRegistry,$dateEvo,$hourEvo));
+	print_r($pacientEvolution->pacientEvo($pacientRegistry,$dateEvo,$hourEvo));
 
 /*
 	// FindPacientEvolution faz uma consulta no banco para encontrar a evolução do paciente, e changeColummnValue altera o valor da coluna TIPO.
