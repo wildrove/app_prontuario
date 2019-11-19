@@ -4,6 +4,10 @@ use PDO;
 
 	class FirebirdConnection {
 		public $conn = null;
+		public $hostName = "localhost:/BancoFirebird/SGH.FDB";
+		public $user = "SYSDBA";
+		public $pass = "masterkey";
+		public $ibconn = null;
 
 		public function __construct()
 		{
@@ -18,6 +22,20 @@ use PDO;
 				$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			}catch(PDOException $e){
 				echo 'Não foi possível conectar!' . $e->getMessage();
+			}
+		}
+
+		public function ibaseConnect()
+		{
+			try {
+
+				$this->ibconn = ibase_connect($this->hostName, $this->user, $this->pass);
+
+				if ($this->ibconn) {
+				}
+				
+			} catch (Exception $e) {
+				echo "Não foi possível connectar" . $e->getMessage();
 			}
 		}
 

@@ -4,16 +4,16 @@
 	require '../../vendor/autoload.php';
 	
 	use Classes\Pacient\Pacient;
-	$_SESSION['nomeP'] = '';
-	$_SESSION['data'] = '';
+	$_SESSION['nomeP'] = strtoupper($_GET['paciente']);
+	$_SESSION['data'] = $_GET['dtNasc'];
 	// Pegar data do formulario content-home.php
-	$birthday = (isset($_GET['dtNasc'])) ? $_GET['dtNasc'] : '';
+	$birthday = (isset($_GET['dtNasc'])) ? $_GET['dtNasc'] : $_SESSION['data'];
 	//pegar nome do paciente
-	$name = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : '';
+	$name = (isset($_GET['paciente'])) ? strtoupper($_GET['paciente']) : $_SESSION['nomeP'];
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
-	$itemsPerPage = 10;
+	$itemsPerPage = 5;
    // calcula o inicio da consulta
 	$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
@@ -115,7 +115,7 @@
 					   <li class="page-item <?php if($previousPage == 0){ echo 'disabled';} ?>">
 					   <?php 
 					   if($previousPage != 0) { ?>
-					      <a href="findPacient.php?page=<?php echo $previousPage; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>" style="text-decoration: none;">
+					      <a href="findPacient.php?page=<?php echo $previousPage; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_GET['paciente']; ?>&dtNasc=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_GET['dtNasc']; ?>" style="text-decoration: none;">
 					         <span class="page-link bg-primary text-light" aria-hidden="true">Anterior</span>
 					      </a>
 					   <?php } else { ?>
@@ -128,11 +128,11 @@
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
 					        }
 					        if($currentPage > 1){
-					        echo "<li class='page-item'><a class='page-link' href='findPacient.php?page=".$previousPage."&paciente=".$_SESSION['nomeP']."&data=".$_SESSION['data']."'>".$previousPage."</a></li>";
+					        echo "<li class='page-item'><a class='page-link' href='findPacient.php?page=".$previousPage."&paciente=".$_GET['paciente']."&dtNasc=".$_GET['dtNasc']."'>".$previousPage."</a></li>";
 					        }
 					        echo "<li class='page-item active'><a class='page-link' href=''>".$currentPage."</a></li>";
 					        if($nextPage <= $totalPages){
-					          echo "<li class='page-item'><a class='page-link' href='findPacient.php?page=".$nextPage ."&paciente=".$_SESSION['nomeP']."&data=".$_SESSION['data']."'>".$nextPage."</a></li>"; 
+					          echo "<li class='page-item'><a class='page-link' href='findPacient.php?page=".$nextPage ."&paciente=".$_GET['paciente']."&dtNasc=".$_GET['dtNasc']."'>".$nextPage."</a></li>"; 
 					        }
 					        if($nextPage < $totalPages){
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
@@ -141,7 +141,7 @@
 					      <li class="page-item <?php if($nextPage > $totalPages){echo 'disabled';} ?>">
 					       <?php 
 					       if($nextPage <= $totalPages) { ?>
-					          <a href="findPacient.php?page=<?php echo $nextPage; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_SESSION['nomeP']; ?>&data=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_SESSION['data']; ?>" aria-label="Previous" style="text-decoration: none">
+					          <a href="findPacient.php?page=<?php echo $nextPage; ?>&paciente=<?php if(isset($_GET['paciente']))($_SESSION['nomeP'] = $name); echo $_GET['paciente']; ?>&dtNasc=<?php if(isset($_GET['dtNasc']))($_SESSION['data'] = $birthday); echo $_GET['dtNasc']; ?>" aria-label="Previous" style="text-decoration: none">
 					             <span class="page-link bg-primary text-light" aria-hidden="true">Próximo</span>
 					          </a>
 					       <?php } else { ?>

@@ -6,13 +6,13 @@
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
     use Classes\Pacient\Pacient;
 
-    $_SESSION['regValue'] = '';
     // Registro vindo do formulário
-	$regProntuary = intval($_GET['regProntuary']);
+	$regProntuary = (isset($_GET['regProntuary']) ? intval($_GET['regProntuary']) : '');
+	$_SESSION['regValue'] = '';
     // pega a pagina atual
     $currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
     //itens por página
-    $itemsPerPage = 60;
+    $itemsPerPage = 5;
     // calcula o inicio da consulta
     $start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
@@ -20,19 +20,16 @@
     //Encontrar a evolução por data e trocar o valor da coluna TIPO
 	$evolutionDate = $findDate->changeColumnValue($findDate->findEvolutionDate($regProntuary, $start, $itemsPerPage), 'TIPO');
 
+	$totalRows = $findDate->findTotalDate($regProntuary);
+
+    $totalPages = ceil($totalRows/$itemsPerPage);
+    $previousPage = $currentPage -1;
+    $nextPage = $currentPage + 1; 
+
 	if (empty($evolutionDate)) {
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
 	}
 
-
-    $totalRows = $findDate->findTotalDate($regProntuary);
-
-    $totalPages = ceil($totalRows/$itemsPerPage);
-    $previousPage = $currentPage -1;
-    $nextPage = $currentPage + 1;
-
-    // Pegar url atual
-    $var = $_SERVER['PHP_SELF'];   
 
 ?>
 
@@ -92,7 +89,7 @@
 					   <li class="page-item <?php if($previousPage == 0){ echo 'disabled';} ?>">
 					       <?php 
 					           if($previousPage != 0) { ?>
-					               <a href="findProntuaryDate.php?page=<?php echo $previousPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_SESSION['regValue'];?>" style="text-decoration: none;">
+					               <a href="findProntuaryDate.php?page=<?php echo $previousPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_GET['regProntuary'];?>" style="text-decoration: none;">
 					               <span class="page-link bg-success text-light" aria-hidden="true">Anterior</span>
 					               </a>
 					       <?php } else { ?>
@@ -105,11 +102,11 @@
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
 					        }
 					        if($currentPage > 1){
-					        echo "<li class='page-item'><a class='page-link ' href='findProntuaryDate.php?page=".$previousPage."&regProntuary=".$_SESSION['regValue']."&data=".$_SESSION['data']."'>".$previousPage."</a></li>";
+					        echo "<li class='page-item'><a class='page-link ' href='findProntuaryDate.php?page=".$previousPage."&regProntuary=".$_GET['regProntuary']."'>".$previousPage."</a></li>";
 					        }
 					        echo "<li class='page-item active'><a class='page-link ' href=''>".$currentPage."</a></li>";
 					        if($nextPage <= $totalPages){
-					          echo "<li class='page-item'><a class='page-link' href='findProntuaryDate.php?page=".$nextPage ."&regProntuary=".$_SESSION['regValue']."&data=".$_SESSION['data']."'>".$nextPage."</a></li>"; 
+					          echo "<li class='page-item'><a class='page-link' href='findProntuaryDate.php?page=".$nextPage ."&regProntuary=".$_GET['regProntuary']."'>".$nextPage."</a></li>"; 
 					        }
 					        if($nextPage < $totalPages){
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
@@ -118,7 +115,7 @@
 					      <li class="page-item <?php if($nextPage > $totalPages){echo 'disabled';} ?>">
 					           <?php 
 					               if($nextPage <= $totalPages) { ?>
-					                   <a href="findProntuaryDate.php?page=<?php echo $nextPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_SESSION['regValue'];?>" style="text-decoration: none;">
+					                   <a href="findProntuaryDate.php?page=<?php echo $nextPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_GET['regProntuary'];?>" style="text-decoration: none;">
 					                   <span class="page-link bg-success text-light" aria-hidden="true">Próximo</span>
 					                   </a>
 					           <?php } else { ?>

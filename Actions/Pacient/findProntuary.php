@@ -20,21 +20,31 @@
 	// VERIFICA SE A CONSULTA NÃO RETORNA VAZIO
 	if (empty($pacientEvo)) {
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
-
 	}
 	
+	// Função para limpar o texto da evolução e remover caracteres indesejados
 	foreach ($pacientEvo as $key => $value) {
 		$pacientEvo[$key]['EVOLUCAO'] = rtf2text(utf8_encode($pacientEvo[$key]['EVOLUCAO']));
 	}
 
 	// Função para substituir os caracteres especiais por letras com acento.
 	$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, 'EVOLUCAO');
+<<<<<<< HEAD
 
 	foreach ($pacientEvo as $value) {
 		echo "<pre>";
 		echo $value['EVOLUCAO'];
 	}
 
+=======
+
+	// Verifica se alguma evolução não foi preenchida.
+	foreach ($pacientEvo as  $value) {
+		if ($value['EVOLUCAO'] == "") {
+			header('Location: ../../AlertsHTML/alertNoneEvolutionWritten.html');
+		}
+	}
+>>>>>>> MelhorarRTFtoHTML
 
 ?>
 
@@ -54,7 +64,24 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
 
+=======
+	<div class="container-fluid p-3">
+		<h1 style="text-align: center">Evolução do paciente</h1>
+		<p class="text-break">
+			<?php 
+
+				foreach ($pacientEvo as $value) {
+
+				echo "<pre>";
+				echo $value['EVOLUCAO'];
+				}
+			?>	
+		</p>
+
+	</div>
+>>>>>>> MelhorarRTFtoHTML
 </body>
 </html>
 
