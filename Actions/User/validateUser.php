@@ -12,6 +12,18 @@
 
 	$newUser = new Users();
 
+	if (strlen($name) > 10) {
+		header("Location: ../../AlertsHTML/validateUser/invalidPass.html");
+	}
+
+	if (strlen($pass) > 10) {
+		header("Location: ../../AlertsHTML/validateUser/invalidPass.html");
+	}
+
+	if (strlen($pass) > 10) {
+		header("Location: ../../AlertsHTML/validateUser/invalidPass.html");
+	}
+
 	if (strlen($pass) > 10) {
 		header("Location: ../../AlertsHTML/validateUser/invalidPass.html");
 	}
