@@ -5,7 +5,7 @@
 		</div>
 		<ul class="navbar-nav ml-auto nav-items">
 			<li class="nav-item bem-vindo-nav">
-				<span class="nav-link"><?php echo "Bem Vindo " . ucfirst($_SESSION['nome_usuario']) . " !" ?></span>
+				<span class="nav-link"><?php echo ucfirst(strtolower($_SESSION['nome_usuario'])); ?></span>
 			</li>
 			<div class="divisor-nav"></div>
 			<li class="nav-item logout-nav">

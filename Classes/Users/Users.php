@@ -87,6 +87,30 @@ namespace Classes\Users;
 					
 		}
 
+		public function findUserLogin($userName, $pass)
+		{
+			$sql = "SELECT NOME, SENHA, TIPO_USUARIO FROM USUARIO 
+						WHERE NOME = ?
+						AND SENHA = ?
+					";
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $userName, PDO::PARAM_STR);
+			$data->bindParam(2, $pass, PDO::PARAM_STR);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+			
+			return $result;		
+		}
+
+		public function deleteUser()
+		{
+			$sql = "DELETE FROM USUARIO WHERE CODIGO_USUARIO > 733";
+			$data = $this->connection->conn->prepare($sql);
+			$data->execute();
+
+			return '<h1>Dados removidos com sucesso</h1>';
+		}
+
 		public function test()
 		{
 			$sql = "SELECT FIRST 16 NOME_COMPLETO, NOME, CODIGO_USUARIO, TIPO_USUARIO, SENHA FROM USUARIO ORDER BY CODIGO_USUARIO DESC";

@@ -18,8 +18,14 @@
         
 </head>
 	<body>
+    <div>
+      <?php 
+      session_start();
+        require 'header-admin.php';
+      ?>
+    </div>
   <div class="container">
-    <section class="main-section">
+    <section class="main-section" style="margin-bottom: -70px">
       <div class="card">
           <h5 class="card-header card-titulo bg-dark text-light">Prontuário Médico Eletrônico</h5>
           <div class="card-body">
