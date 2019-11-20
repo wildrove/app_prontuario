@@ -58,19 +58,19 @@
                     <div class="col">
                       <div class="form-group">
                         <label for="name">Nome completo:</label>
-                        <input type="text" class="form-control" name="fullName" placeholder="nome completo" autocomplete="off" required="">
+                        <input type="text" maxlength="30" class="form-control" name="fullName" placeholder="nome completo" autocomplete="off" required="">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="usuer">Nome de usuário:</label>
-                        <input type="text" max="30" class="form-control" name="userName" placeholder="nome de usuário" autocomplete="off" required="">
+                        <input type="text" maxlength="10" class="form-control" name="userName" placeholder="nome de usuário" autocomplete="off" required="">
                       </div>
                     </div>
                     <div class="col">
                       <div class="form-group">
                         <label for="usuer">CPF:</label>
-                        <input type="text" max="11" class="form-control" name="userCPF" placeholder="cpf" autocomplete="off" required="">
+                        <input type="text" maxlength="11" class="form-control" name="userCPF" placeholder="cpf" autocomplete="off" required="">
                       </div>
                     </div>
                   </div><!-- fim linha 1 -->
@@ -78,7 +78,7 @@
                     <div class="col">
                       <div class="form-group">
                         <label for="pass">Senha:</label>
-                        <input type="password" min="0" max="10" class="form-control" name="userPass" placeholder="senha" autocomplete="off" required="">
+                        <input type="password" maxlength="10" class="form-control" name="userPass" placeholder="senha" autocomplete="off" required="">
                       </div>
                     </div>
                     <div class="col">

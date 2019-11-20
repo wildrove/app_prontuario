@@ -65,6 +65,28 @@ namespace Classes\Users;
 			}
 		}
 
+		public function findUser($name, $user, $cpf, $pass, $userType)
+		{
+			$sql = "SELECT NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO
+						WHERE (NOME_COMPLETO = ?
+						AND NOME = ?
+						AND CPF = ?
+						AND SENHA = ?
+						AND TIPO_USUARIO = ? )
+					";
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $name, PDO::PARAM_STR);
+			$data->bindParam(2, $user, PDO::PARAM_STR);
+			$data->bindParam(3, $cpf, PDO::PARAM_STR);
+			$data->bindParam(4, $pass, PDO::PARAM_STR);
+			$data->bindParam(5, $userType, PDO::PARAM_STR);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;
+					
+		}
+
 		public function test()
 		{
 			$sql = "SELECT FIRST 16 NOME_COMPLETO, NOME, CODIGO_USUARIO, TIPO_USUARIO, SENHA FROM USUARIO ORDER BY CODIGO_USUARIO DESC";
