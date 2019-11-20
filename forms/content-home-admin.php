@@ -54,7 +54,7 @@
           <h5 class="card-header card-titulo bg-dark text-light">Cadastrar Novo usuário</h5>
           <div class="card-body">
                 <form method="post" action="../Actions/User/validateUser.php">
-                  <div class="row">
+                  <div class="row"><!-- inicio linha 1 -->
                     <div class="col">
                       <div class="form-group">
                         <label for="name">Nome completo:</label>
@@ -73,6 +73,8 @@
                         <input type="text" max="11" class="form-control" name="userCPF" placeholder="cpf" autocomplete="off" required="">
                       </div>
                     </div>
+                  </div><!-- fim linha 1 -->
+                  <div class="row"><!-- Inicio linha 2 -->
                     <div class="col">
                       <div class="form-group">
                         <label for="pass">Senha:</label>
@@ -81,8 +83,9 @@
                     </div>
                     <div class="col">
                       <div class="form-group">
-                        <label for="nascimento">Tipo usuário:</label>
-                        <select class="form-group " name="userType">
+                        <label for="nascimento">Tipo usuário:</label><br>
+                        <select class="form-group p-2" name="userType">
+                          <option class="form-control" value="Administrador" selected="">Administrador</option>
                           <option class="form-control" value="Médico">Médico</option>
                           <option class="form-control" value="Usuário Comum">Usuário Comum</option>
                         </select>
@@ -94,7 +97,7 @@
                         <input type="submit" class="form-control btn btn-primary" value="Cadastrar">
                       </div>
                     </div>
-                  </div>
+                  </div><!-- fim linha 2 -->
                 </form>
             </div>
       </div>

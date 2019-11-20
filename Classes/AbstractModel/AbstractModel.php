@@ -10,10 +10,8 @@ namespace Classes\AbstractModel;
 		public function convertCaractereToLetter($arrayText, $columnName)
 		{
 			foreach ($arrayText as $key => $value) {
-<<<<<<< HEAD
 				$arrayText[$key][$columnName] = str_replace("212;", "ô", $arrayText[$key][$columnName]);
 				$arrayText[$key][$columnName] = str_replace("193;", "á", $arrayText[$key][$columnName]);
-=======
 				$arrayText[$key][$columnName] = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $arrayText[$key][$columnName]);
 				$arrayText[$key][$columnName] = str_replace("Arial;", " ", $arrayText[$key][$columnName]);
 				$arrayText[$key][$columnName] = str_replace("Courier New;", "", $arrayText[$key][$columnName]);
@@ -52,7 +50,6 @@ namespace Classes\AbstractModel;
 				$arrayText[$key][$columnName] = str_replace("e7;", "Ç", $arrayText[$key][$columnName]);
 				$arrayText[$key][$columnName] = str_replace("231;", "Ç", $arrayText[$key][$columnName]);
 
->>>>>>> MelhorarRTFtoHTML
 			}
 
 			return $arrayText;

@@ -29,14 +29,7 @@
 
 	// Função para substituir os caracteres especiais por letras com acento.
 	$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, 'EVOLUCAO');
-<<<<<<< HEAD
 
-	foreach ($pacientEvo as $value) {
-		echo "<pre>";
-		echo $value['EVOLUCAO'];
-	}
-
-=======
 
 	// Verifica se alguma evolução não foi preenchida.
 	foreach ($pacientEvo as  $value) {
@@ -44,7 +37,6 @@
 			header('Location: ../../AlertsHTML/alertNoneEvolutionWritten.html');
 		}
 	}
->>>>>>> MelhorarRTFtoHTML
 
 ?>
 
@@ -64,9 +56,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
 
-=======
 	<div class="container-fluid p-3">
 		<h1 style="text-align: center">Evolução do paciente</h1>
 		<p class="text-break">
@@ -79,9 +69,7 @@
 				}
 			?>	
 		</p>
-
 	</div>
->>>>>>> MelhorarRTFtoHTML
 </body>
 </html>
 
