@@ -7,7 +7,6 @@
 	use Classes\Users\Users;
 
 	$userLogged = false;
-	$usuario_id = null;
 	$levelAccess = null;
 	$userName = null;
 
@@ -16,8 +15,7 @@
 
 	$user = new Users();
 
-	$users = $user->findUserLogin($userForm, $passForm);
-
+	$users = $user->findUserLogin($userForm);
 
 
 	foreach($users as $value) {

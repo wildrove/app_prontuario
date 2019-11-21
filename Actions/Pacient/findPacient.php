@@ -150,7 +150,7 @@
 					     </li>
 					</ul>
 				</nav>
-				<a class="btn btn-primary  mb-5 shadow-lg" href="../../home.php">Voltar</a>
+				<a class="btn btn-primary  mb-5 shadow-lg" <?php if($_SESSION['usuario_nivel_acesso'] == 'Administrador'){ echo "href='http://localhost/App_prontuario/forms/content-home-admin.php'";} ?> href="../../home.php">Voltar</a>
 			</div>
 	</body>
 </html>

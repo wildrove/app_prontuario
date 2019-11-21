@@ -87,15 +87,14 @@ namespace Classes\Users;
 					
 		}
 
-		public function findUserLogin($userName, $pass)
+		public function findUserLogin($userName)
 		{
 			$sql = "SELECT NOME, SENHA, TIPO_USUARIO FROM USUARIO 
 						WHERE NOME = ?
-						AND SENHA = ?
 					";
 			$data = $this->connection->conn->prepare($sql);
 			$data->bindParam(1, $userName, PDO::PARAM_STR);
-			$data->bindParam(2, $pass, PDO::PARAM_STR);
+			//$data->bindParam(2, $pass, PDO::PARAM_STR);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
 			

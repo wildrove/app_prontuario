@@ -26,7 +26,7 @@
     </div>
   <div class="container">
     <section class="main-section" style="margin-bottom: -70px">
-      <div class="card">
+      <div class="card shadow-lg">
           <h5 class="card-header card-titulo bg-dark text-light">Prontuário Médico Eletrônico</h5>
           <div class="card-body">
               <legend  class="card-title">Filtros para Localizar Paciente:</legend>
@@ -56,7 +56,7 @@
       </div>
     </section>
     <section class="main-section mb-5">
-      <div class="card">
+      <div class="card shadow-lg">
           <h5 class="card-header card-titulo bg-dark text-light">Cadastrar Novo usuário</h5>
           <div class="card-body">
                 <form method="post" action="../Actions/User/validateUser.php">

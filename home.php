@@ -19,6 +19,9 @@
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/v4-shims.css">
 
+     <!-- Favicon -->
+     <link rel="shortcut icon" href="caminhodoarquivo/favicon.ico" />
+
 </head>
 <body>
 	<?php 
