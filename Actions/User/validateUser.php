@@ -12,7 +12,6 @@
 
 	$createUser = new Users();
 
-	
 	if (strlen($name) > 30) {
 		header("Location: ../../AlertsHTML/validateUser/invalidPass.html");
 	}

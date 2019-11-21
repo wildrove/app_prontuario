@@ -7,12 +7,12 @@
     use Classes\Pacient\Pacient;
 
     // Registro vindo do formulário
-	$regProntuary = (isset($_GET['regProntuary']) ? intval($_GET['regProntuary']) : '');
+	$regProntuary = (isset($_GET['regProntuary']) ? intval($_GET['regProntuary']) : $_GET['regProntuary']);
 	$_SESSION['regValue'] = '';
     // pega a pagina atual
     $currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
     //itens por página
-    $itemsPerPage = 5;
+    $itemsPerPage = 20;
     // calcula o inicio da consulta
     $start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
@@ -20,15 +20,16 @@
     //Encontrar a evolução por data e trocar o valor da coluna TIPO
 	$evolutionDate = $findDate->changeColumnValue($findDate->findEvolutionDate($regProntuary, $start, $itemsPerPage), 'TIPO');
 
+	if (empty($evolutionDate)) {
+		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
+	}
+
 	$totalRows = $findDate->findTotalDate($regProntuary);
 
     $totalPages = ceil($totalRows/$itemsPerPage);
     $previousPage = $currentPage -1;
     $nextPage = $currentPage + 1; 
 
-	if (empty($evolutionDate)) {
-		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
-	}
 
 
 ?>
