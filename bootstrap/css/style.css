@@ -47,11 +47,19 @@ ul, li, span:hover {
 	transition-delay: 0.1s;
 }
 
+.edit-user-nav:hover {
+	color: #4db3e7 !important;
+}
+
  .divisor-nav {
 	border-right: 1.5px solid #fff;
 	height: 25px;
 	margin-top: 12px;
 
+}
+
+.user-edit-nav {
+	color: #fff !important;
 }
 
 /* ======================= Content-Home.php ================================== */

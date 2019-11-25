@@ -5,11 +5,12 @@
 	<title></title>
 	 <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-    <!-- Link Personal style.css -->
-    <link rel="stylesheet"  href="../bootstrap/css/style.css">
+    <!-- Bootstrap Online -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- Bootstrap Local -->  
 	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- Link Personal style.css -->
+    <link rel="stylesheet"  href="../bootstrap/css/style.css">
 
      <!-- Fontawesome link -->
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
@@ -19,18 +20,15 @@
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top navbar-header">
 		<div class="navbar-brand img-fluid img-nav">
-			<img src="../img/hospital-header-logo.png" width="" height="">
+			<img src="../..//img/hospital-header-logo.png" width="" height="">
 		</div>
 		<ul class="navbar-nav ml-auto nav-items">
-			<li class=" nav-item mr-3">
-				<span class=""><a href="../Actions/User/userList.php" class="nav-link text-light" >Editar Usuários</a></span>
-			</li>
 			<li class="nav-item bem-vindo-nav">
 				<span class="nav-link"><?php echo ucfirst(strtolower($_SESSION['nome_usuario'])); ?></span>
 			</li>
 			<div class="divisor-nav"></div>
 			<li class="nav-item logout-nav">
-				<a href="../Actions/User/logout.php" class="nav-link logout-text">Sair</a>
+				<a href="Actions/User/logout.php" class="nav-link logout-text">Sair</a>
 			</li>
 		</ul>
 	</nav>

@@ -11,7 +11,7 @@
 	$userCpf = $_POST['userCPF'];
 
 	$createUser = new Users();
-
+	//$createUser->deleteUser();exit();
 	if (strlen($name) > 30) {
 		header("Location: ../../AlertsHTML/validateUser/invalidPass.html");
 	}
