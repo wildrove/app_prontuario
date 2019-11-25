@@ -120,6 +120,17 @@ namespace Classes\Users;
 			return $result;
 		}
 
+		public function getUser($userId)
+		{
+			$sql = "SELECT CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO = ?";
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $userId, PDO::PARAM_INT);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;
+		}
+
 		public function getTotalUsers()
 		{
 			$sql = "SELECT CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO > 730";

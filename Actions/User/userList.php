@@ -4,8 +4,7 @@
 	require '../../vendor/autoload.php';
 	
 	use Classes\Users\Users;
-	//$_SESSION['nomeP'] = strtoupper($_GET['paciente']);
-	//$_SESSION['data'] = $_GET['dtNasc'];
+
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
@@ -78,7 +77,7 @@
 			              <td class="border-right"><?php echo $rowUser['SENHA']; ?></td>
 			              <td class="border-right"><?php echo str_replace("?", "á", utf8_decode($rowUser['TIPO_USUARIO'])); ?></td>
 			              <td>
-			                <a href="<?php echo $rowUser['CODIGO_USUARIO'] ?>" class="btn btn-warning" data-toggle="modal" data-target="#editar">Editar</a>
+			                <a href="userList.php?userId=<?php echo $rowUser['CODIGO_USUARIO'];?>" class="btn btn-warning" data-toggle="modal" data-target="#editar">Editar</a>
 			              </td>
 			              <td>
 			                <a href="<?php echo $rowUser['CODIGO_USUARIO'] ?>" class="btn btn-danger" data-toggle="modal" data-target="#deletar">Excluir</a>
@@ -142,7 +141,30 @@
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        ...
+			        <form method="post" action="">
+			        	<?php foreach ($resultPage as $value) { ?>
+			        	
+			        	<div class="form-group">
+			        		<label for="name">Nome Completo:</label>
+			        			<input class="form-control" type="text" name="editName" value="<?php echo $value['NOME_COMPLETO']; ?>">
+			        	</div>
+			        	<div class="form-group">
+			        		<label for="name">Usuário:</label>
+			        			<input class="form-control" type="text" name="editUser">
+			        	</div>
+			        	<div class="form-group">
+			        		<label for="name">CPF:</label>
+			        			<input class="form-control" type="text" name="editCPF">
+			        	</div>
+			        	<div class="form-group">
+			        		<label for="name">Senha:</label>
+			        			<input class="form-control" type="password" name="editPass">
+			        	</div>
+			        	<div class="form-group">
+			        		<label for="name">Tipo Usuário:</label>
+			        			<input class="form-control" type="text" name="editType">
+			        	</div>
+			        </form>
 			      </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
@@ -151,29 +173,28 @@
 			    </div>
 			  </div>
 			</div>
+			<?php }?>
 			<!-- Modal Delete -->
 			<div class="modal fade" id="deletar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title text-danger" id="exampleModalLabel">Apagar usuário</h5>
+			  		<img src="../../img/hospital-header-logo.png" class="img-fluid">
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        ...
+			      	<h4 class="text-danger">Deseja remover este usuário?</h4>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-			        <button type="button" class="btn btn-danger">Excluir</button>
+			      	<a href="deleteUser.php?userId=" class="btn btn-danger">Sim</a>
+			        <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
 			      </div>
 			    </div>
 			  </div>
 			</div>
 	</body>
-
-
 </html>
 
    
