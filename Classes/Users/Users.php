@@ -103,7 +103,7 @@ namespace Classes\Users;
 
 		public function deleteUser()
 		{
-			$sql = "DELETE FROM USUARIO WHERE CODIGO_USUARIO > 733";
+			$sql = "DELETE FROM USUARIO WHERE CODIGO_USUARIO > 730";
 			$data = $this->connection->conn->prepare($sql);
 			$data->execute();
 
@@ -112,7 +112,7 @@ namespace Classes\Users;
 
 		public function userList($page, $limit)
 		{
-			$sql = "SELECT FIRST $limit SKIP $page CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO > 733";
+			$sql = "SELECT FIRST $limit SKIP $page CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO > 730";
 			$data = $this->connection->conn->prepare($sql);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -122,7 +122,7 @@ namespace Classes\Users;
 
 		public function getTotalUsers()
 		{
-			$sql = "SELECT CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO > 733";
+			$sql = "SELECT CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO > 730";
 			$data = $this->connection->conn->prepare($sql);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);

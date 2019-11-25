@@ -9,11 +9,12 @@
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
-	$itemsPerPage = 2;
+	$itemsPerPage = 3;
    	// calcula o inicio da consulta
 	$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
    $editUser = new Users();
+
 
    	// função de consulta no banco
 	$resultPage = $editUser->userList($start, $itemsPerPage);
@@ -62,6 +63,7 @@
 			            <th scope="col" class="border-right">SENHA</th>
 			            <th scope="col" class="border-right">TIPO USUÁRIO</th>
 			            <th scope="col">EDITAR</th>
+			            <th scope="col">EXCLUIR</th>
 			          </tr>
 			        </thead>
 			        <tbody>
@@ -74,9 +76,12 @@
 			              <td class="border-right"><?php echo $rowUser['NOME']; ?></td>
 			              <td class="border-right"><?php echo $rowUser['CPF']; ?></td>
 			              <td class="border-right"><?php echo $rowUser['SENHA']; ?></td>
-			              <td class="border-right"><?php echo utf8_decode($rowUser['TIPO_USUARIO']); ?></td>
+			              <td class="border-right"><?php echo str_replace("?", "á", utf8_decode($rowUser['TIPO_USUARIO'])); ?></td>
 			              <td>
-			                <a href="<?php echo $rowUser['CODIGO_USUARIO'] ?>" class="btn btn-primary">Editar</a>
+			                <a href="<?php echo $rowUser['CODIGO_USUARIO'] ?>" class="btn btn-warning" data-toggle="modal" data-target="#editar">Editar</a>
+			              </td>
+			              <td>
+			                <a href="<?php echo $rowUser['CODIGO_USUARIO'] ?>" class="btn btn-danger" data-toggle="modal" data-target="#deletar">Excluir</a>
 			              </td>
 			            </tr>
 			            <?php
@@ -126,7 +131,49 @@
 				</nav>
 				<a class="btn btn-primary  mb-5 shadow-lg" <?php if($_SESSION['usuario_nivel_acesso'] == 'Administrador'){ echo "href='http://localhost/App_prontuario/forms/content-home-admin.php'";} ?> href="../../home.php">Voltar</a>
 			</div>
+			<!-- Modal Edit -->
+			<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">Editar usuário</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-warning" data-dismiss="modal">Fechar</button>
+			        <button type="button" class="btn btn-warning">Savlar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			<!-- Modal Delete -->
+			<div class="modal fade" id="deletar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title text-danger" id="exampleModalLabel">Apagar usuário</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+			        <button type="button" class="btn btn-danger">Excluir</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
 	</body>
+
+
 </html>
 
    
