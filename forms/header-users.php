@@ -28,7 +28,7 @@
 			</li>
 			<div class="divisor-nav"></div>
 			<li class="nav-item logout-nav">
-				<a href="Actions/User/logout.php" class="nav-link logout-text">Sair</a>
+				<a href="../../Actions/User/logout.php" class="nav-link logout-text">Sair</a>
 			</li>
 		</ul>
 	</nav>

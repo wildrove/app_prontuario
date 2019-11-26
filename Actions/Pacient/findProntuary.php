@@ -65,11 +65,19 @@
 				foreach ($pacientEvo as $value) {
 
 				echo "<pre>";
-				echo $value['EVOLUCAO'];
+				echo strtoupper($value['EVOLUCAO']);
 				}
 			?>	
 		</p>
+		<div class="d-flex justify-content-center">
+			<button type="button" class="btn btn-primary btn-lg" onclick="goBack()">Voltar</button>
+		</div>	
 	</div>
+	<script type="text/javascript">
+		function goBack(){
+			window.history.go(-1);
+		}
+	</script>
 </body>
 </html>
 
