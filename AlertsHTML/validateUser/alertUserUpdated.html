@@ -22,13 +22,18 @@
 		</div>
 		<div class="d-flex justify-content-center">
 			<div class="alert alert-success alert-dismissible fade show p-3 text-center" role="alert" style="width: 600px">
-	  			<strong>Usuário cadastrado com sucesso !</strong>
+	  			<strong>Usuário atualizado com sucesso !</strong>
 			</div>
 			
 		</div>
 	</section>
 	<div class="container" style="width: 300px;">
-		<a class="btn btn-primary btn-block " href="javascript:history.back()">Voltar</a>
+		<button class="btn btn-primary btn-block " onclick="goBack()">Voltar</button>
+		<script type="text/javascript">
+			function goBack(){
+				window.history.go(-2);
+			}
+		</script>
 	</div>
 </body>
 </html>

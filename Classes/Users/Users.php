@@ -65,6 +65,43 @@ namespace Classes\Users;
 			}
 		}
 
+		public function updateUser($idUser, $name, $user, $cpf, $pass, $userType)
+		{
+			try {
+				$sql = "UPDATE  USUARIO
+						SET NOME_COMPLETO = ?,
+							NOME = ?,
+							CPF = ?,
+							SENHA = ?,
+							TIPO_USUARIO = ?
+						WHERE CODIGO_USUARIO = $idUser
+						";
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $name, PDO::PARAM_STR);
+				$data->bindParam(2, $user, PDO::PARAM_STR);
+				$data->bindParam(3, $cpf, PDO::PARAM_STR);	
+				$data->bindParam(4, $pass, PDO::PARAM_STR);	
+				$data->bindParam(5, $userType, PDO::PARAM_STR);	
+				$result = $data->execute();
+
+				return $result;
+				
+			} catch (Exception $e) {
+				throw $e->getMessage();
+				
+			}
+			
+		}
+
+		public function deleteUser($userId)
+		{
+			$sql = "DELETE FROM USUARIO WHERE CODIGO_USUARIO = ?";
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $userId, PDO::PARAM_INT);
+			$result = $data->execute();
+			return $result;
+		}
+
 		public function findUser($name, $user, $cpf, $pass, $userType)
 		{
 			$sql = "SELECT NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO
@@ -101,7 +138,7 @@ namespace Classes\Users;
 			return $result;		
 		}
 
-		public function deleteUser()
+		public function deleteUserTest()
 		{
 			$sql = "DELETE FROM USUARIO WHERE CODIGO_USUARIO > 730";
 			$data = $this->connection->conn->prepare($sql);

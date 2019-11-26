@@ -77,10 +77,10 @@
 			              <td class="border-right"><?php echo $rowUser['SENHA']; ?></td>
 			              <td class="border-right"><?php echo str_replace("?", "á", utf8_decode($rowUser['TIPO_USUARIO'])); ?></td>
 			              <td>
-			                <a href="userList.php?userId=<?php echo $rowUser['CODIGO_USUARIO'];?>" class="btn btn-warning" data-toggle="modal" data-target="#editar">Editar</a>
+			                <a href="editUser.php?idUser=<?php echo $rowUser['CODIGO_USUARIO']; ?>" class="btn btn-warning" data-toggle="" data-target="">Editar</a>
 			              </td>
 			              <td>
-			                <a href="<?php echo $rowUser['CODIGO_USUARIO'] ?>" class="btn btn-danger" data-toggle="modal" data-target="#deletar">Excluir</a>
+			                <a href="deleteUser.php?idUser=<?php echo $rowUser['CODIGO_USUARIO']; ?>" data-toggle="" data-target="" class="btn btn-danger">Excluir</a>
 			              </td>
 			            </tr>
 			            <?php
@@ -141,28 +141,26 @@
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        <form method="post" action="">
-			        	<?php foreach ($resultPage as $value) { ?>
-			        	
+			        <form method="post" action="">     	
 			        	<div class="form-group">
 			        		<label for="name">Nome Completo:</label>
-			        			<input class="form-control" type="text" name="editName" value="<?php echo $value['NOME_COMPLETO']; ?>">
+			        		<input class="form-control" type="text" name="editName">
 			        	</div>
 			        	<div class="form-group">
 			        		<label for="name">Usuário:</label>
-			        			<input class="form-control" type="text" name="editUser">
+			        		<input class="form-control" type="text" name="editUser">
 			        	</div>
 			        	<div class="form-group">
 			        		<label for="name">CPF:</label>
-			        			<input class="form-control" type="text" name="editCPF">
+			        		<input class="form-control" type="text" name="editCPF">
 			        	</div>
 			        	<div class="form-group">
 			        		<label for="name">Senha:</label>
-			        			<input class="form-control" type="password" name="editPass">
+			        		<input class="form-control" type="password" name="editPass">
 			        	</div>
 			        	<div class="form-group">
 			        		<label for="name">Tipo Usuário:</label>
-			        			<input class="form-control" type="text" name="editType">
+			        		<input class="form-control" type="text" name="editType">
 			        	</div>
 			        </form>
 			      </div>
@@ -173,7 +171,6 @@
 			    </div>
 			  </div>
 			</div>
-			<?php }?>
 			<!-- Modal Delete -->
 			<div class="modal fade" id="deletar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
@@ -188,7 +185,7 @@
 			      	<h4 class="text-danger">Deseja remover este usuário?</h4>
 			      </div>
 			      <div class="modal-footer">
-			      	<a href="deleteUser.php?userId=" class="btn btn-danger">Sim</a>
+			      	<a href="" class="btn btn-danger">Sim</a>
 			        <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
 			      </div>
 			    </div>
