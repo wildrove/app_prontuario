@@ -65,7 +65,7 @@
 				foreach ($pacientEvo as $value) {
 
 				echo "<pre>";
-				echo strtoupper($value['EVOLUCAO']);
+				echo strtoupper(wordwrap($value['EVOLUCAO'], 160, "<br />", true));
 				}
 			?>	
 		</p>
