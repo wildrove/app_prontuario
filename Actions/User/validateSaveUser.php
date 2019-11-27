@@ -8,7 +8,7 @@
 	$user = strtoupper($_POST['user']);
 	$cpf = $_POST['userCpf'];
 	$pass = $_POST['userPass'];
-	$type = utf8_decode($_POST['userType']);
+	$type = $_POST['userType'];
 
 	$userValidate = new Users();
 

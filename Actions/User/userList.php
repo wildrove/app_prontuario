@@ -75,7 +75,7 @@
 			              <td class="border-right"><?php echo $rowUser['NOME']; ?></td>
 			              <td class="border-right"><?php echo $rowUser['CPF']; ?></td>
 			              <td class="border-right"><?php echo $rowUser['SENHA']; ?></td>
-			              <td class="border-right"><?php echo str_replace("?", "á", utf8_decode($rowUser['TIPO_USUARIO'])); ?></td>
+			              <td class="border-right"><?php echo $rowUser['TIPO_USUARIO']; ?></td>
 			              <td>
 			                <a href="editUser.php?idUser=<?php echo $rowUser['CODIGO_USUARIO']; ?>" class="btn btn-warning" data-toggle="" data-target="">Editar</a>
 			              </td>

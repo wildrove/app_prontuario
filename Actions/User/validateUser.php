@@ -4,10 +4,10 @@
 	use Classes\Users\Users;
 	session_start();
 
-	$name = strtoupper(utf8_encode($_POST['fullName']));
-	$userName = strtoupper(utf8_encode($_POST['userName']));
-	$userPass = utf8_encode($_POST['userPass']);
-	$userType = utf8_encode($_POST['userType']);
+	$name = strtoupper($_POST['fullName']);
+	$userName = strtoupper($_POST['userName']);
+	$userPass = $_POST['userPass'];
+	$userType = $_POST['userType'];
 	$userCpf = $_POST['userCPF'];
 
 	$createUser = new Users();
