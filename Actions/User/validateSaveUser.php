@@ -1,5 +1,6 @@
 <?php
 	require '../../vendor/autoload.php';
+	require 'validateAccessFile.php';
 	use Classes\users\Users;
 
 	$countRows = count($_POST);

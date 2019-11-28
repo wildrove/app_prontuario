@@ -1,5 +1,6 @@
 <?php
 	require '../../vendor/autoload.php';
+	require 'validateAccessFile.php';
 	use Classes\Users\Users;
 
 	$idUser = intval($_GET['idUser']);

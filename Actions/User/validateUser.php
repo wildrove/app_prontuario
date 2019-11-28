@@ -1,6 +1,7 @@
 <?php
 	
 	require '../../vendor/autoload.php';
+	require 'validateAccessFile.php';
 	use Classes\Users\Users;
 	session_start();
 

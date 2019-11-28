@@ -3,7 +3,7 @@
 	session_start();
 
 	require '../../vendor/autoload.php';
-
+	require 'validateAccessFile.php';
 	use Classes\Users\Users;
 
 	$userLogged = false;

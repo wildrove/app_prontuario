@@ -2,7 +2,7 @@
 
 	session_start();
 	require '../../vendor/autoload.php';
-	
+	require 'validateAccessFile.php';
 	use Classes\Users\Users;
 
    // pega a pagina atual
