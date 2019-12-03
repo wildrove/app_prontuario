@@ -1,6 +1,5 @@
 <?php
 	require '../../vendor/autoload.php';
-	require 'validateAccessFile.php';
 	use Classes\Users\Users;
 
 	$idUser = intval($_GET['idUser']);
@@ -36,6 +35,7 @@
   			<?php
   				session_start();
   				require '../../forms/header-admin-edit.php';
+  				require 'validateAccessFile.php';
   			?>
   			<?php foreach ($user as $rowUser) { ?>
 
@@ -72,8 +72,10 @@
 				      </select>
 				    </div>
 				  </div>
-				  <button type="submit" class="btn btn-primary">Salvar</button>
-				  <a class="btn btn-primary ml-3" href="javascript:history.back()">Voltar</a>
+				  <div style="margin-bottom: 30px;">
+				  	<button type="submit" class="btn btn-primary">Salvar</button>
+				  	<a class="btn btn-primary ml-3" href="javascript:history.back()">Voltar</a>
+				  </div>
 			</form>
   		</div>
   	<?php }

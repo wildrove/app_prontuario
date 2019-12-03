@@ -56,8 +56,12 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<?php 
 
-	<div class="container-fluid p-3">
+		require '../../forms/header-evolution.php'
+	?>
+
+	<div class="container-fluid p-3" style="margin-top: 130px">
 		<h1 style="text-align: center">Evolução do paciente</h1>
 		<p class="text-break">
 			<?php 
