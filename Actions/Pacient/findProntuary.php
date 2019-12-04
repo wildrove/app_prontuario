@@ -61,15 +61,13 @@
 		require '../../forms/header-evolution.php'
 	?>
 
-	<div class="container-fluid p-3" style="margin-top: 130px">
-		<h1 style="text-align: center">Evolução do paciente</h1>
+	<div class="container-fluid p-3" style="margin-top: 130px;">
+		<h1 style="text-align: center;">Evolução do paciente</h1>
 		<p class="text-break">
 			<?php 
-
 				foreach ($pacientEvo as $value) {
-
-				echo "<pre>";
-				echo strtoupper(wordwrap($value['EVOLUCAO'], 160, "<br />", true));
+					echo "<pre>";
+					echo strtoupper(wordwrap($value['EVOLUCAO'], 160, "<br />", true));
 				}
 			?>	
 		</p>
