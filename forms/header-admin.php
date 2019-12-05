@@ -22,11 +22,25 @@
 			<img src="../img/hospital-header-logo.png" width="" height="">
 		</div>
 		<ul class="navbar-nav ml-auto nav-items">
-			<li class=" nav-item mr-3">
+		<!--	<li class=" nav-item mr-3">
 				<span class=""><a href="../Actions/User/userList.php" class="nav-link text-light" >Editar Usuários</a></span>
-			</li>
+			</li> -->
 			<li class="nav-item bem-vindo-nav">
-				<span class="nav-link"><?php echo ucfirst(strtolower($_SESSION['nome_usuario'])); ?></span>
+				<span class="nav-link">
+					<?php 
+						date_default_timezone_set('America/Sao_Paulo');
+						$date = date('H:i:s', strtotime("-1 Hours"));
+						$currentDate = null;
+						if($date >= '00:00:00' && $date <= '11:59:59'){
+							echo 'Bom dia, ' . ucfirst(strtoupper($_SESSION['nome_usuario'])); 
+						}elseif($date >= '12:00:00' && $date <= '18:59:59' ){
+							echo 'Boa tarde, ' . ucfirst(strtoupper($_SESSION['nome_usuario'])); 
+						}elseif($date >= '19:00:00' && $date <= '23:59:59'){
+							echo 'Boa noite, ' . ucfirst(strtoupper($_SESSION['nome_usuario'])); 
+						}		
+					?>
+						
+				</span>
 			</li>
 			<div class="divisor-nav"></div>
 			<li class="nav-item logout-nav">

@@ -126,7 +126,7 @@ namespace Classes\Users;
 
 		public function findUserLogin($userName)
 		{
-			$sql = "SELECT NOME, SENHA, TIPO_USUARIO FROM USUARIO 
+			$sql = "SELECT NOME_COMPLETO, NOME, SENHA, TIPO_USUARIO FROM USUARIO 
 						WHERE NOME = ?
 					";
 			$data = $this->connection->conn->prepare($sql);

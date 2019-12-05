@@ -23,13 +23,16 @@
 				$userLogged = true;
 				$levelAccess = $value['TIPO_USUARIO'];
 				$userName = $value['NOME'];
+				$name = explode(" ", $value['NOME_COMPLETO']);
+				$name = $name[0];
+
 		}
 	}
 
 	if($userLogged) {
 			$_SESSION['usuario_autenticado'] = 'SIM';
 			$_SESSION['usuario_nivel_acesso'] = $levelAccess;
-			$_SESSION['nome_usuario'] = $userName;
+			$_SESSION['nome_usuario'] = $name;
 
 			if($_SESSION['usuario_nivel_acesso'] == 'Administrador') {
 				header('Location: ../../forms/content-home-admin.php');

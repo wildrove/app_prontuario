@@ -61,7 +61,15 @@
 <footer class="page-footer font-small blue">
 
  <!-- Copyright -->
- <div class="footer-copyright text-center py-3">© 2019 Todos direitos reservados.
+ <div class="footer-copyright text-center py-3">© 2019 Todos direitos reservados.<br>
+ <div id="real-clock"></div>
+ <script type="text/javascript">
+    var clock = document.getElementById('real-clock');
+    setInterval(function () {
+      clock.innerHTML = ((new Date).toLocaleString().substr(11, 8));  
+    }, 1000);
+ 
+  </script>
    <!-- <a href="http://www.hmsaolucas.com/" class="text-light" style="text-decoration: none;">Hospital São Lucas</a> -->
  </div>
  <!-- Copyright -->

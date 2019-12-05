@@ -84,7 +84,21 @@
 			                <a href="editUser.php?idUser=<?php echo $rowUser['CODIGO_USUARIO']; ?>" class="btn btn-warning" data-toggle="" data-target="">Editar</a>
 			              </td>
 			              <td>
-			                <a href="deleteUser.php?idUser=<?php echo $rowUser['CODIGO_USUARIO']; ?>" data-toggle="" data-target="" class="btn btn-danger">Excluir</a>
+			                <a href="deleteUser.php?idUser=<?php echo $rowUser['CODIGO_USUARIO']; ?>" data-toggle="" data-target="" class="btn btn-danger" onclick="excluir()" id="demo">Excluir</a>
+			                <script type="text/javascript">
+			              		function excluir()
+			              		{
+			              			var x;
+			              			var r = confirm("Deseja realmente exluir o usuário?");
+			              			if(r == true)
+			              			{
+			              			
+			              			}else{
+			              				return false;
+			              			}
+			              			document.getElementById("demo").innerHTML = x;
+			              		}
+			              	</script>
 			              </td>
 			            </tr>
 			            <?php
