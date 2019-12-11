@@ -1,4 +1,5 @@
 <?php 
+	header('Cache-Control: no cache'); //disable validation of form by the browser
 	session_start();
 	// valida se o usuário está logado no sistema antes de permitir acesso aos arquivos .php
 	if(!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] != 'SIM') {
@@ -8,19 +9,25 @@
 	require '../../vendor/autoload.php';
 
 	use Classes\Users\Users;
-
+	
+	// pega o usuário digitado no campo pequisar.
+	$userSearch = (isset($_GET['userSearch']) ? strtoupper($_GET['userSearch']) : null);
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
-	$itemsPerPage = 10;
+	$itemsPerPage = 20;
    	// calcula o inicio da consulta
 	$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
    $editUser = new Users();
 
+   	if (!empty($userSearch)) {
+   		$resultPage = $editUser->userSearch($userSearch, $start, $itemsPerPage);
+   	}else{
+   		// função de consulta no banco
+		$resultPage = $editUser->userList($start, $itemsPerPage);
+   	}
 
-   	// função de consulta no banco
-	$resultPage = $editUser->userList($start, $itemsPerPage);
    	// função que pega o total de linhas no banco   
 	$totalRowsQuery = $editUser->getTotalUsers();
    	//calcula to total de paginas
@@ -57,6 +64,17 @@
             <h1 class="text-center mb-3" style="margin-top: 140px">Lista de Usuários</h1>    
             <div>
 			    <table class="table shadow-lg table-hover table-striped table-bordered">
+			    	<div class="d-flex justify-content-end">
+			    		<form method="get" action="userList.php">
+			    			<div class="form-group">
+			    				<input type="text" class="form-control border rounded-right-0" name="userSearch" placeholder="nome de usuário" required="" maxlength="30" autocomplete="off">
+			    			</div>
+			    			<div class="form-group">
+			    				<button type="submit" class="btn btn-primary border rounded-left-0">Pesquisar</button>
+			    				<a href="exportXls.php" class="btn btn-primary" id="" name="export">Exportar</a>
+			    			</div>
+			    		</form>
+			    	</div>
 			        <thead class="thead-dark">
 			          <tr class="text-center" style="font-size: 15px">
 			            <th scope="col" class="border-right">ID</th>
@@ -72,20 +90,21 @@
 			        <tbody>
 			        <?php 
 			        foreach($resultPage as $rowUser) {
+
 			            ?>
-			            <tr class="text-center border font-italic">
+			            <tr class="text-center border font-italic" id="dvData">
 			              <th scope="row" class="border-right "><?php echo $rowUser['CODIGO_USUARIO']; ?></th>
 			              <td class="border-right"><?php echo utf8_decode($rowUser['NOME_COMPLETO']); ?></td>
 			              <td class="border-right"><?php echo $rowUser['NOME']; ?></td>
 			              <td class="border-right"><?php echo $rowUser['CPF']; ?></td>
-			              <td class="border-right"><?php echo $rowUser['SENHA']; ?></td>
+			              <td class="border-right"><?php echo md5($rowUser['SENHA']); ?></td>
 			              <td class="border-right"><?php echo $rowUser['TIPO_USUARIO']; ?></td>
 			              <td>
 			                <a href="editUser.php?idUser=<?php echo $rowUser['CODIGO_USUARIO']; ?>" class="btn btn-warning" data-toggle="" data-target="">Editar</a>
 			              </td>
 			              <td>
-			                <a href="deleteUser.php?idUser=<?php echo $rowUser['CODIGO_USUARIO']; ?>" data-toggle="" data-target="" class="btn btn-danger" onclick="excluir()" id="demo">Excluir</a>
-			                <script type="text/javascript">
+			                <a href="deleteUser.php?idUser=<?php echo $rowUser['CODIGO_USUARIO']; ?>" data-toggle="" data-target="" class="btn btn-danger">Excluir</a>
+			                <!-- <script type="text/javascript">
 			              		function excluir()
 			              		{
 			              			var x;
@@ -98,13 +117,19 @@
 			              			}
 			              			document.getElementById("demo").innerHTML = x;
 			              		}
-			              	</script>
+			              	</script> -->
 			              </td>
 			            </tr>
 			            <?php
-			        }?>
+			        	}?>
 			        </tbody>
 			     </table>
+			     <script>
+					$("#btnExport").click(function (e) {
+					   window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
+					   e.preventDefault();
+					});
+			    </script>
             </div>
 				<nav align="center" aria-label="Page navigation" style="margin-bottom: 20px;">
 					<ul class="pagination mt-3">

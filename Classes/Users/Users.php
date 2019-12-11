@@ -140,7 +140,7 @@ namespace Classes\Users;
 
 		public function deleteUserTest()
 		{
-			$sql = "DELETE FROM USUARIO WHERE CODIGO_USUARIO > 730";
+			$sql = "DELETE FROM USUARIO WHERE CODIGO_USUARIO > 736";
 			$data = $this->connection->conn->prepare($sql);
 			$data->execute();
 
@@ -149,8 +149,26 @@ namespace Classes\Users;
 
 		public function userList($page, $limit)
 		{
-			$sql = "SELECT FIRST $limit SKIP $page CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO > 730";
+			$sql = "SELECT FIRST $limit SKIP $page CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO >= 730";
 			$data = $this->connection->conn->prepare($sql);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;
+		}
+
+		public function userSearch($name, $page, $limit)
+		{
+			if(strlen($name) > 10){
+				$sql = "SELECT FIRST $limit SKIP $page CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE NOME_COMPLETO = ?";
+			}else{
+				$sql = "SELECT FIRST $limit SKIP $page CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE NOME = ?";
+			}
+			
+			
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $name, PDO::PARAM_STR);
+			//$data->bindParam(2, $name, PDO::PARAM_STR);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
@@ -180,7 +198,9 @@ namespace Classes\Users;
 
 		public function test()
 		{
-			$sql = "SELECT FIRST 16 NOME_COMPLETO, NOME, CODIGO_USUARIO, TIPO_USUARIO, SENHA FROM USUARIO ORDER BY CODIGO_USUARIO DESC";
+			$sql = "SELECT  NOME_COMPLETO, NOME, CPF, CODIGO_USUARIO, TIPO_USUARIO, SENHA FROM USUARIO
+					WHERE CODIGO_USUARIO >= 730
+				    ORDER BY CODIGO_USUARIO ASC";
 			$data = $this->connection->conn->prepare($sql);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);

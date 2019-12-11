@@ -19,6 +19,10 @@
    <script src="https://unpkg/@babel/standalone/babel.min.js">
     
    </script>
+   <script language=javascript type="text/javascript">
+      month = new Array ("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
+      now = new Date;
+   </script>
  </head>
  <body class="body-index">  
 
@@ -29,7 +33,7 @@
     </div>
     <div class="input-group">
       <i class="fas fa-user fa-lg p-2 border rounded-left mb-3" style="color: #0364a7"></i>
-      <input type="text" class="form-control mb-3" name="userName" placeholder="nome usuário" required="" autocomplete="off">
+      <input type="text" class="form-control mb-3" name="userName" placeholder="nome de usuário" required="" autocomplete="off">
     </div>
     <div class="input-group">
       <i class="fas fa-lock fa-lg p-2 border rounded-left mb-3" style="color: #0364a7	"></i>
@@ -62,15 +66,19 @@
 
  <!-- Copyright -->
  <div class="footer-copyright text-center py-3">© 2019 Todos direitos reservados.<br>
- <div id="real-clock"></div>
+
+ <script language=javascript type="text/javascript">
+    document.write(now.getDate() + " de " + month[now.getMonth()]  +  " de " + now.getFullYear());
+ </script>
+
+ <p id="real-clock"></p>
+
  <script type="text/javascript">
     var clock = document.getElementById('real-clock');
     setInterval(function () {
       clock.innerHTML = ((new Date).toLocaleString().substr(11, 8));  
     }, 1000);
- 
-  </script>
-   <!-- <a href="http://www.hmsaolucas.com/" class="text-light" style="text-decoration: none;">Hospital São Lucas</a> -->
+ </script>
  </div>
  <!-- Copyright -->
 

@@ -34,9 +34,9 @@
 						if($date >= '00:00:00' && $date <= '11:59:59'){
 							echo 'Bom dia, ' . ucfirst(strtoupper($_SESSION['nome_usuario'])); 
 						}elseif($date >= '12:00:00' && $date <= '18:59:59' ){
-							echo 'Boa tarde, ' . ucfirst(strtolower($_SESSION['nome_usuario'])); 
+							echo 'Boa tarde, ' . ucfirst(strtoupper($_SESSION['nome_usuario'])); 
 						}elseif($date >= '19:00:00' && $date <= '23:59:59'){
-							echo 'Boa noite, ' . ucfirst(strtolower($_SESSION['nome_usuario'])); 
+							echo 'Boa noite, ' . ucfirst(strtoupper($_SESSION['nome_usuario'])); 
 						}		
 					?>
 						
