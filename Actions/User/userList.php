@@ -5,7 +5,12 @@
 	if(!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] != 'SIM') {
 		header('Location: ../../index.php?login=erro2');
 		exit();
-	}
+	}elseif(isset($_SESSION['usuario_nivel_acesso']) && $_SESSION['usuario_nivel_acesso'] != 'Administrador'){
+        header('Location: ../../index.php?login=erro3');
+        session_destroy();
+        exit();
+    }
+    
 	require '../../vendor/autoload.php';
 
 	use Classes\Users\Users;
@@ -15,7 +20,7 @@
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
-	$itemsPerPage = 20;
+	$itemsPerPage = 10;
    	// calcula o inicio da consulta
 	$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
@@ -104,32 +109,12 @@
 			              </td>
 			              <td>
 			                <a href="deleteUser.php?idUser=<?php echo $rowUser['CODIGO_USUARIO']; ?>" data-toggle="" data-target="" class="btn btn-danger">Excluir</a>
-			                <!-- <script type="text/javascript">
-			              		function excluir()
-			              		{
-			              			var x;
-			              			var r = confirm("Deseja realmente exluir o usuário?");
-			              			if(r == true)
-			              			{
-			              			
-			              			}else{
-			              				return false;
-			              			}
-			              			document.getElementById("demo").innerHTML = x;
-			              		}
-			              	</script> -->
 			              </td>
 			            </tr>
 			            <?php
 			        	}?>
 			        </tbody>
 			     </table>
-			     <script>
-					$("#btnExport").click(function (e) {
-					   window.open('data:application/vnd.ms-excel,' + $('#dvData').html());
-					   e.preventDefault();
-					});
-			    </script>
             </div>
 				<nav align="center" aria-label="Page navigation" style="margin-bottom: 20px;">
 					<ul class="pagination mt-3">

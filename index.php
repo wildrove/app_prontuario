@@ -55,6 +55,13 @@
             </div>
 
         <?php } ?>
+
+        <?php if(isset($_GET['login']) && $_GET['login'] == 'erro3') { ?>
+            <div class="text-danger usuario-invalido ml-5 mb-2">
+                    Usuário não tem permissão para acessar!
+            </div>
+
+        <?php } ?>    
         
     <button type="submit" class="btn btn-primary btn-block mb-3">Entrar</button>
   </form>

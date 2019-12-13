@@ -5,7 +5,11 @@
 		header('Location: ../../index.php?login=erro2');
 		exit();
 		
-	}
+	}elseif(isset($_SESSION['usuario_nivel_acesso']) && $_SESSION['usuario_nivel_acesso'] != 'Administrador'){
+        header('Location: ../../index.php?login=erro3');
+        session_destroy();
+        exit();
+    }
 	
 	require '../../vendor/autoload.php';
 	

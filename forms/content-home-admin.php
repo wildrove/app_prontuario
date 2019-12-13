@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <!-- Link Personal style.css -->
     <link rel="stylesheet"  href="../bootstrap/css/style.css">
+    <!-- Link jquery 3.4.1 -->
+    <link rel="stylesheet" type="text/css" href="../js/jquery-3.4.1.js">
 
      <!-- Fontawesome link -->
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
@@ -28,6 +30,10 @@
         if(!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] != 'SIM') {
           header('Location: ../index.php?login=erro2');
           exit();
+        }elseif(isset($_SESSION['usuario_nivel_acesso']) && $_SESSION['usuario_nivel_acesso'] != 'Administrador'){
+        header('Location: ../index.php?login=erro3');
+        session_destroy();
+        exit();
         }
 
       ?>
@@ -84,7 +90,7 @@
                     <div class="col">
                       <div class="form-group">
                         <label for="usuer">CPF:</label>
-                        <input type="text" maxlength="11" class="form-control" name="userCPF" placeholder="cpf" autocomplete="off" required="">
+                        <input type="text" maxlength="11" class="form-control" name="userCPF" placeholder="cpf" autocomplete="off">
                       </div>
                     </div>
                   </div><!-- fim linha 1 -->

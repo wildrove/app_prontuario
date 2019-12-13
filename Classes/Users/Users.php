@@ -149,7 +149,7 @@ namespace Classes\Users;
 
 		public function userList($page, $limit)
 		{
-			$sql = "SELECT FIRST $limit SKIP $page CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO >= 730";
+			$sql = "SELECT FIRST $limit SKIP $page CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO >= 700 ORDER BY CODIGO_USUARIO ASC";
 			$data = $this->connection->conn->prepare($sql);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -188,7 +188,7 @@ namespace Classes\Users;
 
 		public function getTotalUsers()
 		{
-			$sql = "SELECT CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO > 730";
+			$sql = "SELECT CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO >= 700";
 			$data = $this->connection->conn->prepare($sql);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -196,10 +196,10 @@ namespace Classes\Users;
 			return $result = count($result);
 		}
 
-		public function test()
+		public function exportXls()
 		{
 			$sql = "SELECT  NOME_COMPLETO, NOME, CPF, CODIGO_USUARIO, TIPO_USUARIO, SENHA FROM USUARIO
-					WHERE CODIGO_USUARIO >= 730
+					WHERE CODIGO_USUARIO >= 700
 				    ORDER BY CODIGO_USUARIO ASC";
 			$data = $this->connection->conn->prepare($sql);
 			$data->execute();

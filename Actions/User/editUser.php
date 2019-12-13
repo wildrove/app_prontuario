@@ -4,7 +4,12 @@
 	if(!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] != 'SIM') {
 		header('Location: ../../index.php?login=erro2');
 		exit();
-	}
+	}elseif(isset($_SESSION['usuario_nivel_acesso']) && $_SESSION['usuario_nivel_acesso'] != 'Administrador'){
+        header('Location: ../../index.php?login=erro3');
+        session_destroy();
+        exit();
+    }
+    
 	require '../../vendor/autoload.php';
 	use Classes\Users\Users;
 
@@ -62,7 +67,7 @@
 				  </div>
 				  <div class="form-group font-weight-bold">
 				    <label for="inputAddress">CPF:</label>
-				    <input type="text" class="form-control" maxlength="11" name="userCpf" id="inputCpf" value="<?php echo $rowUser['CPF']; ?>" required="">
+				    <input type="text" class="form-control" maxlength="11" name="userCpf" id="inputCpf" value="<?php echo $rowUser['CPF']; ?>">
 				  </div>
 				  <div class="form-group font-weight-bold">
 				    <label for="inputAddress2">Senha:</label>
