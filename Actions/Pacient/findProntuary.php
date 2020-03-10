@@ -16,7 +16,7 @@
 	// Procura a evolução do paciente na tabela PEP_EVOLUCAO_MEDICA OU EVOLUCAO_WARELINE (SISTEMA ANTIGO)
 	$pacientEvo = $pacientEvolution->pacientEvo($pacientRegistry,$dateEvo,$hourEvo);
 
-		
+	
 	// VERIFICA SE A CONSULTA NÃO RETORNA VAZIO
 	if (empty($pacientEvo)) {
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
@@ -60,19 +60,19 @@
 
 		require '../../forms/header-evolution.php'
 	?>
-
 	<div class="container-fluid p-3" style="margin-top: 130px;">
 		<h1 style="text-align: center;">Evolução do paciente</h1>
 		<p class="text-break">
 			<?php 
 				foreach ($pacientEvo as $value) {
-					echo "<pre>";
+					echo "<pre style='font-family: Arial;font-size: 75%;'>";
 					echo strtoupper(wordwrap($value['EVOLUCAO'], 160, "<br />", true));
 				}
 			?>	
 		</p>
 		<div class="d-flex justify-content-center">
 			<button type="button" class="btn btn-primary btn-lg" onclick="goBack()">Voltar</button>
+			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientRegistry . '&' . 'hourEvolution=' . $hourEvo . '&' . 'dateEvolution=' . $dateEvo;  ?>" class="btn btn-primary btn-lg ml-5">Exportar evolução</a>
 		</div>	
 	</div>
 	<script type="text/javascript">

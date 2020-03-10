@@ -2,8 +2,11 @@
 
 	session_start();
 	require '../../vendor/autoload.php';
-	
 	use Classes\Pacient\Pacient;
+
+	// variavel para validar o link de redirecionar para o inicio;
+	$redirect = $_SESSION['usuario_nivel_acesso'];
+	
 	$_SESSION['nomeP'] = strtoupper($_GET['paciente']);
 	$_SESSION['data'] = $_GET['dtNasc'];
 	// Pegar data do formulario content-home.php
@@ -72,6 +75,9 @@
             ?>
             <h1 class="text-center mb-3" style="margin-top: 140px">Lista de Pacientes</h1>    
             <div>
+            	<div class="d-flex justify-content-end font-italic mb-2">
+            		<a class="btn btn-lg btn-primary border-0" href="<?php if($redirect == "Administrador"){ echo '../../forms/content-home-admin.php';}else echo '../../home.php'; ?>">Inicio</a>
+            	</div>
 			    <table class="table shadow-lg table-hover table-striped table-bordered">
 			        <thead class="thead-dark">
 			          <tr class="text-center" style="font-size: 15px">

@@ -9,40 +9,40 @@
         session_destroy();
         exit();
     }
+
+    // parametros para função
+    $pacientRegistry = (isset($_GET['regProntuary']) ? intval($_GET['regProntuary']) : "");
+    $hourEvo = isset($_GET['hourEvolution']) ? $_GET['hourEvolution'] : "";
+    $dateEvo = isset($_GET['dateEvolution']) ? $_GET['dateEvolution'] : "";
+
     //declaramos uma variavel para monstarmos a tabela
     $dadosWord  = "";
-    $dadosWord = "<div>";
-
-
+    $dadosWord .= "<pre>";
+    
     require '../../vendor/autoload.php';
-    use Classes\PacientEvolution\PacientEvolution;
+    use Classes\Pacient\PacientEvolution\PacientEvolution;
+
     //instanciamos
     $pacientEvo = new PacientEvolution();
-    $result = $pacientEvo->pacientEvo();
+    $result = $pacientEvo->pacientEvo($pacientRegistry, $dateEvo, $hourEvo);
     //varremos o array com o foreach para pegar os dados
     
     foreach($result as $res){
-        $dadosWord .= "      <tr>";
-        $dadosWord .= "          <td>".$res['CODIGO_USUARIO']."</td>";
-        $dadosWord .= "          <td>".$res['NOME_COMPLETO']."</td>";
-        $dadosWord .= "          <td>".$res['NOME']."</td>";
-        $dadosWord .= "          <td>".$res['CPF']."</td>";
-        $dadosWord .= "          <td>".$res['SENHA']."</td>";
-         $dadosWord .= "         <td>".$res['TIPO_USUARIO']."</td>";
-        $dadosWord .= "      </tr>";
+
+        $dadosWord .= $res['EVOLUCAO'];
+        
     }
-    $dadosWord .= "  </div>";
  
     // Definimos o nome do arquivo que será exportado  
-    $arquivo = "Paciente Evolução.doc";  
+    $arquivo = "Paciente Evolução.rtf";  
     // Configurações header para forçar o download  
-    header('Content-Type: application/vnd.ms-word');
+    header('Content-Type: application/vnd.ms-rtf');
     header('Content-Disposition: attachment;filename="'.$arquivo.'"');
     header('Cache-Control: max-age=0');
     // Se for o IE9, isso talvez seja necessário
     header('Cache-Control: max-age=1');
        
-    // Envia o conteúdo do arquivo  
-    echo  utf8_decode($dadosWord);  
+    // Envia o conteúdo do arquivo 
+    echo  $dadosWord;  
     exit;
 ?>

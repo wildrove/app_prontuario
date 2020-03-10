@@ -107,7 +107,7 @@ namespace Classes\Pacient\PacientEvolution;
 
 			try {
 
-				$sql = "SELECT PEP.EVOLUCAO FROM PEP_EVOLUCAO_MEDICA PEP 
+				$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.EVOLUCAO FROM PEP_EVOLUCAO_MEDICA PEP 
 						WHERE PEP.REGISTRO_PRONTUARIO = ? 
 						AND PEP.DATA_EVOLUCAO = ?
 						AND PEP.HORA_EVOLUCAO = ?
@@ -121,7 +121,7 @@ namespace Classes\Pacient\PacientEvolution;
 						$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 						if(count($result) == 0){
-							$sql = "SELECT EW.EVOLUCAO FROM EVOLUCAO_WARELINE EW  
+							$sql = "SELECT EW.REGISTRO_PRONTUARIO, EW.EVOLUCAO FROM EVOLUCAO_WARELINE EW  
 							WHERE EW.REGISTRO_PRONTUARIO = ? 
 							AND EW.DATAEVOLUCAO = ?
 							AND EW.HORAEVOLUCAO = ?
