@@ -17,7 +17,6 @@
 
     //declaramos uma variavel para monstarmos a tabela
     $dadosWord  = "";
-    $dadosWord .= "<pre>";
     
     require '../../vendor/autoload.php';
     use Classes\Pacient\PacientEvolution\PacientEvolution;
