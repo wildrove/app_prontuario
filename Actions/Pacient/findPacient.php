@@ -9,6 +9,7 @@
 	
 	$_SESSION['nomeP'] = strtoupper($_GET['paciente']);
 	$_SESSION['data'] = $_GET['dtNasc'];
+	$start = intval(substr($_SESSION['data'], 0, 4));
 	// Pegar data do formulario content-home.php
 	$birthday = (isset($_GET['dtNasc'])) ? $_GET['dtNasc'] : $_SESSION['data'];
 	//pegar nome do paciente
