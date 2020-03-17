@@ -43,15 +43,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
-    <!-- Bootstrap Online -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<meta charset="UTF-8">
 	<!-- Bootstrap Local -->  
 	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 	<!-- Link Personal style.css -->
-    <link rel="stylesheet" type="text/css"  href="../../bootstrap/css/style.css">
-    
-
+    <link rel="stylesheet" href="../../css/estilo.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -64,38 +60,38 @@
 	<!-- Sessão de cabeçalho -->
 	<section class="container-fluid" style="margin-top: 130px;">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg">
-			<form method="" action="">
+			<form class="form" method="" action="">
 				<div style="width: 20%">
 					<h4 class="">Dados do Paciente</h4>
 				</div>
-				<div class="row cabecalho p-2"><!-- Inicio Linha 1 -->
+				<div class="row p-2"><!-- Inicio Linha 1 -->
 					<div class="form-group">
 						<label class="col-form-label border-bottom border-info">Paciente:</label>
-						<input class="form-control-plaintext" type="text" name="nomePaciente">
+						<input class="form-control-plaintext input-pacient-bold" type="text" name="nomePaciente">
 					</div>
 					<div class="form-group">
 						<label class="col-form-label border-bottom border-info">Dt. Nasc:</label>
-						<input class="form-control-plaintext" type="date" name="nascimento">
+						<input class="form-control-plaintext input-pacient-bold" type="date" name="nascimento">
 					</div>
 					<div class="form-group">
 						<label class="col-form-label border-bottom border-info">Mãe:</label>
-						<input class="form-control-plaintext" type="text" name="nomeMae">
+						<input class="form-control-plaintext input-pacient-bold" type="text" name="nomeMae">
 					</div>
 					<div class="form-group">
 						<label class="col-form-label border-bottom border-info">Prontuário:</label>
-						<input class="form-control-plaintext" type="text" name="prontuario">
+						<input class="form-control-plaintext input-pacient-bold" type="text" name="prontuario">
 					</div>
 					<div class="form-group">
 						<label class="col-form-label border-bottom border-info">Reg. Paciente:</label>
-						<input class="form-control-plaintext" type="text" name="regPaciente">
+						<input class="form-control-plaintext input-pacient-bold" type="text" name="regPaciente">
 					</div>
 					<div class="form-group">
 						<label class="col-form-label border-bottom border-info">Dt. Evolução:</label>
-						<input class="form-control-plaintext" type="date" name="dtEvo">
+						<input class="form-control-plaintext input-pacient-bold" type="date" name="dtEvo">
 					</div>
 					<div class="form-group">
 						<label class="col-form-label border-bottom border-info">Tipo Evolução:</label>
-						<input class="form-control-plaintext" type="text" name="tipoEvo">
+						<input class="form-control-plaintext input-pacient-bold" type="text" name="tipoEvo">
 					</div>
 				</div><!-- Fim Linha 1 -->
 			</form>

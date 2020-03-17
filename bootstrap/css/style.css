@@ -87,7 +87,16 @@ ul, li, span:hover {
 
  /* ============================= FindProntuary.php ============================== */
 
-
+body,
+section,
+nav,
+form,
+div,
+div,
+label,
+.paciente {
+	color: red !important;
+}
 
 /* ============================ Média Queries 575.98px ======================================= */
 

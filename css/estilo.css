@@ -1,0 +1,57 @@
+/*========================== CSS Header.php ================================ */
+
+.navbar-header {
+	background-color: #2b96cc;
+	font-family: "Open Sans", sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 21px;
+}
+
+ul, li, a, .logout-text {
+	color: #fff;
+}
+
+ul, li, a, .logout-text:hover {
+	color: #f90023;
+	transition-property: color;
+	transition-duration: 0.5s;
+	transition-delay: 0.1s;
+}
+
+ul, li, span {
+	color: #fff;
+}
+
+ul, li, span:hover {
+	color: #4db3e7;
+	transition-property: color;
+	transition-duration: 0.3s;
+	transition-delay: 0.1s;
+}
+
+.edit-user-nav:hover {
+	color: #4db3e7 !important;
+}
+
+ .divisor-nav {
+	border-right: 1.5px solid #fff;
+	height: 25px;
+	margin-top: 12px;
+
+}
+
+.user-edit-nav {
+	color: #fff !important;
+}
+
+
+/* ========================== Porntuary.php =================================== */
+
+/* SECTION DADOS PACIENTE */
+
+.input-pacient-bold,
+input {
+	color: #000;
+	font-weight: 700;
+}
