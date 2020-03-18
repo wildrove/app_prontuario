@@ -65,33 +65,33 @@
 					<h4 class="">Dados do Paciente</h4>
 				</div>
 				<div class="row p-2"><!-- Inicio Linha 1 -->
-					<div class="form-group">
-						<label class="col-form-label border-bottom border-info">Paciente:</label>
-						<input class="form-control-plaintext input-pacient-bold" type="text" name="nomePaciente">
+					<div class="form-group pacient-group">
+						<label class="col-form-label">Paciente:</label>
+						<input class="form-control-plaintext input-pacient" type="text" name="nomePaciente">
 					</div>
-					<div class="form-group">
-						<label class="col-form-label border-bottom border-info">Dt. Nasc:</label>
-						<input class="form-control-plaintext input-pacient-bold" type="date" name="nascimento">
+					<div class="form-group pacient-group">
+						<label class="col-form-label">Dt. Nasc:</label>
+						<input class="form-control-plaintext input-pacient" type="date" name="nascimento">
 					</div>
-					<div class="form-group">
-						<label class="col-form-label border-bottom border-info">Mãe:</label>
-						<input class="form-control-plaintext input-pacient-bold" type="text" name="nomeMae">
+					<div class="form-group pacient-group">
+						<label class="col-form-label">Mãe:</label>
+						<input class="form-control-plaintext input-pacient" type="text" name="nomeMae">
 					</div>
-					<div class="form-group">
-						<label class="col-form-label border-bottom border-info">Prontuário:</label>
-						<input class="form-control-plaintext input-pacient-bold" type="text" name="prontuario">
+					<div class="form-group pacient-group">
+						<label class="col-form-label">Prontuário:</label>
+						<input class="form-control-plaintext input-pacient" type="text" name="prontuario">
 					</div>
-					<div class="form-group">
-						<label class="col-form-label border-bottom border-info">Reg. Paciente:</label>
-						<input class="form-control-plaintext input-pacient-bold" type="text" name="regPaciente">
+					<div class="form-group pacient-group">
+						<label class="col-form-label">Reg. Paciente:</label>
+						<input class="form-control-plaintext input-pacient" type="text" name="regPaciente">
 					</div>
-					<div class="form-group">
-						<label class="col-form-label border-bottom border-info">Dt. Evolução:</label>
-						<input class="form-control-plaintext input-pacient-bold" type="date" name="dtEvo">
+					<div class="form-group pacient-group">
+						<label class="col-form-label">Dt. Evolução:</label>
+						<input class="form-control-plaintext input-pacient" type="date" name="dtEvo">
 					</div>
-					<div class="form-group">
-						<label class="col-form-label border-bottom border-info">Tipo Evolução:</label>
-						<input class="form-control-plaintext input-pacient-bold" type="text" name="tipoEvo">
+					<div class="form-group pacient-group">
+						<label class="col-form-label">Tipo Evolução:</label>
+						<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo">
 					</div>
 				</div><!-- Fim Linha 1 -->
 			</form>

@@ -50,8 +50,13 @@ ul, li, span:hover {
 
 /* SECTION DADOS PACIENTE */
 
-.input-pacient-bold,
-input {
-	color: #000;
+.pacient-group{
+
+	width: 20%;
+}
+
+.input-pacient {
 	font-weight: 700;
+	width: 80%;
+	text-align: center;
 }
