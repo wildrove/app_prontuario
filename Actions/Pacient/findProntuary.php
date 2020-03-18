@@ -53,65 +53,60 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<?php 
-
-		require '../../forms/header-evolution.php'
-	?>
-	<!-- Sessão de cabeçalho -->
-	<section class="container-fluid" style="margin-top: 130px;">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg">
-			<form class="form" method="" action="">
-				<div style="width: 20%">
+	<?php require '../../forms/header-evolution.php' ?><!-- Cabeçalho -->
+	<div class="container-fluid">		
+		<section class="" style="margin-top: 130px;"><!-- Sessão de cabeçalho -->
+				<form class="form text-form bg-light shadow-lg p-5" method="" action="">
 					<h4 class="">Dados do Paciente</h4>
-				</div>
-				<div class="row p-2"><!-- Inicio Linha 1 -->
-					<div class="form-group pacient-group">
-						<label class="col-form-label">Paciente:</label>
-						<input class="form-control-plaintext input-pacient" type="text" name="nomePaciente">
-					</div>
-					<div class="form-group pacient-group">
-						<label class="col-form-label">Dt. Nasc:</label>
-						<input class="form-control-plaintext input-pacient" type="date" name="nascimento">
-					</div>
-					<div class="form-group pacient-group">
-						<label class="col-form-label">Mãe:</label>
-						<input class="form-control-plaintext input-pacient" type="text" name="nomeMae">
-					</div>
-					<div class="form-group pacient-group">
-						<label class="col-form-label">Prontuário:</label>
-						<input class="form-control-plaintext input-pacient" type="text" name="prontuario">
-					</div>
-					<div class="form-group pacient-group">
-						<label class="col-form-label">Reg. Paciente:</label>
-						<input class="form-control-plaintext input-pacient" type="text" name="regPaciente">
-					</div>
-					<div class="form-group pacient-group">
-						<label class="col-form-label">Dt. Evolução:</label>
-						<input class="form-control-plaintext input-pacient" type="date" name="dtEvo">
-					</div>
-					<div class="form-group pacient-group">
-						<label class="col-form-label">Tipo Evolução:</label>
-						<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo">
-					</div>
-				</div><!-- Fim Linha 1 -->
-			</form>
-		</nav>
-	</section><!-- Fim Sessão cabeçalho -->
-
-	<div class="container-fluid p-3" style="margin-top: 30px;">
-		<h1 style="text-align: center;">Evolução do paciente</h1>
-		<p class="text-break">
-			<?php 
-				foreach ($pacientEvo as $value) {
-					echo "<pre style='font-family: Arial;font-size: 75%;'>";
-					echo strtoupper(wordwrap($value['EVOLUCAO'], 160, "<br />", true));
-				}
-			?>	
-		</p>
-		<div class="d-flex justify-content-center">
+					<div class="row p-2 border border-dark mb-3" style="font-family: Arial, Helvetica, sans-serif;"><!-- Inicio Linha 1 -->
+						<div class="form-group pacient-group">
+							<label class="col-form-label">Paciente:</label>
+							<input class="form-control-plaintext input-pacient" type="text" name="nomePaciente">
+						</div>
+						<div class="form-group pacient-group">
+							<label class="col-form-label">Dt. Nasc:</label>
+							<input class="form-control-plaintext input-pacient" type="date" name="nascimento">
+						</div>
+						<div class="form-group pacient-group">
+							<label class="col-form-label">Mãe:</label>
+							<input class="form-control-plaintext input-pacient" type="text" name="nomeMae">
+						</div>
+						<div class="form-group pacient-group">
+							<label class="col-form-label">Prontuário:</label>
+							<input class="form-control-plaintext input-pacient" type="text" name="prontuario">
+						</div>
+						<div class="form-group pacient-group">
+							<label class="col-form-label">Reg. Paciente:</label>
+							<input class="form-control-plaintext input-pacient" type="text" name="regPaciente">
+						</div>
+						<div class="form-group pacient-group">
+							<label class="col-form-label">Dt. Evolução:</label>
+							<input class="form-control-plaintext input-pacient" type="date" name="dtEvo">
+						</div>
+						<div class="form-group pacient-group">
+							<label class="col-form-label">Tipo Evolução:</label>
+							<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo">
+						</div>
+					</div><!-- Fim Linha 1 -->
+					<div class="row border border-dark p-3"><!-- Inicio Linha 2 -->
+						<div class="form-group">
+							<h1 style="text-align: center;">Evolução do paciente</h1>
+							<p class="text-break">
+								<?php 
+									foreach ($pacientEvo as $value) {
+										echo "<pre style='font-family: Arial;font-size: 75%;'>";
+										echo wordwrap($value['EVOLUCAO'], 300, "<br><br>", true);
+									}
+								?>	
+							</p>
+						</div>
+					</div><!-- Fim Linha 2 -->
+				</form>
+		</section><!-- Fim Sessão cabeçalho -->
+		<div class="p-5">
 			<button type="button" class="btn btn-primary btn-lg" onclick="goBack()">Voltar</button>
-			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientRegistry . '&' . 'hourEvolution=' . $hourEvo . '&' . 'dateEvolution=' . $dateEvo;  ?>" class="btn btn-primary btn-lg ml-5">Exportar evolução</a>
-		</div>	
+			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientRegistry . '&' . 'hourEvolution=' . $hourEvo . '&' . 'dateEvolution=' . $dateEvo;  ?>" class="btn btn-primary btn-lg ml-5">Baixar Evolução</a>
+		</div>
 	</div>
 	<script type="text/javascript">
 		function goBack(){
