@@ -56,7 +56,7 @@
 	<?php require '../../forms/header-evolution.php' ?><!-- Cabeçalho -->
 	<div class="container-fluid">		
 		<section class="" style="margin-top: 130px;"><!-- Sessão de cabeçalho -->
-				<form class="form text-form bg-light shadow-lg p-5" method="" action="">
+				<form class="form text-form bg-light shadow-lg p-5" method="get" action="dataPrint.php">
 					<h4 class="">Dados do Paciente</h4>
 					<div class="row p-2 border border-dark mb-3" style="font-family: Arial, Helvetica, sans-serif;"><!-- Inicio Linha 1 -->
 						<div class="form-group pacient-group">
@@ -87,11 +87,21 @@
 							<label class="col-form-label">Tipo Evolução:</label>
 							<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo">
 						</div>
+						<div class="form-group">
+							<textarea name="evolucao" style="display: none;">
+								<?php 
+									foreach ($pacientEvo as $value) {
+										echo "<pre style='font-family: Arial;font-size: 75%;'>";
+										echo wordwrap($value['EVOLUCAO'], 300, "<br><br>", true);
+									}
+								?>	
+							</textarea>
+						</div>
 					</div><!-- Fim Linha 1 -->
 					<div class="row border border-dark p-3"><!-- Inicio Linha 2 -->
 						<div class="form-group">
 							<h1 style="text-align: center;">Evolução do paciente</h1>
-							<p class="text-break">
+							<p class="text-break" name="textarea">
 								<?php 
 									foreach ($pacientEvo as $value) {
 										echo "<pre style='font-family: Arial;font-size: 75%;'>";
@@ -101,6 +111,9 @@
 							</p>
 						</div>
 					</div><!-- Fim Linha 2 -->
+					<div class="form-group">
+						<button class="btn btn-primary" type="submit">Enviar</button>
+					</div>
 				</form>
 		</section><!-- Fim Sessão cabeçalho -->
 		<div class="p-5">
