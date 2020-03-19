@@ -50,13 +50,16 @@ ul, li, span:hover {
 
 /* SECTION DADOS PACIENTE */
 
+.font-pacient-type {
+	font-family: Arial, Helvetica, sans-serif !important;
+}
+
 .pacient-group{
 
-	width: 20%;
+
 }
 
 .input-pacient {
 	font-weight: 700;
-	width: 80%;
 	text-align: center;
 }

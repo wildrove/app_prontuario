@@ -56,7 +56,7 @@
 	<?php require '../../forms/header-evolution.php' ?><!-- Cabeçalho -->
 	<div class="container-fluid">		
 		<section class="" style="margin-top: 130px;"><!-- Sessão de cabeçalho -->
-				<form class="form text-form bg-light shadow-lg p-5" method="get" action="dataPrint.php">
+				<form class="form text-form bg-light shadow-lg p-5" method="post" action="dataPrint.php">
 					<h4 class="">Dados do Paciente</h4>
 					<div class="row p-2 border border-dark mb-3" style="font-family: Arial, Helvetica, sans-serif;"><!-- Inicio Linha 1 -->
 						<div class="form-group pacient-group">
@@ -65,7 +65,7 @@
 						</div>
 						<div class="form-group pacient-group">
 							<label class="col-form-label">Dt. Nasc:</label>
-							<input class="form-control-plaintext input-pacient" type="date" name="nascimento">
+							<input class="form-control-plaintext input-pacient" type="date" name="dtNascimento">
 						</div>
 						<div class="form-group pacient-group">
 							<label class="col-form-label">Mãe:</label>
@@ -105,7 +105,7 @@
 								<?php 
 									foreach ($pacientEvo as $value) {
 										echo "<pre style='font-family: Arial;font-size: 75%;'>";
-										echo wordwrap($value['EVOLUCAO'], 300, "<br><br>", true);
+										echo wordwrap($value['EVOLUCAO'], 250, "<br>", true);
 									}
 								?>	
 							</p>
