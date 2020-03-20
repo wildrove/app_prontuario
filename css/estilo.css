@@ -63,3 +63,12 @@ ul, li, span:hover {
 	font-weight: 700;
 	text-align: center;
 }
+
+.pacient-discription {
+	width: 101.5%;
+	height: auto;
+	margin-left: -9.5px;
+	padding-left: 10px;
+	padding-top: 3px;
+	
+}

@@ -25,7 +25,7 @@
 	</script>
 </head>
 <body>
-	<div class="container font-pacient-type">
+	<div class="container-fluid font-pacient-type">
 		<section style="border: 1px solid #000000">
 			<div class="row">
 				<div class="col-sm">
@@ -40,11 +40,11 @@
 				</div>
 			</div>
 			<div class="row d-flex justify-content-center">
-				<h3 class="">Resumo de Alta</h3>
+				<h3 class="">Resumo de Evolução</h3>
 			</div>
 		</section><!-- Fim Sessão Hospital -->
 
-		<section class="mt-2" style="border: 1px solid #000000">
+		<section class="mt-2" style="border: 1px solid #000000"><!-- Sessão Paciente -->
 			<div class="row m-2">
 				<h3>Dados Paciente</h3>
 			</div>
@@ -76,9 +76,31 @@
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Tipo Evolução:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" autocomplete="off">
-				</div>	
+				</div>
+				<div class="row pacient-discription border-top border-dark"><!-- Inicio Texto descrição -->
+					<p class="text-break">
+						<?php 
+							echo "<pre style='font-family: Arial;font-size: 75%;'>";
+							echo wordwrap($text, 260, "<br>", true);
+						?>	
+					</p>
+				</div><!-- Fim texto Descrição -->	
 			</div><!-- Fim Linha 1 -->
 		</section><!-- Fim Sessão Paciente -->
+		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
+		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
 	</div>
+	
+	<script type="text/javascript">
+		function goBack(){
+			window.history.go(-1);
+		}
+	</script>
+
+	<script>
+		function imprimir(){
+			window.print();
+		}
+	</script>
 </body>
 </html>

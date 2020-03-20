@@ -88,11 +88,11 @@
 							<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo">
 						</div>
 						<div class="form-group">
-							<textarea name="evolucao" style="display: none;">
+							<textarea name="evolucao" style="display: none; border: none;">
 								<?php 
 									foreach ($pacientEvo as $value) {
-										echo "<pre style='font-family: Arial;font-size: 75%;'>";
-										echo wordwrap($value['EVOLUCAO'], 300, "<br><br>", true);
+										
+										echo $value['EVOLUCAO'];
 									}
 								?>	
 							</textarea>
@@ -101,11 +101,11 @@
 					<div class="row border border-dark p-3"><!-- Inicio Linha 2 -->
 						<div class="form-group">
 							<h1 style="text-align: center;">Evolução do paciente</h1>
-							<p class="text-break" name="textarea">
+							<p class="text-break">
 								<?php 
 									foreach ($pacientEvo as $value) {
 										echo "<pre style='font-family: Arial;font-size: 75%;'>";
-										echo wordwrap($value['EVOLUCAO'], 250, "<br>", true);
+										echo wordwrap($value['EVOLUCAO'], 250, "<br><br>", true);
 									}
 								?>	
 							</p>
