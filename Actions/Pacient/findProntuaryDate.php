@@ -55,7 +55,7 @@
 <body>
     <div class="container">
         <?php 
-            require_once '../../forms/headerUserPacientList.php';
+            include '../../forms/headerPacient.php';
         ?>
         <h1 class="text-center mb-3"  style="margin-top: 120px;">Lista de Evoluções</h1>    
         <div>

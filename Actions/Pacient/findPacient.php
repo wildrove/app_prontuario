@@ -72,7 +72,7 @@
 		<body>
 			<div class="container">
             <?php 
-               require_once '../../forms/headerUserPacientList.php';
+               include '../../forms/headerPacient.php';
             ?>
             <h1 class="text-center mb-3" style="margin-top: 140px">Lista de Pacientes</h1>    
             <div>
@@ -109,7 +109,8 @@
                           echo '<b>-</b>';
                        } echo $rowPacient['TELEFONE']; ?></td>
 			              <td>
-			                <a href="findProntuaryDate.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a>
+			               <!--<a href="findProntuaryDate.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a> -->
+			                <a href="pacientFilter.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a>
 			              </td>
 			            </tr>
 			            <?php
