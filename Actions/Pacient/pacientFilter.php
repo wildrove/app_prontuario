@@ -42,10 +42,17 @@
 	<link rel="stylesheet"  href="../../css/estilo.css">
 </head>
 <body>
-	<div class="container">
-		<?php  
+	<div class="container"><!-- Div Principal -->
+		<div class="row"><!-- Área do cabeçalho -->
+			<?php  
 			include '../../forms/headerPacient.php';
 		?>
-	</div>
+
+		</div><!-- Fim cabeçalho -->
+		<div class="row border border-danger" style="margin-top: 150px;">
+			conteúdo do filtro
+		</div>
+		
+	</div><!-- Fim da Div principal -->
 </body>
 </html>
