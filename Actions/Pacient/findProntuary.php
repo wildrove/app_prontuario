@@ -53,7 +53,9 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<?php require '../../forms/header-evolution.php' ?><!-- Cabeçalho -->
+	<?php  
+		include '../../forms/headerPacient.php';
+	 ?>
 	<div class="container-fluid">		
 		<section class="" style="margin-top: 130px;"><!-- Sessão de cabeçalho -->
 				<form class="form text-form bg-light shadow-lg p-5" method="post" action="dataPrint.php">
