@@ -55,12 +55,12 @@
 					<legend class="p-2">Filtrar dados do Paciente</legend>
 					<div class="row">
 						<div class="form-check mr-2">
-							<input class="form-check-input" type="radio" name="tipoPaciente" value="internado">
-							<label class="form-check-label">Internado</label>
+							<input class="form-check-input" type="radio" name="tipoPaciente" id="checkboxInterndo1" value="internado">
+							<label class="form-check-label" for="checkboxInterndo1">Internado</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="tipoPaciente" value="comAlta">
-							<label class="form-check-label">Intern.C/Alta</label>
+							<input class="form-check-input" type="radio" name="tipoPaciente" id="checkboxInterndo2" value="comAlta">
+							<label class="form-check-label" for="checkboxInterndo2">Intern.C/Alta</label>
 						</div>						
 					</div>
 					<div class="row mt-2">
@@ -71,20 +71,20 @@
 					</div>
 					<div class="row mt-2">
 						<div class="form-check mr-2">
-							<input class="form-check-input" type="radio" name="tipoResumo" value="evolucao">
-							<label class="form-check-label">Evolução</label>
+							<input class="form-check-input" type="radio" name="tipoResumo" id="checkboxResumo1" value="evolucao">
+							<label class="form-check-label" for="checkboxResumo1">Evolução</label>
 						</div>
 						<div class="form-check mr-2">
-							<input class="form-check-input" type="radio" name="tipoResumo" value="alta">
-							<label class="form-check-label">Resumo de Alta</label>
+							<input class="form-check-input" type="radio" name="tipoResumo" id="checkboxResumo2" value="alta">
+							<label class="form-check-label" for="checkboxResumo2">Resumo de Alta</label>
 						</div>
 						<div class="form-check mr-2">
-							<input class="form-check-input" type="radio" name="tipoResumo" value="cirurgia">
-							<label class="form-check-label">Resumo de Cirurgia</label>
+							<input class="form-check-input" type="radio" name="tipoResumo" id="checkboxResumo3" value="cirurgia">
+							<label class="form-check-label" for="checkboxResumo3">Resumo de Cirurgia</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="tipoResumo" value="imagem">
-							<label class="form-check-label">Exame de Imagem</label>
+							<input class="form-check-input" type="radio" name="tipoResumo" id="checkboxResumo4" value="imagem">
+							<label class="form-check-label" for="checkboxResumo4">Exame de Imagem</label>
 						</div>
 					</div>			
 				</fieldset>
