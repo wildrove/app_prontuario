@@ -71,8 +71,28 @@
 					</div>
 					<div class="row mt-2">
 						<div class="form-check mr-2">
-							<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo1" value="evolucao">
+							<input class="form-check-input" type="radio" onclick="mostraSelect();" name="tipoResumo" id="radioResumo1" value="evolucao">
 							<label class="form-check-label" for="radioResumo1">Evolução</label>
+							<select class="form-control" id="evoType" name="selectEvo">
+								<option value="medico">Médico</option>
+								<option value="nutricionista">Nutricionista</option>
+								<option value="psicologo">Psicólogo</option>
+								<option value="enfermagem">Enfermagem</option>
+								<option value="fisioterapeuta">Fisioterapeuta</option>
+								<option value="ambulatorio">Ambulatório</option>
+								<option value="externo">Externo</option>
+								<option value="interno">Interno</option>
+							</select>
+							<script>
+								function mostraSelect() {
+							    	if (document.getElementById('radioResumo1').checked) {
+							        	document.getElementById('evoType').style.display = 'block';
+							    	}
+							    	else {
+							    		document.getElementById('evoType').style.display = 'none';
+							    	}
+								}
+							</script>
 						</div>
 						<div class="form-check mr-2">
 							<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo2" value="alta">

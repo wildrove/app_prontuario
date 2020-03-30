@@ -46,7 +46,7 @@ ul, li, span:hover {
 }
 
 
-/* ========================== Porntuary.php =================================== */
+/* ========================== Prontuary.php =================================== */
 
 /* SECTION DADOS PACIENTE */
 
@@ -71,4 +71,10 @@ ul, li, span:hover {
 	padding-left: 10px;
 	padding-top: 3px;
 	
+}
+
+/* ============================== PacientFilter.php =============================== */
+
+#evoType {
+	display: none;
 }
