@@ -40,6 +40,8 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet"  href="../../bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet"  href="../../css/estilo.css">
+	<script src="../../bootstrap/js/jquery.min.js"></script>
+	<script src="../../js/selectEvolutionType.js"></script>
 </head>
 <body>
 	<div class="container"><!-- Div Principal -->
@@ -50,7 +52,7 @@
 
 		</div><!-- Fim cabeçalho -->
 		<div class="row border border-dark" style="margin-top: 130px;">
-			<form class="form">
+			<form class="form" method="get" action="">
 				<fieldset class="p-5">
 					<legend class="p-2">Filtrar dados do Paciente</legend>
 					<div class="row">
@@ -65,34 +67,29 @@
 					</div>
 					<div class="row mt-2">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="Consultorio" id="checkboxNeo" value="">
+							<input class="form-check-input" type="checkbox" name="consultorio" id="checkboxNeo" value="consultorio">
 							<label class="form-check-label" for="checkboxNeo">Neovida/Consultório</label>
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="form-check mr-2">
-							<input class="form-check-input" type="radio" onclick="mostraSelect();" name="tipoResumo" id="radioResumo1" value="evolucao">
+							<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo1" value="evolucao">
 							<label class="form-check-label" for="radioResumo1">Evolução</label>
-							<select class="form-control" id="evoType" name="selectEvo">
-								<option value="medico">Médico</option>
-								<option value="nutricionista">Nutricionista</option>
-								<option value="psicologo">Psicólogo</option>
-								<option value="enfermagem">Enfermagem</option>
-								<option value="fisioterapeuta">Fisioterapeuta</option>
-								<option value="ambulatorio">Ambulatório</option>
-								<option value="externo">Externo</option>
-								<option value="interno">Interno</option>
-							</select>
-							<script>
-								function mostraSelect() {
-							    	if (document.getElementById('radioResumo1').checked) {
-							        	document.getElementById('evoType').style.display = 'block';
-							    	}
-							    	else {
-							    		document.getElementById('evoType').style.display = 'none';
-							    	}
-								}
-							</script>
+						</div>
+						<div id="evoType">
+							<div class="form-group mr-2" id="evolucao">
+								<select class="form-control" name="selectEvo">
+									<option value="" selected=""></option>
+									<option value="medico">Médico</option>
+									<option value="nutricionista">Nutricionista</option>
+									<option value="psicologo">Psicólogo</option>
+									<option value="enfermagem">Enfermagem</option>
+									<option value="fisioterapeuta">Fisioterapeuta</option>
+									<option value="ambulatorio">Ambulatório</option>
+									<option value="externo">Externo</option>
+									<option value="interno">Interno</option>
+								</select>
+						</div>
 						</div>
 						<div class="form-check mr-2">
 							<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo2" value="alta">
