@@ -44,18 +44,18 @@
 	<script src="../../js/selectEvolutionType.js"></script>
 </head>
 <body>
-	<div class="container"><!-- Div Principal -->
+	<div class="container-fluid body-filtrar-paciente"><!-- Div Principal -->
 		<div class="row"><!-- Área do cabeçalho -->
 			<?php  
-			include '../../forms/headerPacient.php';
-		?>
-
+				include '../../forms/headerPacient.php';
+			?>
 		</div><!-- Fim cabeçalho -->
-		<div class="row border border-dark" style="margin-top: 130px;">
-			<form class="form" method="get" action="">
+		<div class="row border border-dark div-principal-filtrar-paciente">
+			<form class="form form-filtrar-paciente" method="get" action="">
 				<fieldset class="p-5">
 					<legend class="p-2">Filtrar dados do Paciente</legend>
 					<div class="row">
+						<label class="label-filtrar-paciente">Paciente:</label>
 						<div class="form-check mr-2">
 							<input class="form-check-input" type="radio" name="tipoPaciente" id="radioInterndo1" value="internado">
 							<label class="form-check-label" for="radioInterndo1">Internado</label>
@@ -66,12 +66,14 @@
 						</div>						
 					</div>
 					<div class="row mt-2">
+						<label class="label-filtrar-paciente">Atendimento:</label>
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="consultorio" id="checkboxNeo" value="consultorio">
-							<label class="form-check-label" for="checkboxNeo">Neovida/Consultório</label>
+							<label class="form-check-label" for="checkboxNeo">Consultório</label>
 						</div>
 					</div>
 					<div class="row mt-2">
+						<label class="label-filtrar-paciente">Tipo Evolução:</label>
 						<div class="form-check mr-2">
 							<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo1" value="evolucao">
 							<label class="form-check-label" for="radioResumo1">Evolução</label>
@@ -83,7 +85,7 @@
 									<option value="medico">Médico</option>
 									<option value="nutricionista">Nutricionista</option>
 									<option value="psicologo">Psicólogo</option>
-									<option value="enfermagem">Enfermagem</option>
+									<option value="enfermagem">Enfermaria</option>
 									<option value="fisioterapeuta">Fisioterapeuta</option>
 									<option value="ambulatorio">Ambulatório</option>
 									<option value="externo">Externo</option>
@@ -103,11 +105,18 @@
 							<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo4" value="imagem">
 							<label class="form-check-label" for="radioResumo4">Exame de Imagem</label>
 						</div>
-					</div>			
+					</div>
+					<div class="form-group btn-filtrar-paciente">
+						<button class="btn btn-primary" type="submit">Filtrar</button>
+						<a class="btn btn-primary" href="javascript:history.back();">Voltar</a>
+					</div>
 				</fieldset>
 			</form>
-		</div>
-		
+		</div>		
 	</div><!-- Fim da Div principal -->
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

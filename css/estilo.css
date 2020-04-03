@@ -50,7 +50,7 @@ ul, li, span:hover {
 
 /* SECTION DADOS PACIENTE */
 
-.font-pacient-type {
+.font-pacient-type, .body-filtrar-paciente {
 	font-family: Arial, Helvetica, sans-serif !important;
 }
 
@@ -74,3 +74,19 @@ ul, li, span:hover {
 }
 
 /* ============================== PacientFilter.php =============================== */
+
+
+.div-principal-filtrar-paciente {
+	margin-top: 103px;
+	background-color: #CCCCCC;
+}
+
+.btn-filtrar-paciente {
+	margin-top: 20px;
+	margin-left: -20px;
+}
+
+.label-filtrar-paciente {
+	font-weight: 600;
+	margin-right: 10px;
+}
