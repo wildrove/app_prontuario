@@ -88,7 +88,7 @@
 			            <th scope="col" class="border-right">DOCUMENTO</th>
 			            <th scope="col" class="border-right">NOME MÃE</th>
 			            <th scope="col" class="border-right">TELEFONE</th>
-			            <th scope="col">EVOLUÇÃO</th>
+			            <th scope="col">INFORMAÇÕES</th>
 			          </tr>
 			        </thead>
 			        <tbody>
@@ -110,7 +110,7 @@
                        } echo $rowPacient['TELEFONE']; ?></td>
 			              <td>
 			               <!--<a href="findProntuaryDate.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a> -->
-			                <a href="pacientFilter.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>&pacientName=<?php echo $rowPacient['NOME']; ?>" class="btn btn-primary">Pesquisar</a>
+			                <a href="pacientFilter.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>&pacientName=<?php echo $rowPacient['NOME']; ?>" class="btn btn-primary">Filtrar</a>
 			              </td>
 			            </tr>
 			            <?php

@@ -2,7 +2,7 @@
 
 .navbar-header {
 	background-color: #2b96cc;
-	font-family: "Open Sans", sans-serif;
+	font-family: "Aral", sans-serif;
 	font-style: normal;
 	font-weight: 500;
 	font-size: 21px;
@@ -78,7 +78,7 @@ ul, li, span:hover {
 
 .div-principal-filtrar-paciente {
 	margin-top: 103px;
-	background-color: #CCCCCC;
+	background-color: #e8f0fe;
 }
 
 .btn-filtrar-paciente {
@@ -89,4 +89,8 @@ ul, li, span:hover {
 .label-filtrar-paciente {
 	font-weight: 600;
 	margin-right: 10px;
+}
+
+.paciente-nome-filtrar-titulo {
+	font-weight: 600;
 }

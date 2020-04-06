@@ -1,6 +1,7 @@
 <?php
 	session_start();
 
+$pacientName = (isset($_GET['pacientName']) ? strtoupper($_GET['pacientName']) : "");
 /* Criar filtro aqui antes de listar as evoluções 
 
 		- Tipo paciente: internado ou c/alta
@@ -50,12 +51,18 @@
 				include '../../forms/headerPacient.php';
 			?>
 		</div><!-- Fim cabeçalho -->
-		<div class="row border border-dark div-principal-filtrar-paciente">
-			<form class="form form-filtrar-paciente" method="get" action="">
-				<fieldset class="p-5">
-					<legend class="p-2">Filtrar dados do Paciente</legend>
+		<div class="row div-principal-filtrar-paciente">
+			<form class="form m-5 form-filtrar-paciente" method="get" action="">
+					<div class="row mb-3">
+						<h2>Filtrar dados do Paciente:</h2>
+					</div>
+					<div class="row mb-3">
+						<h3 class="paciente-nome-filtrar-titulo"><?php echo ucwords(strtolower($pacientName));  ?></h3>
+					</div>
 					<div class="row">
 						<label class="label-filtrar-paciente">Paciente:</label>
+					</div>
+					<div class="row mb-3">
 						<div class="form-check mr-2">
 							<input class="form-check-input" type="radio" name="tipoPaciente" id="radioInterndo1" value="internado">
 							<label class="form-check-label" for="radioInterndo1">Internado</label>
@@ -65,15 +72,37 @@
 							<label class="form-check-label" for="radioInterndo2">Intern.C/Alta</label>
 						</div>						
 					</div>
-					<div class="row mt-2">
+
+					<div class="row">
 						<label class="label-filtrar-paciente">Atendimento:</label>
+					</div>
+					<div class="row mb-3">	
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" name="consultorio" id="checkboxNeo" value="consultorio">
 							<label class="form-check-label" for="checkboxNeo">Consultório</label>
 						</div>
 					</div>
-					<div class="row mt-2">
+
+					<div class="row">
+						<label class="label-filtrar-paciente">Categoria:</label>
+					</div>
+					<div class="row mb-3">
+						<select class="form-control" name="selectCat" style="width: 30%">
+							<option value="" selected=""></option>
+							<option value="">Médico</option>
+							<option value="">Nutricionista</option>
+							<option value="">Psicólogo</option>
+							<option value="">Enfermaria</option>
+							<option value="">Fisioterapeuta</option>
+							<option value="">Ambulatório</option>
+							<option value="">Externo</option>
+							<option value="">Interno</option>
+						</select>
+					</div>
+					<div class="row">
 						<label class="label-filtrar-paciente">Tipo Evolução:</label>
+					</div>
+					<div class="row">
 						<div class="form-check mr-2">
 							<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo1" value="evolucao">
 							<label class="form-check-label" for="radioResumo1">Evolução</label>
@@ -106,11 +135,11 @@
 							<label class="form-check-label" for="radioResumo4">Exame de Imagem</label>
 						</div>
 					</div>
+
 					<div class="form-group btn-filtrar-paciente">
 						<button class="btn btn-primary" type="submit">Filtrar</button>
 						<a class="btn btn-primary" href="javascript:history.back();">Voltar</a>
 					</div>
-				</fieldset>
 			</form>
 		</div>		
 	</div><!-- Fim da Div principal -->
