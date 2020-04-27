@@ -33,7 +33,7 @@
     }
  
     // Definimos o nome do arquivo que será exportado  
-    $arquivo = "Paciente Evolução.rtf";  
+    $arquivo = "Paciente Evolução.rtf";
     // Configurações header para forçar o download  
     header('Content-Type: application/vnd.ms-rtf');
     header('Content-Disposition: attachment;filename="'.$arquivo.'"');

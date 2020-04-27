@@ -1,5 +1,5 @@
 <?php
-
+/*
 	$nome = $_POST['nomePaciente'];
 	$nascimento = $_POST['dtNascimento'];
 	$nomeMae = $_POST['nomeMae'];
@@ -8,6 +8,9 @@
 	$dtEvo = $_POST['dtEvo'];
 	$tipoEvo = $_POST['tipoEvo'];
 	$text = $_POST['evolucao'];
+
+*/	
+
 
 ?>
 
@@ -89,6 +92,8 @@
 		</section><!-- Fim Sessão Paciente -->
 		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
 		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
+
+		<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientRegistry . '&' . 'hourEvolution=' . $hourEvo . '&' . 'dateEvolution=' . $dateEvo;  ?>" class="btn btn-primary btn-lg">Baixar Evolução</a>
 	</div>
 	
 	<script type="text/javascript">

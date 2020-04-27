@@ -6,6 +6,7 @@
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
     use Classes\Pacient\Pacient;
 
+
     // variavel para validar o link de redirecionar para o inicio;
     $redirect = $_SESSION['usuario_nivel_acesso'];
     // Registro vindo do formulário
@@ -30,9 +31,20 @@
 
     $totalPages = ceil($totalRows/$itemsPerPage);
     $previousPage = $currentPage -1;
-    $nextPage = $currentPage + 1; 
+    $nextPage = $currentPage + 1;
 
+    // Dados do Paciente para o cabeçalho
+    $pacientHeader = new PacientEvolution();
+    $name;
+    $mother;
+    $birthday;
 
+    $pacientHeader = $pacientHeader->findPacientHeader($regProntuary);
+    foreach ($pacientHeader as $value) {
+    	$name = $value['NOME'];
+    	$mother = $value['NOME_MAE'];
+    	$birthday = $value['DATA_NASCIMENTO'];
+    }
 
 ?>
 
@@ -82,7 +94,9 @@
 			              <td class="border-right"><?php echo $rowPacient['TIPO']; ?></td>
 			              <td class="border-right"><?php echo $rowPacient['NOME_COMPLETO']; ?></td>
 			              <td>
-			                <a href="findProntuary.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>&dateEvolution=<?php echo $rowPacient['DATA_EVOLUCAO']; ?>" class="btn btn-primary">Visualizar</a>
+			               <a href="findProntuary.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>&dateEvolution=<?php echo $rowPacient['DATA_EVOLUCAO']; ?>&regPacient=<?php echo $rowPacient['REGISTRO_PACIENTE']; ?>&type=<?php echo $rowPacient['TIPO']; ?>&pacientName=<?php echo $name; ?>&mother=<?php echo $mother; ?>&birthday=<?php echo $birthday; ?>" class="btn btn-primary">Visualizar</a>
+
+			               <!-- <a href="dataPrint.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>&dateEvolution=<?php echo $rowPacient['DATA_EVOLUCAO']; ?>" class="btn btn-primary">Visualizar</a> -->
 			              </td>
 			         </tr>
 			            <?php
@@ -134,9 +148,6 @@
 	</div>
 </body>
 </html>	
-
-
-
 
 
 

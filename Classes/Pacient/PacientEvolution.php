@@ -186,4 +186,23 @@ namespace Classes\Pacient\PacientEvolution;
 
 			return $arrayColumn;
 		}
+
+		public function findPacientHeader($regProntuary)
+		{
+			try {
+
+				$sql = "SELECT NOME, NOME_MAE, DATA_NASCIMENTO, REGISTRO_PRONTUARIO FROM PRONTUARIO P
+						WHERE P.REGISTRO_PRONTUARIO = ?";
+						
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+				return $result;
+
+			} catch (Exception $e) {
+				echo $e . getMessage();
+			}
+		}
 	}

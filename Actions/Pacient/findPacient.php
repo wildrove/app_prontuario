@@ -109,8 +109,8 @@
                           echo '<b>-</b>';
                        } echo $rowPacient['TELEFONE']; ?></td>
 			              <td>
-			               <!--<a href="findProntuaryDate.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a> -->
-			                <a href="pacientFilter.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>&pacientName=<?php echo $rowPacient['NOME']; ?>" class="btn btn-primary">Filtrar</a>
+			               	<!-- <a href="findProntuaryDate.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>" class="btn btn-primary">Pesquisar</a> -->
+			                <a href="pacientFilter.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO'] ?>&pacientName=<?php echo $rowPacient['NOME']; ?>&pacientBirthday=<?php echo $rowPacient['DATA_NASCIMENTO']; ?>&motherName=<?php echo $rowPacient['NOME_MAE']; ?>" class="btn btn-primary">Filtrar</a>
 			              </td>
 			            </tr>
 			            <?php
