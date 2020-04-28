@@ -11,4 +11,7 @@ $tipoResumo = (isset($_GET['tipoResumo']) ? $_GET['tipoResumo'] : "");
 
 if ($tipoResumo == "evolucao") {
 	header("Location: findProntuaryDate.php?regProntuary=$prontuario");
+
+}elseif ($tipoResumo == "alta") {
+	header("Location: findMedicalRealise.php?regProntuary=$prontuario");
 }

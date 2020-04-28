@@ -52,7 +52,9 @@ namespace Classes\Pacient\PacientEvolution;
 							ON PEP.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO INNER JOIN USUARIO US
 							ON PEP.CODIGO_USUARIO = US.CODIGO_USUARIO
 							WHERE PEP.REGISTRO_PRONTUARIO = ?
+
 							UNION ALL
+
 							SELECT FIRST $limit SKIP $page EW.REGISTRO_PRONTUARIO, EW.DATAEVOLUCAO, EW.HORAEVOLUCAO, EW.NROATEND,
 							 EW.TIPOATEND, EW.PRESTADOR FROM EVOLUCAO_WARELINE EW
 							 INNER JOIN PRONTUARIO P
@@ -75,6 +77,33 @@ namespace Classes\Pacient\PacientEvolution;
 				
 			}
 		}
+
+		
+		public function findMedicalRealise($regProntuary, $page, $limit)
+			{
+				try {
+					
+					$this->regProntuary = $regProntuary;
+
+					$sql = "
+							SELECT FIRST $limit SKIP $page RA.DATA_ALTA, RA.DATA_DIGITACAO, RA.HORA_DIGITACAO, TA.NOME, U.NOME_COMPLETO, RA.REGISTRO_PRONTUARIO FROM PEP_RESUMO_ALTA RA
+							INNER JOIN USUARIO U ON RA.CODIGO_USUARIO = U.CODIGO_USUARIO
+							INNER JOIN TIPO_ALTA TA ON RA.TIPO_ALTA = TA.CODIGO_TIPO_ALTA
+							WHERE RA.REGISTRO_PRONTUARIO = ?
+							ORDER BY RA.DATA_ALTA DESC ";
+
+					$data = $this->connection->conn->prepare($sql);
+					$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
+					$data->execute();
+					$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+					return $result;	
+
+				} catch (Exception $e) {
+					throw new Exception("Erro ao realizar a consulta", $e);
+				}
+			}
+
 
 		public function findTotalDate($regProntuary)
 		{

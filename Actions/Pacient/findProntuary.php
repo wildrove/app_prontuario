@@ -113,11 +113,11 @@
 					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $type ?>" disabled="">
 				</div>
 				<div class="row pacient-discription border-top border-dark"><!-- Inicio Texto descrição -->
-					<p class="text-break">
+					<p class="">
 						<?php 
 							foreach ($pacientEvo as $value) {
 								echo "<pre style='font-family: Arial;font-size: 73%;'>";
-								echo wordwrap($value['EVOLUCAO'], 300, "<br><br>", true);
+								echo wordwrap($value['EVOLUCAO'], 300, "<br>", true);
 							}	
 						?>	
 					</p>

@@ -21,7 +21,7 @@
 
 	$findDate = new PacientEvolution();
     //Encontrar a evolução por data e trocar o valor da coluna TIPO
-	$evolutionDate = $findDate->changeColumnValue($findDate->findEvolutionDate($regProntuary, $start, $itemsPerPage), 'TIPO');
+	$evolutionDate = $findDate->findMedicalRealise($regProntuary, $start, $itemsPerPage);
 
 	if (empty($evolutionDate)) {
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
@@ -69,7 +69,7 @@
         <?php 
             include '../../forms/headerPacient.php';
         ?>
-        <h1 class="text-center mb-3"  style="margin-top: 120px;">Evoluções do Paciente</h1>    
+        <h1 class="text-center mb-3"  style="margin-top: 120px;">Resumo de Alta</h1>    
         <div>
         	<div class="d-flex justify-content-end font-italic mb-2">
             	<a class="btn btn-lg btn-primary border-0" href="<?php if($redirect == "Administrador"){ echo '../../forms/content-home-admin.php';}else echo '../../home.php'; ?>">Inicio</a>
@@ -77,11 +77,11 @@
 			 <table class="table shadow-lg table-hover table-striped table-bordered">
 			     <thead class="thead-dark">
 			         <tr class="text-center" style="font-size: 15px">
-			            <th scope="col" class="border-right">DATA EVOLUÇÃO</th>
-			            <th scope="col" class="border-right">REGISTRO PACIENTE</th>
-			            <th scope="col" class="border-right">TIPO EVOLUÇÃO</th>
+			            <th scope="col" class="border-right">DATA ALTA</th>
+			            <th scope="col" class="border-right">DATA DIGITAÇÃO</th>
+			            <th scope="col" class="border-right">TIPO ALTA</th>
 			            <th scope="col" class="border-right">PROFISSIONAL</th>
-			            <th scope="col">EVOLUÇÃO</th>
+			            <th scope="col">ALTA</th>
 			         </tr>
 			     </thead>
 			     <tbody>
@@ -89,14 +89,12 @@
 			             foreach($evolutionDate as $rowPacient) {
 			         ?>
 			         <tr class="text-center border font-italic">
-			              <th scope="row" class="border-right "><?php echo date('d/m/Y', strtotime($rowPacient['DATA_EVOLUCAO'])); ?></th>
-			              <td class="border-right"><?php echo $rowPacient['REGISTRO_PACIENTE']; ?></td>
-			              <td class="border-right"><?php echo $rowPacient['TIPO']; ?></td>
+			              <th scope="row" class="border-right "><?php echo date('d/m/Y', strtotime($rowPacient['DATA_ALTA'])); ?></th>
+			              <td class="border-right"><?php echo date('d/m/Y', strtotime($rowPacient['DATA_DIGITACAO'])); ?></td>
+			              <td class="border-right"><?php echo $rowPacient['NOME']; ?></td>
 			              <td class="border-right"><?php echo $rowPacient['NOME_COMPLETO']; ?></td>
 			              <td>
-			               <a href="findProntuary.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>&dateEvolution=<?php echo $rowPacient['DATA_EVOLUCAO']; ?>&regPacient=<?php echo $rowPacient['REGISTRO_PACIENTE']; ?>&type=<?php echo $rowPacient['TIPO']; ?>&pacientName=<?php echo $name; ?>&mother=<?php echo $mother; ?>&birthday=<?php echo $birthday; ?>" class="btn btn-primary">Visualizar</a>
-
-			               <!-- <a href="dataPrint.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>&dateEvolution=<?php echo $rowPacient['DATA_EVOLUCAO']; ?>" class="btn btn-primary">Visualizar</a> -->
+			               <a href="" class="btn btn-primary">Visualizar</a>
 			              </td>
 			         </tr>
 			            <?php
@@ -109,7 +107,7 @@
 					   <li class="page-item <?php if($previousPage == 0){ echo 'disabled';} ?>">
 					       <?php 
 					           if($previousPage != 0) { ?>
-					               <a href="findProntuaryDate.php?page=<?php echo $previousPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_GET['regProntuary'];?>" style="text-decoration: none;">
+					               <a href="findMedicalRealise.php?page=<?php echo $previousPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_GET['regProntuary'];?>" style="text-decoration: none;">
 					               <span class="page-link bg-primary text-light" aria-hidden="true">Anterior</span>
 					               </a>
 					       <?php } else { ?>
@@ -122,11 +120,11 @@
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
 					        }
 					        if($currentPage > 1){
-					        echo "<li class='page-item'><a class='page-link ' href='findProntuaryDate.php?page=".$previousPage."&regProntuary=".$_GET['regProntuary']."'>".$previousPage."</a></li>";
+					        echo "<li class='page-item'><a class='page-link ' href='findMedicalRealise.php?page=".$previousPage."&regProntuary=".$_GET['regProntuary']."'>".$previousPage."</a></li>";
 					        }
 					        echo "<li class='page-item active'><a class='page-link ' href=''>".$currentPage."</a></li>";
 					        if($nextPage <= $totalPages){
-					          echo "<li class='page-item'><a class='page-link' href='findProntuaryDate.php?page=".$nextPage ."&regProntuary=".$_GET['regProntuary']."'>".$nextPage."</a></li>"; 
+					          echo "<li class='page-item'><a class='page-link' href='findMedicalRealise.php?page=".$nextPage ."&regProntuary=".$_GET['regProntuary']."'>".$nextPage."</a></li>"; 
 					        }
 					        if($nextPage < $totalPages){
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
@@ -135,7 +133,7 @@
 					      <li class="page-item <?php if($nextPage > $totalPages){echo 'disabled';} ?>">
 					           <?php 
 					               if($nextPage <= $totalPages) { ?>
-					                   <a href="findProntuaryDate.php?page=<?php echo $nextPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_GET['regProntuary'];?>" style="text-decoration: none;">
+					                   <a href="findMedicalRealise.php?page=<?php echo $nextPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_GET['regProntuary'];?>" style="text-decoration: none;">
 					                   <span class="page-link bg-primary text-light" aria-hidden="true">Próximo</span>
 					                   </a>
 					           <?php } else { ?>
