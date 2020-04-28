@@ -52,6 +52,7 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet"  href="../../bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet"  href="../../css/estilo.css">
+	<link rel="stylesheet"  href="../../css/print.css" media="print">
 	<script type="text/javascript">
 		function printPage(){
 			window.print();
@@ -123,10 +124,12 @@
 				</div><!-- Fim texto Descrição -->	
 			</div><!-- Fim Linha 1 -->
 		</section><!-- Fim Sessão Paciente -->
-		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
-		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
+		<div class="botoes-imprimir">
+			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
+			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
 
-		<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary . '&' . 'hourEvolution=' . $hourEvo . '&' . 'dateEvolution=' . $dateEvo;  ?>" class="btn btn-primary btn-lg">Baixar Evolução</a>
+			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary . '&' . 'hourEvolution=' . $hourEvo . '&' . 'dateEvolution=' . $dateEvo;  ?>" class="btn btn-primary btn-lg">Baixar Evolução</a>
+		</div>
 	</div>
 	
 	<script type="text/javascript">
