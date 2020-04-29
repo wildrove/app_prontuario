@@ -10,8 +10,8 @@ $prontuario = (isset($_GET['regProntuary']) ? intval($_GET['regProntuary']) : ""
 $tipoResumo = (isset($_GET['tipoResumo']) ? $_GET['tipoResumo'] : "");
 
 if ($tipoResumo == "evolucao") {
-	header("Location: findProntuaryDate.php?regProntuary=$prontuario");
+	header("Location: findProntuaryDate.php?regProntuary=$prontuario&resumeType=$tipoResumo");
 
 }elseif ($tipoResumo == "alta") {
-	header("Location: findMedicalRealise.php?regProntuary=$prontuario");
+	header("Location: findMedicalRealise.php?regProntuary=$prontuario&resumeType=$tipoResumo");
 }

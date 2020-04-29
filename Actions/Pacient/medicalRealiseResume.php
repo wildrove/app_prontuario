@@ -6,21 +6,24 @@
 
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
 
+	echo "<pre>";
+	print_r($_GET);
+/*
 	$pacientProntuary = intval($_GET['regProntuary']);
 	$pacientRegistry = (isset($_GET['regPacient']) ? intval($_GET['regPacient']) : "");
-	$hourEvo = $_GET['hourEvolution'];
-	$dateEvo = $_GET['dateEvolution'];
+	$medicalHour = $_GET['medicalHour'];
+	$medicalDate = $_GET['medicalDate'];
 	$pacientName = (isset($_GET['pacientName']) ? $_GET['pacientName'] : "");
 	$mother = (isset($_GET['mother']) ? $_GET['mother'] : "");
 	$birthday = (isset($_GET['birthday']) ? date('d/m/Y', strtotime($_GET['birthday'])) : "");
-	$type = (isset($_GET['type']) ? $_GET['type'] : "");
-	$resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
-
+	$doctor = (isset($_GET['doctor']) ? $_GET['doctor'] : "");
+	$resumeType (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
+	
 
 	$pacientEvolution = new PacientEvolution();
 
-	// Procura a evolução do paciente na tabela PEP_EVOLUCAO_MEDICA OU EVOLUCAO_WARELINE (SISTEMA ANTIGO)
-	$pacientEvo = $pacientEvolution->pacientEvo($pacientProntuary,$dateEvo,$hourEvo, $resumeType);
+	// Procura a alta do paciente na tabela PEP_RESUMO_ALTA 
+	$pacientEvo = $pacientEvolution->pacientEvo($pacientProntuary,$medicalDate,$medicalHour);
 
 	
 	// VERIFICA SE A CONSULTA NÃO RETORNA VAZIO
@@ -30,7 +33,7 @@
 	
 	// Função para limpar o texto da evolução e remover caracteres indesejados
 	foreach ($pacientEvo as $key => $value) {
-		$pacientEvo[$key]['EVOLUCAO'] = rtf2text(utf8_encode($pacientEvo[$key]['EVOLUCAO']));
+		$pacientEvo[$key]['DIAGNOSTICO_ALTA'] = rtf2text(utf8_encode($pacientEvo[$key]['DIAGNOSTICO_ALTA']));
 	}
 
 	// Função para substituir os caracteres especiais por letras com acento.
@@ -39,7 +42,7 @@
 
 	// Verifica se alguma evolução não foi preenchida.
 	foreach ($pacientEvo as  $value) {
-		if ($value['EVOLUCAO'] == "") {
+		if ($value['DIAGNOSTICO_ALTA'] == "") {
 			header('Location: ../../AlertsHTML/alertNoneEvolutionWritten.html');
 		}
 	}
@@ -76,7 +79,7 @@
 				</div>
 			</div>
 			<div class="row d-flex justify-content-center">
-				<h4 class="">Resumo de Evolução</h4>
+				<h4 class="">Resumo de Alta</h4>
 			</div>
 		</section><!-- Fim Sessão Hospital -->
 
@@ -106,19 +109,19 @@
 					<input class="form-control-plaintext input-pacient" type="text" name="regPaciente" value="<?php echo $pacientRegistry ?>" disabled="">
 				</div>
 				<div class="form-group pacient-group">
-					<label class="col-form-label">Dt. Evolução:</label>
-					<input class="form-control-plaintext input-pacient" type="text" name="dtEvo" value="<?php echo date('d/m/Y', strtotime($dateEvo)) ?>" disabled="">
+					<label class="col-form-label">Dt. Alta:</label>
+					<input class="form-control-plaintext input-pacient" type="text" name="dtEvo" value="<?php echo date('d/m/Y', strtotime($medicalHour)) ?>" disabled="">
 				</div>
 				<div class="form-group pacient-group">
-					<label class="col-form-label">Tipo Evolução:</label>
-					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $type ?>" disabled="">
+					<label class="col-form-label">Profissional:</label>
+					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $doctor ?>" disabled="">
 				</div>
 				<div class="row pacient-discription border-top border-dark"><!-- Inicio Texto descrição -->
 					<p class="">
 						<?php 
 							foreach ($pacientEvo as $value) {
 								echo "<pre style='font-family: Arial;font-size: 73%;'>";
-								echo wordwrap($value['EVOLUCAO'], 300, "<br>", true);
+								echo wordwrap($value['DIAGNOSTICO_ALTA'], 300, "<br>", true);
 							}	
 						?>	
 					</p>
@@ -150,7 +153,7 @@
 
 
 
-
+*/
 
 
 

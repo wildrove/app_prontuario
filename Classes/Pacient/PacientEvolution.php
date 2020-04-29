@@ -86,7 +86,7 @@ namespace Classes\Pacient\PacientEvolution;
 					$this->regProntuary = $regProntuary;
 
 					$sql = "
-							SELECT FIRST $limit SKIP $page RA.DATA_ALTA, RA.DATA_DIGITACAO, RA.HORA_DIGITACAO, TA.NOME, U.NOME_COMPLETO, RA.REGISTRO_PRONTUARIO FROM PEP_RESUMO_ALTA RA
+							SELECT FIRST $limit SKIP $page RA.DATA_ALTA, RA.DATA_DIGITACAO, RA.HORA_DIGITACAO, TA.NOME, U.NOME_COMPLETO, RA.REGISTRO_PRONTUARIO, RA.REGISTRO_PACIENTE FROM PEP_RESUMO_ALTA RA
 							INNER JOIN USUARIO U ON RA.CODIGO_USUARIO = U.CODIGO_USUARIO
 							INNER JOIN TIPO_ALTA TA ON RA.TIPO_ALTA = TA.CODIGO_TIPO_ALTA
 							WHERE RA.REGISTRO_PRONTUARIO = ?
@@ -155,23 +155,30 @@ namespace Classes\Pacient\PacientEvolution;
 		}
 
 
-		public function pacientEvo($regProntuary,$dateEvo,$hourEvo)
+		public function pacientEvo($regProntuary,$dateEvo,$hourEvo,$resumeType)
 		{	
 
 			try {
 
-				$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.EVOLUCAO FROM PEP_EVOLUCAO_MEDICA PEP 
+				$sql;
+				$data;
+				$result;
+
+				if($resumeType == "evolucao"){
+					$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.EVOLUCAO FROM PEP_EVOLUCAO_MEDICA PEP 
 						WHERE PEP.REGISTRO_PRONTUARIO = ? 
 						AND PEP.DATA_EVOLUCAO = ?
 						AND PEP.HORA_EVOLUCAO = ?
 						";
+					$data = $this->connection->conn->prepare($sql);
+					$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
+					$data->bindParam(2, $dateEvo, PDO::PARAM_STR);
+					$data->bindParam(3, $hourEvo, PDO::PARAM_STR);
+					$data->execute();
+					$result = $data->fetchAll(PDO::FETCH_ASSOC);	
+				}
 
-						$data = $this->connection->conn->prepare($sql);
-						$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
-						$data->bindParam(2, $dateEvo, PDO::PARAM_STR);
-						$data->bindParam(3, $hourEvo, PDO::PARAM_STR);
-						$data->execute();
-						$result = $data->fetchAll(PDO::FETCH_ASSOC);
+						
 
 						if(count($result) == 0){
 							$sql = "SELECT EW.REGISTRO_PRONTUARIO, EW.EVOLUCAO FROM EVOLUCAO_WARELINE EW  

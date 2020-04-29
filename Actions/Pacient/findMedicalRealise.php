@@ -94,7 +94,7 @@
 			              <td class="border-right"><?php echo $rowPacient['NOME']; ?></td>
 			              <td class="border-right"><?php echo $rowPacient['NOME_COMPLETO']; ?></td>
 			              <td>
-			               <a href="" class="btn btn-primary">Visualizar</a>
+			               <a href="medicalRealiseResume.php?regProntuary=<?php echo $regProntuary . "&pacientName=" . $name . "&birthday=" . $birthday . "&mother=" . $mother . "&medicalDate=" . $rowPacient['DATA_ALTA'] . "&doctor=" . $rowPacient['NOME_COMPLETO'] . "&regPacient=" . $rowPacient['REGISTRO_PACIENTE'] . "&medicalHour=" . $rowPacient['HORA_DIGITACAO'];?>" class="btn btn-primary">Visualizar</a>
 			              </td>
 			         </tr>
 			            <?php
