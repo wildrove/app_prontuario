@@ -27,7 +27,7 @@
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
 	}
 
-	$totalRows = $findDate->findTotalDate($regProntuary);
+	$totalRows = $findDate->totalMedicalRealise($regProntuary);
 
     $totalPages = ceil($totalRows/$itemsPerPage);
     $previousPage = $currentPage -1;

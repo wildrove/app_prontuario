@@ -131,6 +131,30 @@ namespace Classes\Pacient\PacientEvolution;
 				return $result = count($result);	
 		}
 
+		public function totalMedicalRealise($regProntuary)
+		{
+			try {
+				$this->regProntuary = $regProntuary;
+
+					$sql = "
+							SELECT RA.DATA_ALTA, RA.DATA_DIGITACAO, RA.HORA_DIGITACAO, TA.NOME, U.NOME_COMPLETO, RA.REGISTRO_PRONTUARIO FROM PEP_RESUMO_ALTA RA
+							INNER JOIN USUARIO U ON RA.CODIGO_USUARIO = U.CODIGO_USUARIO
+							INNER JOIN TIPO_ALTA TA ON RA.TIPO_ALTA = TA.CODIGO_TIPO_ALTA
+							WHERE RA.REGISTRO_PRONTUARIO = ?
+							ORDER BY RA.DATA_ALTA DESC ";
+
+					$data = $this->connection->conn->prepare($sql);
+					$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
+					$data->execute();
+					$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+					return count($result);	
+			} catch (Exception $e) {
+				throw new Exception("Erro ao realizar a consulta", $e);
+			}
+		}
+
+
 		public function pacientEvo($regProntuary,$dateEvo,$hourEvo)
 		{	
 
