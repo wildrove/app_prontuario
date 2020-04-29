@@ -81,7 +81,7 @@
 			</div>
 		</section><!-- Fim Sessão Hospital -->
 
-		<section class="mt-2" style="border: 1px solid #000000"><!-- Sessão Paciente -->
+		<section class="" style="border: 1px solid #000000"><!-- Sessão Paciente -->
 			<div class="row m-2">
 				<h4>Dados Paciente</h4>
 			</div>
@@ -115,14 +115,13 @@
 					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $doctor ?>" disabled="">
 				</div>
 				<div class="row pacient-discription border-top border-dark"><!-- Inicio Texto descrição -->
-					<p class="">
+					<span class="exibir-resumo">
 						<?php 
 							foreach ($pacientEvo as $value) {
-								echo "<pre style='font-family: Arial;font-size: 80%;'>";
-								echo wordwrap($value['DIAGNOSTICO_ALTA'], 300, "<br>", true);
+								print(wordwrap($value['DIAGNOSTICO_ALTA'], 300, "<br>", true));
 							}	
 						?>	
-					</p>
+					</span>
 				</div><!-- Fim texto Descrição -->	
 			</div><!-- Fim Linha 1 -->
 		</section><!-- Fim Sessão Paciente -->
