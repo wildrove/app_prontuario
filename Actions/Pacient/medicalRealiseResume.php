@@ -6,9 +6,7 @@
 
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
 
-	echo "<pre>";
-	print_r($_GET);
-/*
+	
 	$pacientProntuary = intval($_GET['regProntuary']);
 	$pacientRegistry = (isset($_GET['regPacient']) ? intval($_GET['regPacient']) : "");
 	$medicalHour = $_GET['medicalHour'];
@@ -17,13 +15,13 @@
 	$mother = (isset($_GET['mother']) ? $_GET['mother'] : "");
 	$birthday = (isset($_GET['birthday']) ? date('d/m/Y', strtotime($_GET['birthday'])) : "");
 	$doctor = (isset($_GET['doctor']) ? $_GET['doctor'] : "");
-	$resumeType (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
+	$resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
 	
 
 	$pacientEvolution = new PacientEvolution();
 
 	// Procura a alta do paciente na tabela PEP_RESUMO_ALTA 
-	$pacientEvo = $pacientEvolution->pacientEvo($pacientProntuary,$medicalDate,$medicalHour);
+	$pacientEvo = $pacientEvolution->pacientMedicalRealiseResume($pacientProntuary, $medicalDate, $medicalHour);
 
 	
 	// VERIFICA SE A CONSULTA NÃO RETORNA VAZIO
@@ -37,7 +35,7 @@
 	}
 
 	// Função para substituir os caracteres especiais por letras com acento.
-	$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, 'EVOLUCAO');
+	$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, 'DIAGNOSTICO_ALTA');
 
 
 	// Verifica se alguma evolução não foi preenchida.
@@ -110,7 +108,7 @@
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Dt. Alta:</label>
-					<input class="form-control-plaintext input-pacient" type="text" name="dtEvo" value="<?php echo date('d/m/Y', strtotime($medicalHour)) ?>" disabled="">
+					<input class="form-control-plaintext input-pacient" type="text" name="dtEvo" value="<?php echo date('d/m/Y', strtotime($medicalDate)) ?>" disabled="">
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Profissional:</label>
@@ -120,7 +118,7 @@
 					<p class="">
 						<?php 
 							foreach ($pacientEvo as $value) {
-								echo "<pre style='font-family: Arial;font-size: 73%;'>";
+								echo "<pre style='font-family: Arial;font-size: 80%;'>";
 								echo wordwrap($value['DIAGNOSTICO_ALTA'], 300, "<br>", true);
 							}	
 						?>	
@@ -132,7 +130,7 @@
 			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
 			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
 
-			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary . '&' . 'hourEvolution=' . $hourEvo . '&' . 'dateEvolution=' . $dateEvo;  ?>" class="btn btn-primary btn-lg">Baixar Evolução</a>
+			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary  . '&medicalDate=' . $medicalDate  . '&medicalHour=' . $medicalHour . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary btn-lg">Baixar Evolução</a>
 		</div>
 	</div>
 	
@@ -151,9 +149,6 @@
 </html>
 
 
-
-
-*/
 
 
 

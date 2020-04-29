@@ -155,30 +155,23 @@ namespace Classes\Pacient\PacientEvolution;
 		}
 
 
-		public function pacientEvo($regProntuary,$dateEvo,$hourEvo,$resumeType)
+		public function pacientEvo($regProntuary,$dateEvo,$hourEvo)
 		{	
 
 			try {
 
-				$sql;
-				$data;
-				$result;
-
-				if($resumeType == "evolucao"){
-					$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.EVOLUCAO FROM PEP_EVOLUCAO_MEDICA PEP 
+				$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.EVOLUCAO FROM PEP_EVOLUCAO_MEDICA PEP 
 						WHERE PEP.REGISTRO_PRONTUARIO = ? 
 						AND PEP.DATA_EVOLUCAO = ?
 						AND PEP.HORA_EVOLUCAO = ?
 						";
-					$data = $this->connection->conn->prepare($sql);
-					$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
-					$data->bindParam(2, $dateEvo, PDO::PARAM_STR);
-					$data->bindParam(3, $hourEvo, PDO::PARAM_STR);
-					$data->execute();
-					$result = $data->fetchAll(PDO::FETCH_ASSOC);	
-				}
 
-						
+						$data = $this->connection->conn->prepare($sql);
+						$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
+						$data->bindParam(2, $dateEvo, PDO::PARAM_STR);
+						$data->bindParam(3, $hourEvo, PDO::PARAM_STR);
+						$data->execute();
+						$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 						if(count($result) == 0){
 							$sql = "SELECT EW.REGISTRO_PRONTUARIO, EW.EVOLUCAO FROM EVOLUCAO_WARELINE EW  
@@ -204,6 +197,25 @@ namespace Classes\Pacient\PacientEvolution;
 				echo $e . getMessage();
 			}
 		}
+
+		// Função para encontrar o Resumo de Alta do Paciente
+		public function pacientMedicalRealiseResume($regProntuary, $medicalDate, $medicalHour)
+		{
+			$sql = "SELECT RA.REGISTRO_PRONTUARIO, RA.DIAGNOSTICO_ALTA FROM PEP_RESUMO_ALTA RA
+					WHERE RA.REGISTRO_PRONTUARIO = ?
+					AND RA.DATA_ALTA = ?
+					AND RA.HORA_DIGITACAO = ?";
+
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
+			$data->bindParam(2, $medicalDate, PDO::PARAM_STR);
+			$data->bindParam(3, $medicalHour, PDO::PARAM_STR);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;
+		}
+
 
 		public function convertEvoLetter($arrayEvo, $columnName)
 		{
