@@ -3,6 +3,7 @@
 	session_start();
 	require '../../vendor/autoload.php';
 	require('../../RtfCleanText/cleanRtf.php');
+	require('../../rtf.php');
 
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
 
@@ -16,13 +17,11 @@
 	$type = (isset($_GET['type']) ? $_GET['type'] : "");
 	$resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
 
-
 	$pacientEvolution = new PacientEvolution();
 
 	// Procura a evolução do paciente na tabela PEP_EVOLUCAO_MEDICA OU EVOLUCAO_WARELINE (SISTEMA ANTIGO)
 	$pacientEvo = $pacientEvolution->pacientEvo($pacientProntuary,$dateEvo,$hourEvo);
 
-	
 	// VERIFICA SE A CONSULTA NÃO RETORNA VAZIO
 	if (empty($pacientEvo)) {
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
@@ -61,7 +60,7 @@
 	</script>
 </head>
 <body>
-	<div class="container-fluid font-pacient-type">
+	<div class="container mt-2 font-pacient-type">
 		<section style="border: 1px solid #000000">
 			<div class="row">
 				<div class="col-sm">

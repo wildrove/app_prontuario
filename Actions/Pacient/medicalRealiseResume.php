@@ -62,7 +62,7 @@
 	</script>
 </head>
 <body>
-	<div class="container-fluid font-pacient-type">
+	<div class="container mt-3 font-pacient-type">
 		<section style="border: 1px solid #000000">
 			<div class="row">
 				<div class="col-sm">
@@ -129,7 +129,7 @@
 			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
 			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
 
-			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary  . '&medicalDate=' . $medicalDate  . '&medicalHour=' . $medicalHour . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary btn-lg">Baixar Evolução</a>
+			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary  . '&medicalDate=' . $medicalDate  . '&medicalHour=' . $medicalHour . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary btn-lg">Baixar Alta</a>
 		</div>
 	</div>
 	

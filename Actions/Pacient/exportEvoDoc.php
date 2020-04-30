@@ -47,9 +47,9 @@
     
  
     // Definimos o nome do arquivo que será exportado  
-    $arquivo = "Paciente Evolução.rtf";
+    $arquivo = "Paciente Evolução.doc";
     // Configurações header para forçar o download  
-    header('Content-Type: application/vnd.ms-rtf');
+    header('Content-Type: application/vnd.ms-doc');
     header('Content-Disposition: attachment;filename="'.$arquivo.'"');
     header('Cache-Control: max-age=0');
     // Se for o IE9, isso talvez seja necessário
