@@ -80,29 +80,55 @@ namespace Classes\Pacient\PacientEvolution;
 
 		
 		public function findMedicalRealise($regProntuary, $page, $limit)
-			{
-				try {
+		{
+			try {
 					
-					$this->regProntuary = $regProntuary;
+				$this->regProntuary = $regProntuary;
 
-					$sql = "
-							SELECT FIRST $limit SKIP $page RA.DATA_ALTA, RA.DATA_DIGITACAO, RA.HORA_DIGITACAO, TA.NOME, U.NOME_COMPLETO, RA.REGISTRO_PRONTUARIO, RA.REGISTRO_PACIENTE FROM PEP_RESUMO_ALTA RA
-							INNER JOIN USUARIO U ON RA.CODIGO_USUARIO = U.CODIGO_USUARIO
-							INNER JOIN TIPO_ALTA TA ON RA.TIPO_ALTA = TA.CODIGO_TIPO_ALTA
-							WHERE RA.REGISTRO_PRONTUARIO = ?
-							ORDER BY RA.DATA_ALTA DESC ";
+				$sql = "
+						SELECT FIRST $limit SKIP $page RA.DATA_ALTA, RA.DATA_DIGITACAO,RA.HORA_DIGITACAO, TA.NOME, U.NOME_COMPLETO, RA.REGISTRO_PRONTUARIO, RA.REGISTRO_PACIENTE FROM PEP_RESUMO_ALTA RA
+						INNER JOIN USUARIO U ON RA.CODIGO_USUARIO = U.CODIGO_USUARIO
+						INNER JOIN TIPO_ALTA TA ON RA.TIPO_ALTA = TA.CODIGO_TIPO_ALTA
+						WHERE RA.REGISTRO_PRONTUARIO = ? ";
 
-					$data = $this->connection->conn->prepare($sql);
-					$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
-					$data->execute();
-					$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
-					return $result;	
+				return $result;	
 
-				} catch (Exception $e) {
-					throw new Exception("Erro ao realizar a consulta", $e);
-				}
+			} catch (Exception $e) {
+				throw new Exception("Erro ao realizar a consulta", $e);
 			}
+		}
+
+		public function findCirurgicalRealise($regProntuary, $page, $limit)
+		{
+			try {
+				$this->regProntuary = $regProntuary;
+
+				$sql = "
+						SELECT FIRST $limit SKIP $page RC.REGISTRO_PACIENTE, RC.DATA_INC, U.NOME_COMPLETO, CC.NOME, RC.CODIGO_CIRURGIA FROM CC_RESUMO_CIRURGIA RC
+						INNER JOIN USUARIO U ON RC.CODIGO_USUARIO = U.CODIGO_USUARIO
+						INNER JOIN CADASTRO_CIRURGIA CC ON RC.CODIGO_CIRURGIA = CC.CODIGO_CIRUR 
+						INNER JOIN PEP_EVOLUCAO_MEDICA EV ON RC.REGISTRO_PACIENTE = EV.REGISTRO_PACIENTE
+						WHERE EV.REGISTRO_PRONTUARIO = ?
+						GROUP BY RC.REGISTRO_PACIENTE, RC.DATA_INC, CC.NOME, U.NOME_COMPLETO, RC.CODIGO_CIRURGIA
+						ORDER BY RC.DATA_INC DESC ";
+
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+				return $result;	
+
+												
+			} catch (Exception $e) {
+				throw new Exception("Erro ao realizar a consulta", $e);
+			}
+		}	
 
 
 		public function findTotalDate($regProntuary)
@@ -151,6 +177,32 @@ namespace Classes\Pacient\PacientEvolution;
 					return count($result);	
 			} catch (Exception $e) {
 				throw new Exception("Erro ao realizar a consulta", $e);
+			}
+		}
+
+		public function TotalCirurgicalRealise($regProntuary)
+		{
+			try {
+				$this->regProntuary = $regProntuary;
+
+				$sql = "
+						SELECT RC.REGISTRO_PACIENTE, RC.DATA_INC, U.NOME_COMPLETO, CC.NOME
+						FROM CC_RESUMO_CIRURGIA RC
+						INNER JOIN USUARIO U ON RC.CODIGO_USUARIO = U.CODIGO_USUARIO
+						INNER JOIN CADASTRO_CIRURGIA CC ON RC.CODIGO_CIRURGIA = CC.CODIGO_CIRUR 
+						INNER JOIN PEP_EVOLUCAO_MEDICA EV ON RC.REGISTRO_PACIENTE = EV.REGISTRO_PACIENTE
+						WHERE EV.REGISTRO_PRONTUARIO = ?
+						GROUP BY RC.REGISTRO_PACIENTE, RC.DATA_INC, CC.NOME, U.NOME_COMPLETO ";
+
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+				return count($result);
+				
+			} catch (Exception $e) {
+				
 			}
 		}
 
@@ -214,6 +266,11 @@ namespace Classes\Pacient\PacientEvolution;
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 			return $result;
+		}
+
+		public function pacientCirurgicalRealiseResume()
+		{
+			
 		}
 
 

@@ -14,4 +14,6 @@ if ($tipoResumo == "evolucao") {
 
 }elseif ($tipoResumo == "alta") {
 	header("Location: findMedicalRealise.php?regProntuary=$prontuario&resumeType=$tipoResumo");
+}elseif($tipoResumo == "cirurgia"){
+	header("Location: findCirurgicalRealise.php?regProntuary=$prontuario&resumeType=$tipoResumo");
 }
