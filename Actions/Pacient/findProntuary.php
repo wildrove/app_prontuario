@@ -3,7 +3,6 @@
 	session_start();
 	require '../../vendor/autoload.php';
 	require('../../RtfCleanText/cleanRtf.php');
-	require('../../rtf.php');
 
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
 
