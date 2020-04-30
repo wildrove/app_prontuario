@@ -59,7 +59,7 @@
 	</script>
 </head>
 <body>
-	<div class="container mt-2 font-pacient-type">
+	<div class="container-fluid mt-2 font-pacient-type">
 		<section style="border: 1px solid #000000">
 			<div class="row">
 				<div class="col-sm">
@@ -115,7 +115,7 @@
 					<span class="exibir-resumo">
 						<?php 
 							foreach ($pacientEvo as $value) {
-								print(wordwrap($value['EVOLUCAO'], 350, "<br>", true));
+								print(wordwrap($value['EVOLUCAO'], 300, "<br>", true));
 							}	
 						?>	
 					</span>
