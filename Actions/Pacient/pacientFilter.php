@@ -53,7 +53,7 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 			<?php  include '../../forms/headerPacient.php'; ?>
 		</div><!-- Fim cabeçalho -->
 		<div class="row div-principal-filtrar-paciente">
-			<form class="form m-5 form-filtrar-paciente" method="get" action="resumePacient.php">	
+			<form class="form m-5 form-filtrar-paciente" method="get" action="redirectPacient.php">	
 					<div class="row mb-3">
 						<h2>Filtrar dados do Paciente:</h2>
 					</div>
@@ -63,6 +63,12 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 					<div class="row"><!-- Registro do Paciente -->
 						<div class="form-check mr-2">
 							<input type="hidden" name="regProntuary" value="<?php echo $prontuary ?>">
+						</div>
+						<div class="form-check mr2">
+							<input type="hidden" name="mother" value="<?php echo $mother ?>">
+						</div>
+						<div class="form-check mr-2">
+							<input type="hidden" name="birthday" value="<?php echo $birthday ?>">
 						</div>
 					</div><!-- Fim registro Paciente -->
 					<div class="row">

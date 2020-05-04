@@ -3,11 +3,11 @@
 session_start();
 require '../../vendor/autoload.php';
 
-echo "<pre>";
-print_r($_GET);
 
 $prontuario = (isset($_GET['regProntuary']) ? intval($_GET['regProntuary']) : "");
 $tipoResumo = (isset($_GET['tipoResumo']) ? $_GET['tipoResumo'] : "");
+$mae = (isset($_GET['mother']) ? $_GET['mother'] : "");
+$aniversario = (isset($_GET['birthday']) ? $_GET['birthday'] : "");
 
 if ($tipoResumo == "evolucao") {
 	header("Location: findProntuaryDate.php?regProntuary=$prontuario&resumeType=$tipoResumo");
@@ -16,4 +16,6 @@ if ($tipoResumo == "evolucao") {
 	header("Location: findMedicalRealise.php?regProntuary=$prontuario&resumeType=$tipoResumo");
 }elseif($tipoResumo == "cirurgia"){
 	header("Location: findCirurgicalRealise.php?regProntuary=$prontuario&resumeType=$tipoResumo");
+}else {
+	header("Location: findImageExame.php?regProntuary=$prontuario&resumeType=$tipoResumo&birthday=$aniversario&mother=$mae");
 }

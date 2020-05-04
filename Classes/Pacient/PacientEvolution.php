@@ -129,6 +129,31 @@ namespace Classes\Pacient\PacientEvolution;
 			} catch (Exception $e) {
 				throw new Exception("Erro ao realizar a consulta", $e);
 			}
+		}
+
+		public function findImageExame($regProntuary,$pacientName, $page, $limit)
+		{
+			$this->regProntuary = $regProntuary;
+
+			$sql = "SELECT FIRST $limit SKIP $page RX.REG_PACIENTE,RX.DATA_REALIZ,RX.NLAUDO,R.CODIGO_EXAME,E.NOME,U.NOME_COMPLETO FROM EXAMES_RX RX
+					INNER JOIN RAIRES R ON RX.NLAUDO = R.NLAUDO
+					INNER JOIN CADASTRO_EXAMES E ON R.CODIGO_EXAME = E.CODIGO_EXAME
+					INNER JOIN USUARIO U ON RX.CODIGO_USUARIO = U.CODIGO_USUARIO
+					INNER JOIN PRONTUARIO P ON RX.NOME_PAC = P.NOME
+					WHERE P.REGISTRO_PRONTUARIO = ?
+					AND P.NOME = ?
+					GROUP BY RX.NLAUDO,RX.REG_PACIENTE,RX.DATA_REALIZ,R.CODIGO_EXAME,E.NOME,U.NOME_COMPLETO
+					ORDER BY RX.DATA_REALIZ DESC";
+
+
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
+			$data->bindParam(2, $pacientName, PDO::PARAM_STR);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;	
+				
 		}	
 
 
@@ -207,6 +232,28 @@ namespace Classes\Pacient\PacientEvolution;
 			}
 		}
 
+		public function totalImageExame($regProntuary)
+		{
+			try {
+				$sql = "SELECT RX.NLAUDO, RX.REG_PACIENTE FROM EXAMES_RX RX
+					INNER JOIN RAIRES R ON RX.NLAUDO = R.NLAUDO
+					INNER JOIN CADASTRO_EXAMES E ON R.CODIGO_EXAME = E.CODIGO_EXAME
+					INNER JOIN USUARIO U ON RX.CODIGO_USUARIO = U.CODIGO_USUARIO
+					INNER JOIN PRONTUARIO P ON RX.NOME_PAC = P.NOME
+					WHERE P.REGISTRO_PRONTUARIO = ?
+					GROUP BY RX.NLAUDO,RX.REG_PACIENTE";
+
+				$data = $this->connection->conn->prepare($sql);
+				$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
+				$data->execute();
+				$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+				return $result = count($result);
+					
+			} catch (Exception $e) {
+				throw new Exception("Erro ao realizar a consulta", $e);
+			}
+		}
 
 		public function pacientEvo($regProntuary,$dateEvo,$hourEvo)
 		{	
@@ -283,6 +330,27 @@ namespace Classes\Pacient\PacientEvolution;
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
 			return $result;
+		}
+
+		public function pacientImageExameResume($regPacient, $nLaudo, $exameDate, $exameCode)
+		{
+			$sql = " SELECT R.RESULTADO FROM EXAMES_RX RX
+					INNER JOIN RAIRES R ON RX.NLAUDO = R.NLAUDO
+					WHERE RX.REG_PACIENTE = ?
+					AND RX.NLAUDO = ?
+					AND RX.DATA_REALIZ = ?
+					AND R.CODIGO_EXAME = ?";
+
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $regPacient, PDO::PARAM_INT);
+			$data->bindParam(2, $nLaudo, PDO::PARAM_INT);
+			$data->bindParam(3, $exameDate, PDO::PARAM_STR);
+			$data->bindParam(4, $exameCode, PDO::PARAM_INT);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;					
+			
 		}
 
 
