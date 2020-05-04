@@ -89,7 +89,8 @@ namespace Classes\Pacient\PacientEvolution;
 						SELECT FIRST $limit SKIP $page RA.DATA_ALTA, RA.DATA_DIGITACAO,RA.HORA_DIGITACAO, TA.NOME, U.NOME_COMPLETO, RA.REGISTRO_PRONTUARIO, RA.REGISTRO_PACIENTE FROM PEP_RESUMO_ALTA RA
 						INNER JOIN USUARIO U ON RA.CODIGO_USUARIO = U.CODIGO_USUARIO
 						INNER JOIN TIPO_ALTA TA ON RA.TIPO_ALTA = TA.CODIGO_TIPO_ALTA
-						WHERE RA.REGISTRO_PRONTUARIO = ? ";
+						WHERE RA.REGISTRO_PRONTUARIO = ? 
+						ORDER BY RA.DATA_ALTA DESC";
 
 				$data = $this->connection->conn->prepare($sql);
 				$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
@@ -268,9 +269,20 @@ namespace Classes\Pacient\PacientEvolution;
 			return $result;
 		}
 
-		public function pacientCirurgicalRealiseResume()
+		public function pacientCirurgicalRealiseResume($regPacient, $cirugicalDate)
 		{
-			
+			$sql = "
+					SELECT RC.TEXTO FROM CC_RESUMO_CIRURGIA RC
+					WHERE RC.REGISTRO_PACIENTE = ?
+					AND RC.DATA_INC = ? ";
+
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $regPacient, PDO::PARAM_INT);
+			$data->bindParam(2, $cirugicalDate, PDO::PARAM_STR);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;
 		}
 
 

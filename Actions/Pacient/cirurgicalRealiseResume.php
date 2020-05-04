@@ -21,7 +21,7 @@
 	$pacientEvolution = new PacientEvolution();
 
 	// Procura a alta do paciente na tabela PEP_RESUMO_ALTA 
-	$pacientEvo = $pacientEvolution->pacientMedicalRealiseResume($pacientProntuary, $medicalDate, $medicalHour);
+	$pacientEvo = $pacientEvolution->pacientCirurgicalRealiseResume($pacientRegistry, $cirurgicalDate);
 
 	
 	// VERIFICA SE A CONSULTA NÃO RETORNA VAZIO
@@ -31,16 +31,16 @@
 	
 	// Função para limpar o texto da evolução e remover caracteres indesejados
 	foreach ($pacientEvo as $key => $value) {
-		$pacientEvo[$key]['DIAGNOSTICO_ALTA'] = rtf2text(utf8_encode($pacientEvo[$key]['DIAGNOSTICO_ALTA']));
+		$pacientEvo[$key]['TEXTO'] = rtf2text(utf8_encode($pacientEvo[$key]['TEXTO']));
 	}
 
 	// Função para substituir os caracteres especiais por letras com acento.
-	$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, 'DIAGNOSTICO_ALTA');
+	$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, 'TEXTO');
 
 
 	// Verifica se alguma evolução não foi preenchida.
 	foreach ($pacientEvo as  $value) {
-		if ($value['DIAGNOSTICO_ALTA'] == "") {
+		if ($value['TEXTO'] == "") {
 			header('Location: ../../AlertsHTML/alertNoneEvolutionWritten.html');
 		}
 	}
@@ -77,7 +77,7 @@
 				</div>
 			</div>
 			<div class="row d-flex justify-content-center">
-				<h4 class="">Resumo de Alta</h4>
+				<h4 class="">Resumo de Cirurgia</h4>
 			</div>
 		</section><!-- Fim Sessão Hospital -->
 
@@ -107,8 +107,8 @@
 					<input class="form-control-plaintext input-pacient" type="text" name="regPaciente" value="<?php echo $pacientRegistry ?>" disabled="">
 				</div>
 				<div class="form-group pacient-group">
-					<label class="col-form-label">Dt. Alta:</label>
-					<input class="form-control-plaintext input-pacient" type="text" name="dtEvo" value="<?php echo date('d/m/Y', strtotime($medicalDate)) ?>" disabled="">
+					<label class="col-form-label">Dt. Cirurgia:</label>
+					<input class="form-control-plaintext input-pacient" type="text" name="dtEvo" value="<?php echo date('d/m/Y', strtotime($cirurgicalDate)) ?>" disabled="">
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Profissional:</label>
@@ -118,7 +118,7 @@
 					<span class="exibir-resumo">
 						<?php 
 							foreach ($pacientEvo as $value) {
-								print(wordwrap($value['DIAGNOSTICO_ALTA'], 300, "<br>", true));
+								print(wordwrap($value['TEXTO'], 300, "<br>", true));
 							}	
 						?>	
 					</span>
