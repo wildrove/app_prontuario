@@ -129,7 +129,7 @@
 			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
 			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
 
-			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary  . '&medicalDate=' . $medicalDate  . '&medicalHour=' . $medicalHour . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary btn-lg">Baixar Alta</a>
+			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&cirurgicalDate=' . $cirurgicalDate  . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary btn-lg">Baixar Cirurgia</a>
 		</div>
 	</div>
 	

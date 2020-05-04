@@ -11,14 +11,18 @@
     }
 
     // parametros para função
-    $pacientRegistry = (isset($_GET['regProntuary']) ? intval($_GET['regProntuary']) : "");
+    $pacientProntuary = (isset($_GET['regProntuary']) ? intval($_GET['regProntuary']) : "");
     $hourEvo = isset($_GET['hourEvolution']) ? $_GET['hourEvolution'] : "";
     $dateEvo = isset($_GET['dateEvolution']) ? $_GET['dateEvolution'] : "";
     $medicalDate = isset($_GET['medicalDate']) ? $_GET['medicalDate'] : "";
     $medicalHour = isset($_GET['medicalHour']) ? $_GET['medicalHour'] : "";
     $resumeType = isset($_GET['resumeType']) ? $_GET['resumeType'] : "";
+    $cirurgicalDate = isset($_GET['cirurgicalDate']) ? $_GET['cirurgicalDate'] : "";
+    $regPacient = isset($_GET['regPacient']) ? intval($_GET['regPacient']) : "";
+
     $result;
     $pacientEvo;
+    $arquivo;
 
     //declaramos uma variavel para monstarmos a tabela
     $dadosWord  = "";
@@ -31,23 +35,34 @@
 
     // Validar o tipo de resumo antes de realizar a consulta no banco.
     if ($resumeType == 'evolucao') {
-        $result = $pacientEvo->pacientEvo($pacientRegistry, $dateEvo, $hourEvo);
+        $result = $pacientEvo->pacientEvo($pacientProntuary, $dateEvo, $hourEvo);
+        // Definimos o nome do arquivo que será exportado  
+        $arquivo = "Paciente Evolução.doc";
         //varremos o array com o foreach para pegar os dados de acordo com o tipo de resumo.
         foreach($result as $res){
             $dadosWord .= $res['EVOLUCAO'];       
         }
 
     }elseif($resumeType == 'alta'){
-        $result = $pacientEvo->pacientMedicalRealiseResume($pacientRegistry, $medicalDate, $medicalHour);
+        $result = $pacientEvo->pacientMedicalRealiseResume($pacientProntuary, $medicalDate, $medicalHour);
+        // Definimos o nome do arquivo que será exportado  
+        $arquivo = "Resumo Alta.doc";
         //varremos o array com o foreach para pegar os dados de acordo com o tipo de resumo.
         foreach($result as $res){
             $dadosWord .= $res['DIAGNOSTICO_ALTA'];    
         }
+
+    }elseif ($resumeType = 'cirurgia') {
+        $result = $pacientEvo->pacientCirurgicalRealiseResume($regPacient, $cirurgicalDate);
+        // Definimos o nome do arquivo que será exportado  
+        $arquivo = "Resumo Cirurgia.doc";
+        foreach ($result as $res) {
+            $dadosWord .= $res['TEXTO'];
+        }
     }
     
  
-    // Definimos o nome do arquivo que será exportado  
-    $arquivo = "Paciente Evolução.doc";
+    
     // Configurações header para forçar o download  
     header('Content-Type: application/vnd.ms-doc');
     header('Content-Disposition: attachment;filename="'.$arquivo.'"');
