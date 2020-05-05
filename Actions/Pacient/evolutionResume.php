@@ -59,7 +59,7 @@
 	</script>
 </head>
 <body>
-	<div class="container-fluid mt-2 font-pacient-type">
+	<div class="container-fluid p-3 mt-2 shadow shadow-lg font-pacient-type">
 		<section style="border: 1px solid #000000">
 			<div class="row">
 				<div class="col-sm">
@@ -85,7 +85,7 @@
 			<div class="row p-4"><!-- Linha 1 -->
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Paciente:</label>
-					<input class="form-control-plaintext input-pacient" type="text" name="nomePaciente" value="<?php echo $pacientName ?>"  disabled="" style="width: auto">
+					<input class="form-control-plaintext input-pacient-names" type="text" name="nomePaciente" value="<?php echo $pacientName ?>"  disabled="">
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Dt. Nasc:</label>
@@ -93,7 +93,7 @@
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Mãe:</label>
-					<input class="form-control-plaintext input-pacient" type="text" name="nomeMae" value="<?php echo $mother ?>" disabled="" style="width: 400px">
+					<input class="form-control-plaintext input-pacient-names" type="text" name="nomeMae" value="<?php echo $mother ?>" disabled="">
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Prontuário:</label>
@@ -115,7 +115,7 @@
 					<span class="exibir-resumo">
 						<?php 
 							foreach ($pacientEvo as $value) {
-								print(wordwrap($value['EVOLUCAO'], 300, "<br>", true));
+								print(wordwrap($value['EVOLUCAO'], 275, "<br>", true));
 							}	
 						?>	
 					</span>

@@ -19,6 +19,9 @@
     $resumeType = isset($_GET['resumeType']) ? $_GET['resumeType'] : "";
     $cirurgicalDate = isset($_GET['cirurgicalDate']) ? $_GET['cirurgicalDate'] : "";
     $regPacient = isset($_GET['regPacient']) ? intval($_GET['regPacient']) : "";
+    $exameDate = isset($_GET['exameDate']) ? $_GET['exameDate'] : "";
+    $exameCode = isset($_GET['exameCode']) ? intval($_GET['exameCode']) : "";
+    $nLaudo = isset($_GET['nLaudo']) ? intval($_GET['nLaudo']) : "";
 
     $result;
     $pacientEvo;
@@ -52,12 +55,20 @@
             $dadosWord .= $res['DIAGNOSTICO_ALTA'];    
         }
 
-    }elseif ($resumeType = 'cirurgia') {
+    }elseif ($resumeType == 'cirurgia') {
         $result = $pacientEvo->pacientCirurgicalRealiseResume($regPacient, $cirurgicalDate);
         // Definimos o nome do arquivo que será exportado  
         $arquivo = "Resumo Cirurgia.doc";
         foreach ($result as $res) {
             $dadosWord .= $res['TEXTO'];
+        }
+    }elseif($resumeType == 'imagem' ){
+        $result = $pacientEvo->pacientImageExameResume($regPacient, $nLaudo, $exameDate, $exameCode);
+        // Definimos o nome do arquivo que será exportado  
+        $arquivo = "Exame de Imagem.doc";
+        //varremos o array com o foreach para pegar os dados de acordo com o tipo de resumo.
+        foreach($result as $res){
+            $dadosWord .= $res['RESULTADO'];    
         }
     }
     

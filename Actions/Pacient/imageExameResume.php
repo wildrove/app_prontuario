@@ -17,6 +17,7 @@
 	$nLaudo = (isset($_GET['nLaudo']) ? intval($_GET['nLaudo']) : "");
 	$doctor = (isset($_GET['doctor']) ? $_GET['doctor'] : "");
 	$resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
+
 	
 
 	$pacientEvolution = new PacientEvolution();
@@ -63,7 +64,7 @@
 	</script>
 </head>
 <body>
-	<div class="container mt-3 font-pacient-type">
+	<div class="container mt-3 shadow shadow-lg p-3 font-pacient-type">
 		<section style="border: 1px solid #000000">
 			<div class="row">
 				<div class="col-sm">
@@ -89,7 +90,7 @@
 			<div class="row p-4"><!-- Linha 1 -->
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Paciente:</label>
-					<input class="form-control-plaintext input-pacient" type="text" name="nomePaciente" value="<?php echo $pacientName ?>"  disabled="" style="width: auto">
+					<input class="form-control-plaintext input-pacient-names" type="text" name="nomePaciente" value="<?php echo $pacientName ?>"  disabled="">
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Dt. Nasc:</label>
@@ -97,7 +98,7 @@
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Mãe:</label>
-					<input class="form-control-plaintext input-pacient" type="text" name="nomeMae" value="<?php echo $mother ?>" disabled="" style="width: 400px">
+					<input class="form-control-plaintext input-pacient-names" type="text" name="nomeMae" value="<?php echo $mother ?>" disabled="">
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Prontuário:</label>
@@ -113,7 +114,7 @@
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Profissional:</label>
-					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $doctor ?>" disabled="">
+					<input class="form-control-plaintext input-pacient-names" type="text" name="tipoEvo" value="<?php echo $doctor ?>" disabled="">
 				</div>
 				<div class="row pacient-discription border-top border-dark"><!-- Inicio Texto descrição -->
 					<span class="exibir-resumo">
@@ -130,7 +131,7 @@
 			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
 			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
 
-			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&exameDate=' . $exameDate  . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary btn-lg">Baixar Cirurgia</a>
+			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&exameDate=' . $exameDate  . '&resumeType=' . $resumeType . '&nLaudo=' . $nLaudo . '&exameCode=' . $exameCode;  ?>" class="btn btn-primary btn-lg">Baixar Imagem</a>
 		</div>
 	</div>
 	
