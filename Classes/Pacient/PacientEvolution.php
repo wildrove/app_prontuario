@@ -332,20 +332,23 @@ namespace Classes\Pacient\PacientEvolution;
 			return $result;
 		}
 
-		public function pacientImageExameResume($regPacient, $nLaudo, $exameDate, $exameCode)
+		public function pacientImageExameResume($regPacient, $nLaudo, $exameCode, $exameDate)
 		{
-			$sql = " SELECT R.RESULTADO FROM EXAMES_RX RX
-					INNER JOIN RAIRES R ON RX.NLAUDO = R.NLAUDO
+
+			$sql = " SELECT R.RESULTADO FROM RAIRES R
+					INNER JOIN EXAMES_RX RX ON R.NLAUDO = RX.NLAUDO
 					WHERE RX.REG_PACIENTE = ?
 					AND RX.NLAUDO = ?
-					AND RX.DATA_REALIZ = ?
-					AND R.CODIGO_EXAME = ?";
+					AND R.CODIGO_EXAME = ?
+					AND RX.DATA_REALIZ = ? ";
+					 
+					 
 
 			$data = $this->connection->conn->prepare($sql);
 			$data->bindParam(1, $regPacient, PDO::PARAM_INT);
 			$data->bindParam(2, $nLaudo, PDO::PARAM_INT);
-			$data->bindParam(3, $exameDate, PDO::PARAM_STR);
-			$data->bindParam(4, $exameCode, PDO::PARAM_INT);
+			$data->bindParam(3, $exameCode, PDO::PARAM_STR);
+			$data->bindParam(4, $exameDate, PDO::PARAM_STR);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
 

@@ -9,11 +9,11 @@
 	
 	$pacientProntuary = intval($_GET['regProntuary']);
 	$pacientRegistry = (isset($_GET['regPacient']) ? intval($_GET['regPacient']) : "");
-	$exameDate = $_GET['exameDate'];
+	$exameDate = (isset($_GET['exameDate']) ? $_GET['exameDate'] : "");
 	$pacientName = (isset($_GET['pacientName']) ? $_GET['pacientName'] : "");
 	$mother = (isset($_GET['mother']) ? $_GET['mother'] : "");
 	$birthday = (isset($_GET['birthday']) ? date('d/m/Y', strtotime($_GET['birthday'])) : "");
-	$exameCode = (isset($_GET['exameCode']) ? intval($_GET['exameCode']) : "");
+	$exameCode = (isset($_GET['exameCode']) ? $_GET['exameCode'] : "");
 	$nLaudo = (isset($_GET['nLaudo']) ? intval($_GET['nLaudo']) : "");
 	$doctor = (isset($_GET['doctor']) ? $_GET['doctor'] : "");
 	$resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
@@ -23,7 +23,7 @@
 	$pacientEvolution = new PacientEvolution();
 
 	// Procura a alta do paciente na tabela PEP_RESUMO_ALTA 
-	$pacientEvo = $pacientEvolution->pacientImageExameResume($pacientRegistry, $nLaudo, $exameDate, $exameCode);
+	$pacientEvo = $pacientEvolution->pacientImageExameResume($pacientRegistry, $nLaudo, $exameCode, $exameDate);
 
 	
 	// VERIFICA SE A CONSULTA NÃO RETORNA VAZIO
@@ -120,7 +120,7 @@
 					<span class="exibir-resumo">
 						<?php 
 							foreach ($pacientEvo as $value) {
-								print(wordwrap($value['RESULTADO'], 300, "<br>", true));
+								print(wordwrap($value['RESULTADO'], 220, "<br>", true));
 							}	
 						?>	
 					</span>
