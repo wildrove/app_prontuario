@@ -102,7 +102,7 @@ ul, li, span:hover {
 
 
 .div-principal-filtrar-paciente {
-	margin-top: 103px;
+	margin-top: 160px;
 	background-color: #e8f0fe;
 }
 
@@ -119,5 +119,6 @@ ul, li, span:hover {
 .paciente-nome-filtrar-titulo {
 	font-weight: 600;
 }
+
 
 /*======================= FindProntuary.php ==================================== */
