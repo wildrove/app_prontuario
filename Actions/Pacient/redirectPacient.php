@@ -3,6 +3,16 @@
 session_start();
 require '../../vendor/autoload.php';
 
+echo "<pre>";
+var_dump($_GET);
+$evoType;
+
+if ($_GET['tipoResumo'] == "evolucao" && !empty($_GET['selectEvo'])) {
+	$evoType = $_GET['selectEvo'];
+	var_dump($evoType);
+}
+
+exit();
 
 $prontuario = (isset($_GET['regProntuary']) ? intval($_GET['regProntuary']) : "");
 $tipoResumo = (isset($_GET['tipoResumo']) ? $_GET['tipoResumo'] : "");
