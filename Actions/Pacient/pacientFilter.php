@@ -17,6 +17,8 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 	<link rel="stylesheet"  href="../../css/estilo.css">
 	<script src="../../bootstrap/js/jquery.min.js"></script>
 	<script src="../../js/selectClinicEvolution.js"></script>
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/changeSelectEvoValue.js"></script>
 </head>
 <body class="body-filtrar-paciente">
 	<div class="container">
@@ -65,16 +67,16 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 							</div>
 							<div id="evoType"><!-- Menu de seleção de Tipo Evolução -->
 								<div class="form-group mr-2" id="evolucao">
-									<select class="form-control" name="selectEvo">
-										<option value="" selected=""></option>
-										<option value="medico">Médico</option>
-										<option value="nutricionista">Nutricionista</option>
-										<option value="psicologo">Psicólogo</option>
-										<option value="enfermagem">Enfermaria</option>
-										<option value="fisioterapeuta">Fisioterapeuta</option>
-										<option value="ambulatorio">Ambulatório</option>
-										<option value="externo">Externo</option>
-										<option value="interno">Interno</option>
+									<select id="selectEvoValue" class="form-control" name="selectEvo">
+										<option value=""></option>
+										<option value="CRM">Médico</option>
+										<option value="CRN">Nutricionista</option>
+										<option value="CRP">Psicólogo</option>
+										<option value="COREN">Enfermaria</option>
+										<option value="CREFITO">Fisioterapeuta</option>
+										<option value="A">Ambulatório</option>
+										<option value="E">Externo</option>
+										<option value="I">Interno</option>
 									</select>
 								</div>
 							</div><!-- Fim Menu Evolução -->
@@ -96,20 +98,21 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 							</div>
 							<div id="clinicEvoType" class="ml-2">
 								<div class="form-group mr-2" id="consultorio">
-									<select class="form-control" name="selectClinicEvo">
+									<select id="selectClinicValue" class="form-control" name="selectClinicEvo">
 										<option value="" selected=""></option>
-										<option value="condMed">Conduta Médica</option>
-										<option value="exClin">Exame Clínico</option>
-										<option value="exLab">Exame Lab</option>
-										<option value="proced">Procedimento</option>
-										<option value="hipDiag">Hipotese Diagnóstico</option>
-										<option value="ambulatorio">Exames Complementares</option>
+										<option value="CONDUTA_MEDICA">Conduta Médica</option>
+										<option value="DESCRICAO_EXAME">Exame Clínico</option>
+										<option value="EXAMES_LAB">Exame Lab</option>
+										<option value="DESCRICAO_PROCEDIMENTO">Procedimento</option>
+										<option value="HIPOTESE_DIAGNOSTICA">Hipotese Diagnóstico</option>
+										<option value="EXAMES_COMPL_REALIZADOS">Exames Complementares</option>
 									</select>
 								</div>
 							</div>
 						</div><!-- Fim Linha Tipo RESUMO -->
 						<div class="form-group btn-filtrar-paciente"><!-- Inicio Div Confirmar -->
 							<button class="btn btn-primary" type="submit">Filtrar</button>
+							<input class="btn btn-primary" type="reset" name="btnReset" value="Limpar Dados">
 							<a class="btn btn-primary" href="javascript:history.back();">Voltar</a>
 						</div><!-- Fim Div Confirmar -->
     				</form>
@@ -117,7 +120,7 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 			</div>
 		</div><!-- Fim Card Principal -->
 	</div>
-	
+
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

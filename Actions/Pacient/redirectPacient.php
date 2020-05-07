@@ -5,12 +5,15 @@ require '../../vendor/autoload.php';
 
 echo "<pre>";
 var_dump($_GET);
-$evoType;
+$evoType = isset($_GET['tipoResumo']) ? $_GET['tipoResumo'] : "";
+$selectEvo = isset($_GET['selectEvo']) ? $_GET['selectEvo'] : "";
+$selectClinicEvo = isset($_GET['selectClinicEvo']) ? $_GET['selectClinicEvo'] : "";
 
-if ($_GET['tipoResumo'] == "evolucao" && !empty($_GET['selectEvo'])) {
-	$evoType = $_GET['selectEvo'];
-	var_dump($evoType);
+if ($evoType == "evolucao" || $evoType == "consultorio" && !empty($selectEvo) && !empty($selectClinicEvo)) {
+	echo "Não pode selecionar Evolução e consultório ao mesmo tempo";
 }
+
+
 
 exit();
 
