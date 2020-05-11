@@ -41,10 +41,12 @@ namespace Classes\Pacient\PacientEvolution;
 		}
 
 
-		public function findEvolutionDate($regProntuary, $page, $limit)
+		public function findEvolutionDate($regProntuary, $selectEvoType, $page, $limit)
 		{
-			try{	
-					$this->regProntuary = $regProntuary;
+			try{
+
+				if ($selectEvoType == 'TODOS') {
+						$this->regProntuary = $regProntuary;
 
 					$sql = "
 							SELECT FIRST $limit SKIP $page PEP.REGISTRO_PRONTUARIO, PEP.DATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP
@@ -67,6 +69,38 @@ namespace Classes\Pacient\PacientEvolution;
 					$data = $this->connection->conn->prepare($sql);
 					$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
 					$data->bindParam(2, $this->regProntuary, PDO::PARAM_INT);
+					
+					$data->execute();
+					$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+					return $result;
+					}
+					$this->regProntuary = $regProntuary;
+
+					$sql = "
+							SELECT FIRST $limit SKIP $page PEP.REGISTRO_PRONTUARIO, PEP.DATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP
+							INNER JOIN PRONTUARIO P
+							ON PEP.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO INNER JOIN USUARIO US
+							ON PEP.CODIGO_USUARIO = US.CODIGO_USUARIO
+							WHERE PEP.REGISTRO_PRONTUARIO = ?
+							AND PEP.TIPO = ?
+
+							UNION ALL
+
+							SELECT FIRST $limit SKIP $page EW.REGISTRO_PRONTUARIO, EW.DATAEVOLUCAO, EW.HORAEVOLUCAO, EW.NROATEND,
+							 EW.TIPOATEND, EW.PRESTADOR FROM EVOLUCAO_WARELINE EW
+							 INNER JOIN PRONTUARIO P
+							 ON EW.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO
+							 WHERE EW.REGISTRO_PRONTUARIO = ?
+							 ORDER BY 2 DESC;
+
+							";
+
+					$data = $this->connection->conn->prepare($sql);
+					$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
+					$data->bindParam(2, $selectEvoType, PDO::PARAM_STR);
+					$data->bindParam(3, $this->regProntuary, PDO::PARAM_INT);
+					
 					$data->execute();
 					$result = $data->fetchAll(PDO::FETCH_ASSOC);
 

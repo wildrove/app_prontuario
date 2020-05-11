@@ -68,7 +68,7 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 							<div id="evoType"><!-- Menu de seleção de Tipo Evolução -->
 								<div class="form-group mr-2" id="evolucao">
 									<select id="selectEvoValue" class="form-control" name="selectEvo">
-										<option value=""></option>
+										<option value="TODOS">Todos</option>
 										<option value="CRM">Médico</option>
 										<option value="CRN">Nutricionista</option>
 										<option value="CRP">Psicólogo</option>
@@ -99,7 +99,7 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 							<div id="clinicEvoType" class="ml-2">
 								<div class="form-group mr-2" id="consultorio">
 									<select id="selectClinicValue" class="form-control" name="selectClinicEvo">
-										<option value="" selected=""></option>
+										<option value="TODOS" selected="">Todos</option>
 										<option value="CONDUTA_MEDICA">Conduta Médica</option>
 										<option value="DESCRICAO_EXAME">Exame Clínico</option>
 										<option value="EXAMES_LAB">Exame Lab</option>

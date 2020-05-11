@@ -9,6 +9,8 @@
 
     // Pega o tipo de resumo de evolução
     $resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
+    // Pega o tipo de evolução
+    $selectEvo = (isset($_GET['selectEvo']) ? $_GET['selectEvo'] : "");
     // variavel para validar o link de redirecionar para o inicio;
     $redirect = $_SESSION['usuario_nivel_acesso'];
     // Registro vindo do formulário
@@ -22,8 +24,10 @@
     $start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
 	$findDate = new PacientEvolution();
+
+	$findDate->findEvolutionDate($regProntuary, $selectEvo, $start, $itemsPerPage);
     //Encontrar a evolução por data e trocar o valor da coluna TIPO
-	$evolutionDate = $findDate->changeColumnValue($findDate->findEvolutionDate($regProntuary, $start, $itemsPerPage), 'TIPO');
+	$evolutionDate = $findDate->changeColumnValue($findDate->findEvolutionDate($regProntuary, $selectEvo, $start, $itemsPerPage), 'TIPO');
 
 	if (empty($evolutionDate)) {
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');

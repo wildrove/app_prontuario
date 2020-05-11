@@ -8,15 +8,6 @@ var_dump($_GET);
 $evoType = isset($_GET['tipoResumo']) ? $_GET['tipoResumo'] : "";
 $selectEvo = isset($_GET['selectEvo']) ? $_GET['selectEvo'] : "";
 $selectClinicEvo = isset($_GET['selectClinicEvo']) ? $_GET['selectClinicEvo'] : "";
-
-if ($evoType == "evolucao" || $evoType == "consultorio" && !empty($selectEvo) && !empty($selectClinicEvo)) {
-	echo "Não pode selecionar Evolução e consultório ao mesmo tempo";
-}
-
-
-
-exit();
-
 $prontuario = (isset($_GET['regProntuary']) ? intval($_GET['regProntuary']) : "");
 $tipoResumo = (isset($_GET['tipoResumo']) ? $_GET['tipoResumo'] : "");
 $mae = (isset($_GET['mother']) ? $_GET['mother'] : "");
@@ -25,7 +16,7 @@ $tipoPaciente = (isset($_GET['tipoPaciente']) ? $_GET['tipoPaciente'] : "");
 
 
 if ($tipoResumo == "evolucao") {
-	header("Location: findEvolution.php?regProntuary=$prontuario&resumeType=$tipoResumo&pacientType=$tipoPaciente");
+	header("Location: findEvolution.php?regProntuary=$prontuario&resumeType=$tipoResumo&pacientType=$tipoPaciente&selectEvo=$selectEvo");
 
 }elseif ($tipoResumo == "alta") {
 	header("Location: findMedicalRealise.php?regProntuary=$prontuario&resumeType=$tipoResumo&pacientType=$tipoPaciente");
@@ -34,5 +25,5 @@ if ($tipoResumo == "evolucao") {
 }elseif($tipoResumo == "imagem") {
 	header("Location: findImageExame.php?regProntuary=$prontuario&resumeType=$tipoResumo&birthday=$aniversario&mother=$mae&pacientType=$tipoPaciente");
 }elseif ($tipoResumo == "consultorio") {
-	header("Location: findClinicEvolution.php?regProntuary=$prontuario&resumeType=$tipoResumo&pacientType=$tipoPaciente");
+	header("Location: findClinicEvolution.php?regProntuary=$prontuario&resumeType=$tipoResumo&pacientType=$tipoPaciente&selectClinicEvo=$selectClinicEvo");
 }
