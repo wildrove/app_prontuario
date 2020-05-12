@@ -56,12 +56,12 @@ namespace Classes\AbstractModel;
 			return $arrayText;
 		}
 
-		public function validateResumeType($resumeType)
+		public function validateResumeType($resumeType, $page, $limit)
 		{
-			if ($resumeType == 'evlucao')
-			 {
-				$sql = "
-						SELECT FIRST $limit SKIP $page PEP.REGISTRO_PRONTUARIO, PEPDATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP
+			$selectType;
+			if ($resumeType == 'evolucao') {
+				$selectType = 
+						"SELECT FIRST $limit SKIP $page PEP.REGISTRO_PRONTUARIO, PEP.DATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP
 						INNER JOIN PRONTUARIO P
 						ON PEP.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO INNER JOIN USUARIO US
 						ON PEP.CODIGO_USUARIO = US.CODIGO_USUARIO
@@ -74,12 +74,15 @@ namespace Classes\AbstractModel;
 						INNER JOIN PRONTUARIO P
 						ON EW.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO
 						WHERE EW.REGISTRO_PRONTUARIO = ?
-						ORDER BY 2 DESC ";
+						ORDER BY 2 DESC";
 
-				return $sql;			
-
+				return $selectType;
+			}else {
+				return $selectType = 'Olá Mundo';
 			}
+
+			
 		}
 	}
 
-	//$arrayText[$key][$columnName] = str_replace("", "", $arrayText[$key][$columnName]);
+	

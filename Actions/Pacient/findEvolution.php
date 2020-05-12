@@ -25,9 +25,9 @@
 
 	$findDate = new PacientEvolution();
 
-	$findDate->findEvolutionDate($regProntuary, $selectEvo, $start, $itemsPerPage);
+	$findDate->findEvolutionDate($regProntuary, $resumeType, $selectEvo, $start, $itemsPerPage);
     //Encontrar a evolução por data e trocar o valor da coluna TIPO
-	$evolutionDate = $findDate->changeColumnValue($findDate->findEvolutionDate($regProntuary, $selectEvo, $start, $itemsPerPage), 'TIPO');
+	$evolutionDate = $findDate->changeColumnValue($findDate->findEvolutionDate($regProntuary, $resumeType, $selectEvo, $start, $itemsPerPage), 'TIPO');
 
 	if (empty($evolutionDate)) {
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
