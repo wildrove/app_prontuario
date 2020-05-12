@@ -18,7 +18,14 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 	<script src="../../bootstrap/js/jquery.min.js"></script>
 	<script src="../../js/selectClinicEvolution.js"></script>
 	<script src="../../js/jquery.js"></script>
+	<script>
+		// Limpa o formulário quando o usuário retorna a página anterior.
+		$(window).bind("pageshow", function(){
+			$('#filter')[0].reset();
+		})
+	</script>
 	<script src="../../js/changeSelectEvoValue.js"></script>
+	<script src="../../js/validateRadioButton.js"></script>
 </head>
 <body class="body-filtrar-paciente">
 	<div class="container">
@@ -29,7 +36,7 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 			<div class="card shadow shadow-lg">
   				<h4 class="card-header text-center text-light bg-dark P-5">Prontuário Médico Eletrônico</h4>
   				<div class="card-body">
-    				<form class="form p-4" method="get" action="redirectPacient.php">
+    				<form id="filter" class="form p-4" method="get" action="redirectPacient.php">
     					<div class="row border-bottom mb-2">
     						<h3 class="card-title">Paciente: <?php echo ucwords(strtolower($pacientName));  ?></h3>
     					</div>
@@ -111,9 +118,8 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 							</div>
 						</div><!-- Fim Linha Tipo RESUMO -->
 						<div class="form-group btn-filtrar-paciente"><!-- Inicio Div Confirmar -->
-							<button class="btn btn-primary" type="submit">Filtrar</button>
-							<input class="btn btn-primary" type="reset" name="btnReset" value="Limpar Dados">
-							<a class="btn btn-primary" href="javascript:history.back();">Voltar</a>
+							<button class="btn btn-lg btn-primary" type="submit" id="enviarFiltro" name="enviarFiltro">Filtrar</button>
+							<a class="btn btn-lg btn-primary" href="javascript:history.back();">Voltar</a>
 						</div><!-- Fim Div Confirmar -->
     				</form>
   				</div>
