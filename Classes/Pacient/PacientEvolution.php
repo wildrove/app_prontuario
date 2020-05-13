@@ -168,7 +168,56 @@ namespace Classes\Pacient\PacientEvolution;
 
 			return $result;	
 				
-		}	
+		}
+
+		public function findClinicResume($regProntuary, $resumeType, $evoType, $page, $limit)
+		{
+			
+			$this->regProntuary = $regProntuary;
+
+			$sql = "SELECT FIRST $limit SKIP $page PC.REGISTRO_PACIENTE_EXTERNO, PC.DATA, PC.HORA, U.NOME_COMPLETO FROM PSA_CONSULTORIO PC 
+					INNER JOIN USUARIO U ON PC.CODIGO_CONTA = U.CONTA
+					WHERE PC.REGISTRO_PRONTUARIO = ?
+					ORDER BY PC.DATA DESC";
+
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $this->regProntuary, PDO::PARAM_INT);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+			return $result;	
+
+		}
+
+		public function validateClinicEvoType($evoType)
+		{	
+			if($evoType == 'CONDUTA_MEDICA')
+			{
+				$evoType = 'PC.CONDUTA_MEDICA';
+			}
+			elseif($evoType == 'DESCRICAO_EXAME')
+			{
+				$evoType = 'PC.DESCRICAO_EXAME';
+			}
+			elseif($evoType == 'EXAMES_LAB')
+			{
+				$evoType = 'PC.EXAMES_LAB';
+			}
+			elseif($evoType == 'DESCRICAO_PROCEDIMENTO')
+			{
+				$evoType = 'PC.DESCRICAO_PROCEDIMENTO';
+			}
+			elseif($evoType == 'HIPOTESE_DIAGNOSTICA')
+			{
+				$evoType = 'PC.HIPOTESE_DIAGNOSTICA';
+			}
+			elseif($evoType == 'EXAMES_COMPL_REALIZADOS')
+			{
+				$evoType = 'PC.EXAMES_COMPL_REALIZADOS';
+			}
+
+			return $evoType;
+		}
 
 
 		public function findTotalDate($regProntuary)
@@ -262,13 +311,30 @@ namespace Classes\Pacient\PacientEvolution;
 				$data->execute();
 				$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
-				return $result = count($result);
+				return count($result);
 					
 			} catch (Exception $e) {
 				throw new Exception("Erro ao realizar a consulta", $e);
 			}
 		}
 
+		public function totalClinicRealise($regProntuary)
+		{
+			$this->regProntuary = $regProntuary;
+
+			$sql = "SELECT PC.REGISTRO_PACIENTE_EXTERNO, PC.DATA FROM PSA_CONSULTORIO PC 
+					INNER JOIN USUARIO U ON PC.CODIGO_CONTA = U.CONTA
+					WHERE PC.REGISTRO_PRONTUARIO = ?";
+					
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+				return count($result);
+		}
+
+		// Encontra a Evolução do Paciente no sistema Pongeluppe e Wareline
 		public function pacientEvo($regProntuary,$dateEvo,$hourEvo)
 		{	
 

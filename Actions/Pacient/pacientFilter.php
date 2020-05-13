@@ -106,8 +106,7 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 							<div id="clinicEvoType" class="ml-2">
 								<div class="form-group mr-2" id="consultorio">
 									<select id="selectClinicValue" class="form-control" name="selectClinicEvo">
-										<option value="TODOS" selected="">Todos</option>
-										<option value="CONDUTA_MEDICA">Conduta Médica</option>
+										<option value="CONDUTA_MEDICA" selected="">Conduta Médica</option>
 										<option value="DESCRICAO_EXAME">Exame Clínico</option>
 										<option value="EXAMES_LAB">Exame Lab</option>
 										<option value="DESCRICAO_PROCEDIMENTO">Procedimento</option>
