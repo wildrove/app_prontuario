@@ -62,7 +62,7 @@
 	</script>
 </head>
 <body>
-	<div class="container shadow shadow-lg p-3 mt-3 font-pacient-type">
+	<div class="container-fluid shadow shadow-lg p-3 mt-3 font-pacient-type">
 		<section style="border: 1px solid #000000">
 			<div class="row">
 				<div class="col-sm">
@@ -125,14 +125,12 @@
 				</div><!-- Fim texto Descrição -->	
 			</div><!-- Fim Linha 1 -->
 		</section><!-- Fim Sessão Paciente -->
-		<div class="botoes-imprimir">
-			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
-			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
-
-			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary  . '&medicalDate=' . $medicalDate  . '&medicalHour=' . $medicalHour . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary btn-lg">Baixar Alta</a>
-		</div>
 	</div>
-	
+	<div class="botoes-imprimir botoes-imprimir-evolucao">
+		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
+		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
+		<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary  . '&medicalDate=' . $medicalDate  . '&medicalHour=' . $medicalHour . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary btn-lg">Baixar Alta</a>
+	</div>
 	<script type="text/javascript">
 		function goBack(){
 			window.history.go(-1);

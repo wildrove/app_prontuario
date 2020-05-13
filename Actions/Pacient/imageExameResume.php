@@ -64,7 +64,7 @@
 	</script>
 </head>
 <body>
-	<div class="container mt-3 shadow shadow-lg p-3 font-pacient-type">
+	<div class="container-fluid mt-3 shadow shadow-lg p-3 font-pacient-type">
 		<section style="border: 1px solid #000000">
 			<div class="row">
 				<div class="col-sm">
@@ -127,14 +127,12 @@
 				</div><!-- Fim texto Descrição -->	
 			</div><!-- Fim Linha 1 -->
 		</section><!-- Fim Sessão Paciente -->
-		<div class="botoes-imprimir">
-			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
-			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
-
-			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&exameDate=' . $exameDate  . '&resumeType=' . $resumeType . '&nLaudo=' . $nLaudo . '&exameCode=' . $exameCode;  ?>" class="btn btn-primary btn-lg">Baixar Imagem</a>
-		</div>
 	</div>
-	
+	<div class="botoes-imprimir botoes-imprimir-evolucao">
+		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
+		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
+		<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&exameDate=' . $exameDate  . '&resumeType=' . $resumeType . '&nLaudo=' . $nLaudo . '&exameCode=' . $exameCode;  ?>" class="btn btn-primary btn-lg">Baixar Imagem</a>
+	</div>
 	<script type="text/javascript">
 		function goBack(){
 			window.history.go(-1);

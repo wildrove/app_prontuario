@@ -1,6 +1,8 @@
 <?php
 	session_start();
-
+	
+// variavel para validar o link de redirecionar para o inicio;
+$redirect = $_SESSION['usuario_nivel_acesso'];
 $pacientName = (isset($_GET['pacientName']) ? strtoupper($_GET['pacientName']) : "");
 $prontuary = intval($_GET['regProntuary']);
 $birthday = (isset($_GET['pacientBirthday']) ? $_GET['pacientBirthday'] : "");
@@ -117,8 +119,9 @@ $mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 							</div>
 						</div><!-- Fim Linha Tipo RESUMO -->
 						<div class="form-group btn-filtrar-paciente"><!-- Inicio Div Confirmar -->
-							<button class="btn btn-lg btn-primary" type="submit" id="enviarFiltro" name="enviarFiltro">Filtrar</button>
-							<a class="btn btn-lg btn-primary" href="javascript:history.back();">Voltar</a>
+							<button class="btn btn-primary" type="submit" id="enviarFiltro" name="enviarFiltro">Filtrar</button>
+							<a class="btn btn-primary" href="javascript:history.back();">Voltar</a>
+							<a class="btn btn-primary" href="<?php if($redirect == "Administrador"){ echo '../../forms/content-home-admin.php';}else echo '../../home.php'; ?>">Inicio</a>
 						</div><!-- Fim Div Confirmar -->
     				</form>
   				</div>
