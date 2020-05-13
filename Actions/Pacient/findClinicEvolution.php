@@ -7,6 +7,7 @@
     use Classes\Pacient\Pacient;
 
 
+    $evoHeader = null;
     // Pega o tipo de resumo de evolução
     $resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
     // Pega o tipo de evolução
@@ -50,6 +51,27 @@
     	$birthday = $value['DATA_NASCIMENTO'];
     }
 
+    // Verificar o tipo de evolução de consultório para gerar o cabeçalho 
+    // da tabela e para buscar a evolução na coluna correta no banco.
+   if ($evoType == 'CONDUTA_MEDICA') {
+   		$evoHeader = 'CONDUTA MÉDICA';
+   }
+   if($evoType == 'DESCRICAO_EXAME'){
+   		$evoHeader = 'EXAME CLÍNICO';
+   }
+   if($evoType == 'EXAMES_LAB'){
+   		$evoHeader = 'EXAME LAB';
+   }
+   if($evoType == 'DESCRICAO_PROCEDIMENTO'){
+   		$evoHeader = 'PROCEDIMENTO';
+   }
+   if($evoType == 'HIPOTESE_DIAGNOSTICA'){
+   		$evoHeader = 'HIPÓTESE DIAGNÓSTICO';
+   }
+   if($evoType == 'EXAMES_COMPL_REALIZADOS'){
+   		$evoHeader = 'EXAMES COMPLEMENTARES';
+   }
+    
 ?>
 
 <!DOCTYPE html>
@@ -84,7 +106,7 @@
 			            <th scope="col" class="border-right">REG. PACIENTE</th>
 			            <th scope="col" class="border-right">DATA</th>
 			            <th scope="col" class="border-right">HORA</th>
-			            <th scope="col" class="border-right">CONDUTA MÉDICA</th>
+			            <th scope="col" class="border-right"><?php echo $evoHeader; ?></th>
 			            <th scope="col" class="border-right">PROFISSIONAL</th>
 			            <th scope="col">EVOLUÇÃO</th>
 			         </tr>
@@ -97,10 +119,10 @@
 			         	  <th scope="row" class="border-right"><?php echo $rowPacient['REGISTRO_PACIENTE_EXTERNO']; ?></th>
 			              <td class="border-right "><?php echo date('d/m/Y', strtotime($rowPacient['DATA'])); ?></td>
 			              <td class="border-right"><?php echo $rowPacient['HORA']; ?></td>
-			              <td class="border-right"><?php echo 'Conduta Médica'; ?></td>
+			              <td class="border-right"><?php echo mb_convert_case($evoHeader, MB_CASE_TITLE, "UTF-8"); ?></td>
 			              <td class="border-right"><?php echo $rowPacient['NOME_COMPLETO']; ?></td>
 			              <td>
-			              	<a href="" class="btn btn-primary">Visualizar</a>
+			              	<a href="clinicResume.php?regProntuary=<?php echo $regProntuary . '&regPacient=' . $rowPacient['REGISTRO_PACIENTE_EXTERNO'] . '&pacientName=' . $name . '&birthday=' . $birthday . '&mother=' . $mother . '&resumeType=' . $resumeType . '&evoType=' . $evoType . '&doctor=' . $rowPacient['NOME_COMPLETO'] . '&date=' . $rowPacient['DATA'] . '&hour=' . $rowPacient['HORA']; ?>" class="btn btn-primary">Visualizar</a>
 			              </td>
 			         </tr>
 			            <?php

@@ -7,6 +7,7 @@ namespace Classes\AbstractModel;
 	abstract class AbstractModel{
 		private $connection = null;
 
+		// Função para converter os caracteres codificados em Letras.
 		public function convertCaractereToLetter($arrayText, $columnName)
 		{
 			foreach ($arrayText as $key => $value) {
@@ -77,10 +78,7 @@ namespace Classes\AbstractModel;
 						ORDER BY 2 DESC";
 
 				return $selectType;
-			}else {
-				return $selectType = 'Olá Mundo';
 			}
-
 			
 		}
 	}

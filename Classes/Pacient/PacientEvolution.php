@@ -189,37 +189,6 @@ namespace Classes\Pacient\PacientEvolution;
 
 		}
 
-		public function validateClinicEvoType($evoType)
-		{	
-			if($evoType == 'CONDUTA_MEDICA')
-			{
-				$evoType = 'PC.CONDUTA_MEDICA';
-			}
-			elseif($evoType == 'DESCRICAO_EXAME')
-			{
-				$evoType = 'PC.DESCRICAO_EXAME';
-			}
-			elseif($evoType == 'EXAMES_LAB')
-			{
-				$evoType = 'PC.EXAMES_LAB';
-			}
-			elseif($evoType == 'DESCRICAO_PROCEDIMENTO')
-			{
-				$evoType = 'PC.DESCRICAO_PROCEDIMENTO';
-			}
-			elseif($evoType == 'HIPOTESE_DIAGNOSTICA')
-			{
-				$evoType = 'PC.HIPOTESE_DIAGNOSTICA';
-			}
-			elseif($evoType == 'EXAMES_COMPL_REALIZADOS')
-			{
-				$evoType = 'PC.EXAMES_COMPL_REALIZADOS';
-			}
-
-			return $evoType;
-		}
-
-
 		public function findTotalDate($regProntuary)
 		{
 			$this->regProntuary = $regProntuary;
@@ -436,13 +405,30 @@ namespace Classes\Pacient\PacientEvolution;
 			
 		}
 
+		public function clinicResume($regPacient, $evoType, $date, $hour)
+		{
+			$sql = "SELECT $evoType FROM PSA_CONSULTORIO PC 
+					WHERE PC.REGISTRO_PACIENTE_EXTERNO = ?
+					AND PC.DATA = ?
+					AND PC.HORA = ? ";	
 
+			$data = $this->connection->conn->prepare($sql);
+			$data->bindParam(1, $regPacient, PDO::PARAM_INT);
+			$data->bindParam(2, $date, PDO::PARAM_STR);
+			$data->bindParam(3, $hour, PDO::PARAM_STR);
+			$data->execute();
+			$result = $data->fetchAll(PDO::FETCH_ASSOC);
+			return $result;	
+
+		}
+
+		// Função para aplicar acento nas Letras, recebe o retorno da função de converter caract. codificados.
 		public function convertEvoLetter($arrayEvo, $columnName)
 		{
 			return $this->convertCaractereToLetter($arrayEvo, $columnName);
 		}
 		
-
+		// Função para converter o tipo do Profissional de Saúde.
 		public function changeColumnValue($arrayColumn, String $columnName)
 		{
 			foreach ($arrayColumn as $key => $value) {
@@ -496,5 +482,35 @@ namespace Classes\Pacient\PacientEvolution;
 			} catch (Exception $e) {
 				echo $e . getMessage();
 			}
+		}
+
+		public function validateClinicEvoType($evoType)
+		{	
+			if($evoType == 'CONDUTA_MEDICA')
+			{
+				$evoType = 'PC.CONDUTA_MEDICA';
+			}
+			elseif($evoType == 'DESCRICAO_EXAME')
+			{
+				$evoType = 'PC.DESCRICAO_EXAME';
+			}
+			elseif($evoType == 'EXAMES_LAB')
+			{
+				$evoType = 'PC.EXAMES_LAB';
+			}
+			elseif($evoType == 'DESCRICAO_PROCEDIMENTO')
+			{
+				$evoType = 'PC.DESCRICAO_PROCEDIMENTO';
+			}
+			elseif($evoType == 'HIPOTESE_DIAGNOSTICA')
+			{
+				$evoType = 'PC.HIPOTESE_DIAGNOSTICA';
+			}
+			elseif($evoType == 'EXAMES_COMPL_REALIZADOS')
+			{
+				$evoType = 'PC.EXAMES_COMPL_REALIZADOS';
+			}
+
+			return $evoType;
 		}
 	}
