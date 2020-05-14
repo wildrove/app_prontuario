@@ -58,6 +58,48 @@
         ]
     },
     {
+        "name": "henck/rtf-to-html",
+        "version": "1.1",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/henck/rtf-html-php.git",
+            "reference": "331fe7f4967689cc1dab8f06fe7f91b6f1e895f9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/henck/rtf-html-php/zipball/331fe7f4967689cc1dab8f06fe7f91b6f1e895f9",
+            "reference": "331fe7f4967689cc1dab8f06fe7f91b6f1e895f9",
+            "shasum": ""
+        },
+        "require-dev": {
+            "phpunit/phpunit": "7"
+        },
+        "time": "2019-10-02T10:16:43+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "RtfHtmlPhp\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Alexander van Oostenrijk",
+                "email": "alex.vanoostenrijk@gmail.com"
+            }
+        ],
+        "description": "RTF to HTML converter in PHP",
+        "keywords": [
+            "converter",
+            "rtf"
+        ]
+    },
+    {
         "name": "myclabs/deep-copy",
         "version": "1.9.5",
         "version_normalized": "1.9.5.0",

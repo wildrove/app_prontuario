@@ -24,6 +24,10 @@ class ComposerStaticInit67deef0fdc1bc323bd556c28f86c0fc7
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
         ),
+        'R' => 
+        array (
+            'RtfHtmlPhp\\' => 11,
+        ),
         'P' => 
         array (
             'Prophecy\\' => 9,
@@ -53,6 +57,10 @@ class ComposerStaticInit67deef0fdc1bc323bd556c28f86c0fc7
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
+        ),
+        'RtfHtmlPhp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/henck/rtf-to-html/src',
         ),
         'Prophecy\\' => 
         array (
@@ -614,6 +622,16 @@ class ComposerStaticInit67deef0fdc1bc323bd556c28f86c0fc7
         'Prophecy\\Prophet' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Prophet.php',
         'Prophecy\\Util\\ExportUtil' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Util/ExportUtil.php',
         'Prophecy\\Util\\StringUtil' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Util/StringUtil.php',
+        'RtfHtmlPhp\\ControlSymbol' => __DIR__ . '/..' . '/henck/rtf-to-html/src/ControlSymbol.php',
+        'RtfHtmlPhp\\ControlWord' => __DIR__ . '/..' . '/henck/rtf-to-html/src/ControlWord.php',
+        'RtfHtmlPhp\\Document' => __DIR__ . '/..' . '/henck/rtf-to-html/src/Document.php',
+        'RtfHtmlPhp\\Element' => __DIR__ . '/..' . '/henck/rtf-to-html/src/Element.php',
+        'RtfHtmlPhp\\Group' => __DIR__ . '/..' . '/henck/rtf-to-html/src/Group.php',
+        'RtfHtmlPhp\\Html\\Font' => __DIR__ . '/..' . '/henck/rtf-to-html/src/Html/Font.php',
+        'RtfHtmlPhp\\Html\\HtmlFormatter' => __DIR__ . '/..' . '/henck/rtf-to-html/src/Html/HtmlFormatter.php',
+        'RtfHtmlPhp\\Html\\Image' => __DIR__ . '/..' . '/henck/rtf-to-html/src/Html/Image.php',
+        'RtfHtmlPhp\\Html\\State' => __DIR__ . '/..' . '/henck/rtf-to-html/src/Html/State.php',
+        'RtfHtmlPhp\\Text' => __DIR__ . '/..' . '/henck/rtf-to-html/src/Text.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',
