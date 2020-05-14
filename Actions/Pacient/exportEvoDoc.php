@@ -17,6 +17,7 @@
     $medicalDate = isset($_GET['medicalDate']) ? $_GET['medicalDate'] : "";
     $medicalHour = isset($_GET['medicalHour']) ? $_GET['medicalHour'] : "";
     $resumeType = isset($_GET['resumeType']) ? $_GET['resumeType'] : "";
+    $evoType = isset($_GET['evoType']) ? $_GET['evoType'] : "";
     $cirurgicalDate = isset($_GET['cirurgicalDate']) ? $_GET['cirurgicalDate'] : "";
     $regPacient = isset($_GET['regPacient']) ? intval($_GET['regPacient']) : "";
     $exameDate = isset($_GET['exameDate']) ? $_GET['exameDate'] : "";
@@ -69,6 +70,16 @@
         //varremos o array com o foreach para pegar os dados de acordo com o tipo de resumo.
         foreach($result as $res){
             $dadosWord .= $res['RESULTADO'];    
+        }
+    }elseif($resumeType == 'consultorio'){
+        $result = $pacientEvo->clinicResume($regPacient, $evoType, $dateEvo, $hourEvo);
+        // Definimos o nome do arquivo que será exportado  
+        $arquivo = "Evolução Consultório.doc";
+        //varremos o array com o foreach para pegar os dados de acordo com o tipo de resumo.
+        foreach($result as $res){
+            $dadosWord .= '<h1>Wilder Vagner Gaspar </h1>';
+            $dadosWord .= '  ';
+            $dadosWord .= $res[$evoType];    
         }
     }
     
