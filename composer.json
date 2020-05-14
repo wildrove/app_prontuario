@@ -6,14 +6,10 @@
             "email": "wilderagner@gmail.com"
         }
     ],
-    "require": {
-        "henck/rtf-to-html": "^1.1"
-    },
-
+   
     "autoload": {
         "psr-4": {
-            "Classes\\": "Classes",
-            "RtfHtmlPhp\\": "RtfHtmlPhp"
+            "Classes\\": "Classes"          
 
         }
     },
