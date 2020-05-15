@@ -5,7 +5,13 @@
 	require('../../RtfCleanText/cleanRtf.php');
 
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
+	use RtfHtmlPhp\Document;
+	use RtfHtmlPhp\Html\HtmlFormatter;
 
+	$pacientEvolution = new PacientEvolution();
+	$rtf = null;
+
+/* ================== Declaração de variaveis para atribuir valores do Form ========== */
 	$pacientProntuary = intval($_GET['regProntuary']);
 	$pacientRegistry = (isset($_GET['regPacient']) ? intval($_GET['regPacient']) : "");
 	$hourEvo = $_GET['hourEvolution'];
@@ -16,32 +22,26 @@
 	$type = (isset($_GET['type']) ? $_GET['type'] : "");
 	$resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
 
-	$pacientEvolution = new PacientEvolution();
-
+	
 	// Procura a evolução do paciente na tabela PEP_EVOLUCAO_MEDICA OU EVOLUCAO_WARELINE (SISTEMA ANTIGO)
 	$pacientEvo = $pacientEvolution->pacientEvo($pacientProntuary,$dateEvo,$hourEvo);
 
-	// VERIFICA SE A CONSULTA NÃO RETORNA VAZIO
-	if (empty($pacientEvo)) {
-		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
-	}
-	
-	// Função para limpar o texto da evolução e remover caracteres indesejados
-	foreach ($pacientEvo as $key => $value) {
-		$pacientEvo[$key]['EVOLUCAO'] = rtf2text(utf8_encode($pacientEvo[$key]['EVOLUCAO']));
-	}
-
-	// Função para substituir os caracteres especiais por letras com acento.
-	$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, 'EVOLUCAO');
-
-
 	// Verifica se alguma evolução não foi preenchida.
-	foreach ($pacientEvo as  $value) {
-		if ($value['EVOLUCAO'] == "") {
-			header('Location: ../../AlertsHTML/alertNoneEvolutionWritten.html');
+	foreach ($pacientEvo as  $key => $value) {
+		$rtf = $pacientEvo[$key]['EVOLUCAO'];
+
+		if ($pacientEvo[$key]['EVOLUCAO'] == "") {
+			header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
 		}
 	}
+	
 
+	/*========== Instancia o objeto que convert o RTF ============= */
+	$rtf = trim($rtf);
+	$document = new Document($rtf);
+	$formatter = new HtmlFormatter();
+	
+	
 ?>
 
 <!DOCTYPE html>
@@ -112,13 +112,12 @@
 					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $type ?>" disabled="">
 				</div>
 				<div class="row pacient-discription border-top border-dark"><!-- Inicio Texto descrição -->
-					<span class="exibir-resumo">
+					
 						<?php 
-							foreach ($pacientEvo as $value) {
-								print(wordwrap($value['EVOLUCAO'], 275, "<br>", true));
-							}	
+							echo  $formatter->Format($document);
+							
 						?>	
-					</span>
+				
 				</div><!-- Fim texto Descrição -->	
 			</div><!-- Fim Linha 1 -->
 		</section><!-- Fim Sessão Paciente -->

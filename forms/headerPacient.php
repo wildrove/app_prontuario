@@ -5,7 +5,7 @@
 		</div>
 		<ul class="navbar-nav ml-auto nav-items">
 			<li class="nav-item bem-vindo-nav">
-				<span class="nav-link">
+				<span class="nav-link header-welcome">
 					<?php 
 						date_default_timezone_set('America/Sao_Paulo');
 						$date = date('H:i:s', strtotime("-1 Hours"));

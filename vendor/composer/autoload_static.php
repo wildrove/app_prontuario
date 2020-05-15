@@ -60,7 +60,8 @@ class ComposerStaticInit67deef0fdc1bc323bd556c28f86c0fc7
         ),
         'RtfHtmlPhp\\' => 
         array (
-            0 => __DIR__ . '/..' . '/henck/rtf-to-html/src',
+            0 => __DIR__ . '/../..' . '/src',
+            1 => __DIR__ . '/..' . '/henck/rtf-to-html/src',
         ),
         'Prophecy\\' => 
         array (
