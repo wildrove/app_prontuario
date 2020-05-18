@@ -3,38 +3,6 @@ body{
 	font-family: Arial, Helvetica, sans-serif !important;
 }
 
-.exibir-resumo {
-    white-space: pre;
-    font-family: Arial, Helvetica, sans-serif;
-    display: block;
-    unicode-bidi: embed;
-    color: #000000 !important;
-    font-size: 75%;
-    padding: 0;
-    margin: 0;
-}
-
-.input-pacient-names{
-	font-weight: 800;
-	text-align: center;
-	font-size: 13px;
-	width: 350px;
-	text-align: left;
-}
-
-.input-pacient {
-	font-weight: 800;
-	text-align: center;
-	font-size: 13px;
-	text-align: left;
-}
-
-.botoes-imprimir-evolucao{
-	margin-left: 10px;
-	margin-top: -30px;
-}
-
-
 
 /*========================== CSS HeaderPacient.php ================================ */
 
@@ -49,6 +17,7 @@ body{
 .logout-text, .header-welcome,
 .user-edit-nav {
 	color: #fff;
+	font-size: 20px !important;
 }
 
 .logout-text:hover {
@@ -83,6 +52,7 @@ body{
 	width: 100.20%;
 	height: auto;
 	margin-left: -0.3px;
+	margin-bottom: 12px;
 	padding-top: 3px;
 }
 .rtf-evo, p, span{
@@ -111,4 +81,43 @@ body{
 .paciente-nome-filtrar-titulo {
 	font-weight: 600;
 }
+
+/* =================================== Header Resume Evolutions =================== */
+.pacient-header-input-width {
+	margin-right: 10px;
+	margin-left: 10px;
+	width: 20%;
+}
+
+.exibir-resumo {
+    white-space: pre;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    unicode-bidi: embed;
+    color: #000000 !important;
+    font-size: 75%;
+    padding: 0;
+    margin: 0;
+}
+
+.input-pacient-names{
+	font-weight: 800;
+	text-align: center;
+	font-size: 13px;
+	width: 350px;
+	text-align: left;
+}
+
+.input-pacient {
+	font-weight: 800;
+	text-align: center;
+	font-size: 13px;
+	text-align: left;
+}
+
+.botoes-imprimir-evolucao{
+	
+	margin-top: -30px;
+}
+
 

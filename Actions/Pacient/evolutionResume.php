@@ -57,7 +57,7 @@
 	</script>
 </head>
 <body>
-	<div class="container-fluid p-3 mt-2 shadow shadow-lg font-pacient-type">
+	<div class="container p-3 mt-2 shadow shadow-lg font-pacient-type">
 		<section style="border: 1px solid #000000">
 			<div class="row">
 				<div class="col-sm">
@@ -80,12 +80,12 @@
 			<div class="row m-2">
 				<h4>Dados Paciente</h4>
 			</div>
-			<div class="row p-4"><!-- Linha 1 -->
+			<div class="row pl-4"><!-- Linha 1 -->
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Paciente:</label>
 					<input class="form-control-plaintext input-pacient-names" type="text" name="nomePaciente" value="<?php echo $pacientName ?>"  disabled="">
 				</div>
-				<div class="form-group pacient-group">
+				<div class="form-group pacient-group pacient-header-input-width">
 					<label class="col-form-label">Dt. Nasc:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="dtNascimento" value="<?php echo $birthday ?>" disabled="">
 				</div>
@@ -93,15 +93,15 @@
 					<label class="col-form-label">Mãe:</label>
 					<input class="form-control-plaintext input-pacient-names" type="text" name="nomeMae" value="<?php echo $mother ?>" disabled="">
 				</div>
-				<div class="form-group pacient-group">
+				<div class="form-group pacient-group pacient-header-input-width">
 					<label class="col-form-label">Prontuário:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="prontuario" value="<?php echo $pacientProntuary ?>" disabled="">
 				</div>
-				<div class="form-group pacient-group">
+				<div class="form-group pacient-group pacient-header-input-width">
 					<label class="col-form-label">Reg. Paciente:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="regPaciente" value="<?php echo $pacientRegistry ?>" disabled="">
 				</div>
-				<div class="form-group pacient-group">
+				<div class="form-group pacient-group pacient-header-input-width">
 					<label class="col-form-label">Dt. Evolução:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="dtEvo" value="<?php echo date('d/m/Y', strtotime($dateEvo)) ?>" disabled="">
 				</div>
@@ -110,7 +110,7 @@
 					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $type ?>" disabled="">
 				</div>
 			</div><!-- Fim Linha 1 -->
-			<div class="row container-fluid border-top border-dark pacient-discription"><!-- Inicio Texto descrição -->
+			<div class="row container border-top border-dark pacient-discription"><!-- Inicio Texto descrição -->
 				<span class="rtf-evo">
 					<?php 
 						echo $formatter->Format($document);			
@@ -119,10 +119,12 @@
 			</div><!-- Fim texto Descrição -->	
 		</section><!-- Fim Sessão Paciente -->
 	</div>
-	<div class="botoes-imprimir botoes-imprimir-evolucao">
-		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
-		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
-		<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary . '&hourEvolution=' . $hourEvo . '&dateEvolution=' . $dateEvo . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary btn-lg">Baixar Evolução</a>
+	<div class="container">
+		<div class="botoes-imprimir botoes-imprimir-evolucao">
+			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
+			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
+			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary . '&hourEvolution=' . $hourEvo . '&dateEvolution=' . $dateEvo . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary btn-lg">Baixar Evolução</a>
+		</div>
 	</div>	
 	<script type="text/javascript">
 		function goBack(){
