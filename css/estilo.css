@@ -77,16 +77,17 @@ body{
 }
 
 
-/* ========================== Prontuary.php =================================== */
+/* ========================== Show Pacient Evolution =================================== */
 
 .pacient-discription {
-	width: 101.5%;
+	width: 100.20%;
 	height: auto;
-	margin-left: -9.5px;
-	padding-left: 10px;
+	margin-left: -0.3px;
 	padding-top: 3px;
-	font-size: 80% !important;
-	
+}
+.rtf-evo, p, span{
+	margin-bottom: -6.5px;
+	font-size: 15px;
 }
 
 /* ============================== PacientFilter.php =============================== */

@@ -29,7 +29,6 @@
 	// Verifica se alguma evolução não foi preenchida.
 	foreach ($pacientEvo as  $key => $value) {
 		$rtf = $pacientEvo[$key]['EVOLUCAO'];
-
 		if ($pacientEvo[$key]['EVOLUCAO'] == "") {
 			header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
 		}
@@ -39,8 +38,7 @@
 	/*========== Instancia o objeto que convert o RTF ============= */
 	$rtf = trim($rtf);
 	$document = new Document($rtf);
-	$formatter = new HtmlFormatter();
-	
+	$formatter = new HtmlFormatter('UTF-8');
 	
 ?>
 
@@ -111,15 +109,14 @@
 					<label class="col-form-label">Tipo Evolução:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $type ?>" disabled="">
 				</div>
-				<div class="row pacient-discription border-top border-dark"><!-- Inicio Texto descrição -->
-					
-						<?php 
-							echo  $formatter->Format($document);
-							
-						?>	
-				
-				</div><!-- Fim texto Descrição -->	
 			</div><!-- Fim Linha 1 -->
+			<div class="row container-fluid border-top border-dark pacient-discription"><!-- Inicio Texto descrição -->
+				<span class="rtf-evo">
+					<?php 
+						echo $formatter->Format($document);			
+					?>	
+				</span>			
+			</div><!-- Fim texto Descrição -->	
 		</section><!-- Fim Sessão Paciente -->
 	</div>
 	<div class="botoes-imprimir botoes-imprimir-evolucao">
