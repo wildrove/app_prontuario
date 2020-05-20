@@ -58,8 +58,8 @@
 </head>
 <body>
 	<div class="container p-3 mt-2 shadow shadow-lg font-pacient-type">
-		<section style="border: 1px solid #000000">
-			<div class="row">
+		<section class=" border-section"><!-- Sessão Paciente -->
+			<div class="row"><!-- Cabeçalho Hospital -->
 				<div class="col-sm">
 					<img class="p-2" src="../../img/hospital-header-logo.png">
 				</div>
@@ -70,15 +70,14 @@
 						<h6 class="float-center">Fone: (35) 3100-9550</h6>			
 					</div>
 				</div>
-			</div>
+			</div><!-- Fim linha cabeçalho Hospital -->
 			<div class="row d-flex justify-content-center">
 				<h4 class="">Resumo de Evolução</h4>
 			</div>
-		</section><!-- Fim Sessão Hospital -->
-
-		<section class="" style="border: 1px solid #000000"><!-- Sessão Paciente -->
+			<!-- Div com borda Divisória -->
+			<div class="row pacient-border-divisor"></div>
 			<div class="row m-2">
-				<h4>Dados Paciente</h4>
+				<h4>Dados do Paciente</h4>
 			</div>
 			<div class="row pl-4"><!-- Linha 1 -->
 				<div class="form-group pacient-group">
@@ -110,7 +109,9 @@
 					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $type ?>" disabled="">
 				</div>
 			</div><!-- Fim Linha 1 -->
-			<div class="row container border-top border-dark pacient-discription"><!-- Inicio Texto descrição -->
+			<!-- Div com borda Divisória -->
+			<div class="row pacient-border-divisor"></div>
+			<div class="row container  pacient-discription resume-print"><!-- Inicio Texto descrição -->
 				<span class="rtf-evo">
 					<?php 
 						echo $formatter->Format($document);			
