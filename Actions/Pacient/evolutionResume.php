@@ -111,7 +111,7 @@
 			</div><!-- Fim Linha 1 -->
 			<!-- Div com borda Divisória -->
 			<div class="row pacient-border-divisor"></div>
-			<div class="row container  pacient-discription resume-print"><!-- Inicio Texto descrição -->
+			<div class="row container pacient-discription resume-print"><!-- Inicio Texto descrição -->
 				<span class="rtf-evo">
 					<?php 
 						echo $formatter->Format($document);			
