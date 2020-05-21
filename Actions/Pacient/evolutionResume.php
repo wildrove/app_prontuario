@@ -34,12 +34,10 @@
 		}
 	}
 	
-
 	/*========== Instancia o objeto que convert o RTF ============= */
 	$rtf = trim($rtf);
 	$document = new Document($rtf);
 	$formatter = new HtmlFormatter('UTF-8');
-	
 ?>
 
 <!DOCTYPE html>
