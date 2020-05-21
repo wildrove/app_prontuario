@@ -77,7 +77,6 @@
         $arquivo = "Evolução Consultório.doc";
         //varremos o array com o foreach para pegar os dados de acordo com o tipo de resumo.
         foreach($result as $res){
-            $dadosWord .= '<h1>Wilder Vagner Gaspar </h1>';
             $dadosWord .= '  ';
             $dadosWord .= $res[$evoType];    
         }

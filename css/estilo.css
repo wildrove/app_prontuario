@@ -71,7 +71,7 @@ body{
 
 .exibir-resumo {
     white-space: pre;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Courier New;
     display: block;
     unicode-bidi: embed;
     color: #000000 !important;
@@ -107,7 +107,7 @@ body{
 .pacient-header-input-width {
 	margin-right: 10px;
 	margin-left: 10px;
-	width: 20%;
+	width: 15%;
 }
 
 .input-pacient-names{

@@ -1,6 +1,8 @@
 <?php
 
 	session_start();
+	// variavel para validar o link de redirecionar para o inicio;
+	$redirect = $_SESSION['usuario_nivel_acesso'];
 	require '../../vendor/autoload.php';
 
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
@@ -97,7 +99,7 @@
 			              <th scope="row" class="border-right "><?php echo date('d/m/Y', strtotime($rowPacient['DATA_REALIZ'])); ?></th>
 			              <td class="border-right"><?php echo $rowPacient['NLAUDO']; ?></td>
 			              <td class="border-right"><?php echo $rowPacient['CODIGO_EXAME']; ?></td>
-			              <td class="border-right"><?php echo $rowPacient['NOME']; ?></td>
+			              <td class="border-right"><?php echo utf8_encode($rowPacient['NOME']); ?></td>
 			              <td>
 			               <a href="imageExameResume.php?regProntuary=<?php echo $regProntuary . '&regPacient=' . $rowPacient['REG_PACIENTE'] . '&nLaudo=' . $rowPacient['NLAUDO'] . '&exameCode=' . $rowPacient['CODIGO_EXAME'] . '&pacientName=' . $name . '&birthday=' . $birthday . '&mother=' . $mother . '&exameDate=' . $rowPacient['DATA_REALIZ'] . '&doctor=' . $rowPacient['NOME_COMPLETO'] . '&resumeType=' . $resumeType ?>" class="btn btn-primary">Visualizar</a>
 			              </td>

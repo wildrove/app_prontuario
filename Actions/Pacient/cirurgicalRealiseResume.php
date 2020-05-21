@@ -1,6 +1,8 @@
 <?php
 	
 	session_start();
+	// variavel para validar o link de redirecionar para o inicio;
+	$redirect = $_SESSION['usuario_nivel_acesso'];
 	require '../../vendor/autoload.php';
 	require('../../RtfCleanText/cleanRtf.php');
 
@@ -118,7 +120,7 @@
 				<span class="rtf-evo exibir-resumo">
 					<span class="exibir-resumo">
 						<?php 
-							echo $rtf;		
+							echo wordwrap($rtf);		
 						?>
 					</span>
 						

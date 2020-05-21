@@ -1,10 +1,18 @@
 <?php
 	
 	session_start();
+	// variavel para validar o link de redirecionar para o inicio;
+	$redirect = $_SESSION['usuario_nivel_acesso'];
 	require '../../vendor/autoload.php';
 	require('../../RtfCleanText/cleanRtf.php');
 
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
+	use RtfHtmlPhp\Document;
+	use RtfHtmlPhp\Html\HtmlFormatter;
+
+	$pacientEvolution = new PacientEvolution();
+	$rtf = null;
+
 
 	
 	$pacientProntuary = intval($_GET['regProntuary']);
@@ -18,27 +26,20 @@
 	$doctor = (isset($_GET['doctor']) ? $_GET['doctor'] : "");
 	$resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
 
-	
-
-	$pacientEvolution = new PacientEvolution();
 
 	// Procura a alta do paciente na tabela PEP_RESUMO_ALTA 
 	$pacientEvo = $pacientEvolution->pacientImageExameResume($pacientRegistry, $nLaudo, $exameCode, $exameDate);
 
-	
-	// VERIFICA SE A CONSULTA NÃO RETORNA VAZIO
-	if (empty($pacientEvo)) {
-		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
-	}
-	
 	// Função para limpar o texto da evolução e remover caracteres indesejados
 	foreach ($pacientEvo as $key => $value) {
 		$pacientEvo[$key]['RESULTADO'] = rtf2text(utf8_encode($pacientEvo[$key]['RESULTADO']));
+		// Função para substituir os caracteres especiais por letras com acento.
+		$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, 'RESULTADO');
+		$rtf = $pacientEvo[$key]['RESULTADO'];
+		
 	}
 
-	// Função para substituir os caracteres especiais por letras com acento.
-	$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, 'RESULTADO');
-
+	$rtf = strip_tags($rtf);
 
 	// Verifica se alguma evolução não foi preenchida.
 	foreach ($pacientEvo as  $value) {
@@ -46,7 +47,6 @@
 			header('Location: ../../AlertsHTML/alertNoneEvolutionWritten.html');
 		}
 	}
-
 ?>
 
 <!DOCTYPE html>
@@ -64,8 +64,8 @@
 	</script>
 </head>
 <body>
-	<div class="container-fluid mt-3 shadow shadow-lg p-3 font-pacient-type">
-		<section style="border: 1px solid #000000">
+	<div class="container mt-3 p-3 shadow shadow-lg font-pacient-type">
+		<section class="" style="border: 1px solid #000000"><!-- Sessão Paciente -->
 			<div class="row">
 				<div class="col-sm">
 					<img class="p-2" src="../../img/hospital-header-logo.png">
@@ -81,34 +81,33 @@
 			<div class="row d-flex justify-content-center">
 				<h4 class="">Exame de Imagem</h4>
 			</div>
-		</section><!-- Fim Sessão Hospital -->
-
-		<section class="" style="border: 1px solid #000000"><!-- Sessão Paciente -->
+			<!-- Div com borda Divisória -->
+			<div class="row pacient-border-divisor"></div>
 			<div class="row m-2">
-				<h4>Dados Paciente</h4>
+				<h4>Dados do Paciente</h4>
 			</div>
-			<div class="row p-4"><!-- Linha 1 -->
+			<div class="row pl-4"><!-- Linha 1 -->
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Paciente:</label>
 					<input class="form-control-plaintext input-pacient-names" type="text" name="nomePaciente" value="<?php echo $pacientName ?>"  disabled="">
 				</div>
-				<div class="form-group pacient-group">
-					<label class="col-form-label">Dt. Nasc:</label>
+				<div class="form-group pacient-group pacient-header-input-width">
+					<label class="col-form-label ">Dt. Nasc:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="dtNascimento" value="<?php echo $birthday ?>" disabled="">
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Mãe:</label>
 					<input class="form-control-plaintext input-pacient-names" type="text" name="nomeMae" value="<?php echo $mother ?>" disabled="">
 				</div>
-				<div class="form-group pacient-group">
+				<div class="form-group pacient-group pacient-header-input-width">
 					<label class="col-form-label">Prontuário:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="prontuario" value="<?php echo $pacientProntuary ?>" disabled="">
 				</div>
-				<div class="form-group pacient-group">
+				<div class="form-group pacient-group pacient-header-input-width">
 					<label class="col-form-label">Reg. Paciente:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="regPaciente" value="<?php echo $pacientRegistry ?>" disabled="">
 				</div>
-				<div class="form-group pacient-group">
+				<div class="form-group pacient-group pacient-header-input-width">
 					<label class="col-form-label">Dt. Exame:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="dtEvo" value="<?php echo date('d/m/Y', strtotime($exameDate)) ?>" disabled="">
 				</div>
@@ -116,22 +115,25 @@
 					<label class="col-form-label">Profissional:</label>
 					<input class="form-control-plaintext input-pacient-names" type="text" name="tipoEvo" value="<?php echo $doctor ?>" disabled="">
 				</div>
-				<div class="row pacient-discription border-top border-dark"><!-- Inicio Texto descrição -->
-					<span class="exibir-resumo">
-						<?php 
-							foreach ($pacientEvo as $value) {
-								print(wordwrap($value['RESULTADO'], 220, "<br>", true));
-							}	
-						?>	
-					</span>
-				</div><!-- Fim texto Descrição -->	
 			</div><!-- Fim Linha 1 -->
+			<!-- Div com borda Divisória -->
+			<div class="row pacient-border-divisor"></div>
+			<div class="row container pacient-discription resume-print"><!-- Inicio Texto descrição -->
+				<span class="rtf-evo exibir-resumo print-resume-font">
+
+						<?php 
+							echo wordwrap($rtf);		
+						?>	
+				</span>			
+			</div><!-- Fim texto Descrição -->	
 		</section><!-- Fim Sessão Paciente -->
 	</div>
-	<div class="botoes-imprimir botoes-imprimir-evolucao">
-		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
-		<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
-		<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&exameDate=' . $exameDate  . '&resumeType=' . $resumeType . '&nLaudo=' . $nLaudo . '&exameCode=' . $exameCode;  ?>" class="btn btn-primary btn-lg">Baixar Imagem</a>
+	<div class="container">
+		<div class="botoes-imprimir botoes-imprimir-evolucao">
+			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
+			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
+			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&exameDate=' . $exameDate  . '&resumeType=' . $resumeType . '&nLaudo=' . $nLaudo . '&exameCode=' . $exameCode;  ?>" class="btn btn-primary btn-lg">Baixar Imagem</a>
+		</div>
 	</div>
 	<script type="text/javascript">
 		function goBack(){
