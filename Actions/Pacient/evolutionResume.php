@@ -1,8 +1,12 @@
 <?php
 	
 	session_start();
-	// variavel para validar o link de redirecionar para o inicio;
-	$redirect = $_SESSION['usuario_nivel_acesso'];
+	// valida se o usuário está logado no sistema antes de permitir acesso aos arquivos .php
+	if(!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] != 'SIM') {
+		header('Location: ../../index.php?login=erro2');
+		exit();
+	}
+	
 	require '../../vendor/autoload.php';
 	require('../../RtfCleanText/cleanRtf.php');
 
@@ -14,6 +18,8 @@
 	$rtf = null;
 
 /* ================== Declaração de variaveis para atribuir valores do Form ========== */
+	// variavel para validar o link de redirecionar para o inicio;
+	$redirect = $_SESSION['usuario_nivel_acesso'];
 	$pacientProntuary = intval($_GET['regProntuary']);
 	$pacientRegistry = (isset($_GET['regPacient']) ? intval($_GET['regPacient']) : "");
 	$hourEvo = $_GET['hourEvolution'];

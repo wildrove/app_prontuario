@@ -1,12 +1,16 @@
 <?php
 	session_start();
-	
-// variavel para validar o link de redirecionar para o inicio;
-$redirect = $_SESSION['usuario_nivel_acesso'];
-$pacientName = (isset($_GET['pacientName']) ? strtoupper($_GET['pacientName']) : "");
-$prontuary = intval($_GET['regProntuary']);
-$birthday = (isset($_GET['pacientBirthday']) ? $_GET['pacientBirthday'] : "");
-$mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
+	// valida se o usuário está logado no sistema antes de permitir acesso aos arquivos .php
+	if(!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] != 'SIM') {
+		header('Location: ../../index.php?login=erro2');
+		exit();
+	}
+	// variavel para validar o link de redirecionar para o inicio;
+	$redirect = $_SESSION['usuario_nivel_acesso'];
+	$pacientName = (isset($_GET['pacientName']) ? strtoupper($_GET['pacientName']) : "");
+	$prontuary = intval($_GET['regProntuary']);
+	$birthday = (isset($_GET['pacientBirthday']) ? $_GET['pacientBirthday'] : "");
+	$mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
 
 ?>
 
