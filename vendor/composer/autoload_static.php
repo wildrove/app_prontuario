@@ -86,6 +86,7 @@ class ComposerStaticInit67deef0fdc1bc323bd556c28f86c0fc7
         'Classes\\FirebirdConnection\\FirebirdConnection' => __DIR__ . '/../..' . '/Classes/FirebirdConnection/FirebirdConnection.php',
         'Classes\\Pacient\\Pacient' => __DIR__ . '/../..' . '/Classes/Pacient/Pacient.php',
         'Classes\\Pacient\\PacientEvolution\\PacientEvolution' => __DIR__ . '/../..' . '/Classes/Pacient/PacientEvolution.php',
+        'Classes\\Pagination\\Pagination' => __DIR__ . '/../..' . '/Classes/Pagination/Pagination.php',
         'Classes\\Users\\Users' => __DIR__ . '/../..' . '/Classes/Users/Users.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',

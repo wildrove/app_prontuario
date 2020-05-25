@@ -10,6 +10,7 @@ return array(
     'Classes\\FirebirdConnection\\FirebirdConnection' => $baseDir . '/Classes/FirebirdConnection/FirebirdConnection.php',
     'Classes\\Pacient\\Pacient' => $baseDir . '/Classes/Pacient/Pacient.php',
     'Classes\\Pacient\\PacientEvolution\\PacientEvolution' => $baseDir . '/Classes/Pacient/PacientEvolution.php',
+    'Classes\\Pagination\\Pagination' => $baseDir . '/Classes/Pagination/Pagination.php',
     'Classes\\Users\\Users' => $baseDir . '/Classes/Users/Users.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
     'DeepCopy\\Exception\\CloneException' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
