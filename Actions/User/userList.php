@@ -16,7 +16,7 @@
 	use Classes\Users\Users;
 	
 	// pega o usuário digitado no campo pequisar.
-	$userSearch = (isset($_GET['userSearch']) ? strtoupper($_GET['userSearch']) : null);
+	$userSearch = (isset($_GET['userSearch']) ? strtoupper($_GET['userSearch']) : '');
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
@@ -147,7 +147,7 @@
 					      <li class="page-item <?php if($nextPage > $totalPages){echo 'disabled';} ?>">
 					       <?php 
 					       if($nextPage <= $totalPages) { ?>
-					          <a href="userList.php?page=<?php echo $nextPage; ?>" aria-label="Previous" style="text-decoration: none">
+					          <a href="userList.php?page=<?php echo $nextPage . '&userSearch=' . $userSearch; ?>" aria-label="Previous" style="text-decoration: none">
 					             <span class="page-link bg-primary text-light" aria-hidden="true">Próximo</span>
 					          </a>
 					       <?php } else { ?>

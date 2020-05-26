@@ -26,7 +26,7 @@
     // pega a pagina atual
     $currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
     //itens por página
-    $itemsPerPage = 30;
+    $itemsPerPage = 10;
     // calcula o inicio da consulta
     $start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 
@@ -120,7 +120,7 @@
 					   <li class="page-item <?php if($previousPage == 0){ echo 'disabled';} ?>">
 					       <?php 
 					           if($previousPage != 0) { ?>
-					               <a href="findEvolution.php?page=<?php echo $previousPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_GET['regProntuary'];?>" style="text-decoration: none;">
+					               <a href="findEvolution.php?page=<?php echo $previousPage . '&regProntuary=' . $regProntuary . '&resumeType=' . $resumeType . '&selectEvo=' . $selectEvo?>" style="text-decoration: none;">
 					               <span class="page-link bg-primary text-light" aria-hidden="true">Anterior</span>
 					               </a>
 					       <?php } else { ?>
@@ -133,11 +133,11 @@
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
 					        }
 					        if($currentPage > 1){
-					        echo "<li class='page-item'><a class='page-link ' href='findEvolution.php?page=".$previousPage."&regProntuary=".$_GET['regProntuary']."'>".$previousPage."</a></li>";
+					        echo "<li class='page-item'><a class='page-link ' href='findEvolution.php?page=".$previousPage."&regProntuary=".$regProntuary."&resumeType=".$resumeType."&selectEvo=".$selectEvo."'>".$previousPage."</a></li>";
 					        }
 					        echo "<li class='page-item active'><a class='page-link ' href=''>".$currentPage."</a></li>";
 					        if($nextPage <= $totalPages){
-					          echo "<li class='page-item'><a class='page-link' href='findEvolution.php?page=".$nextPage ."&regProntuary=".$_GET['regProntuary']."'>".$nextPage."</a></li>"; 
+					          echo "<li class='page-item'><a class='page-link' href='findEvolution.php?page=".$nextPage ."&regProntuary=".$regProntuary."&resumeType=".$resumeType."&selectEvo=".$selectEvo."'>".$nextPage."</a></li>"; 
 					        }
 					        if($nextPage < $totalPages){
 					            echo "<li class='page-item'><span class='page-link' aria-hidden='true'>...</li>";
@@ -146,7 +146,7 @@
 					      <li class="page-item <?php if($nextPage > $totalPages){echo 'disabled';} ?>">
 					           <?php 
 					               if($nextPage <= $totalPages) { ?>
-					                   <a href="findEvolution.php?page=<?php echo $nextPage; ?>&regProntuary=<?php if(isset($_GET['regProntuary']))($_SESSION['regValue'] = $regProntuary); echo $_GET['regProntuary'];?>" style="text-decoration: none;">
+					                   <a href="findEvolution.php?page=<?php echo $nextPage . '&regProntuary=' . $regProntuary . '&resumeType=' . $resumeType . '&selectEvo=' . $selectEvo?>" style="text-decoration: none;">
 					                   <span class="page-link bg-primary text-light" aria-hidden="true">Próximo</span>
 					                   </a>
 					           <?php } else { ?>
