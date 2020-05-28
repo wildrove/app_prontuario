@@ -1,4 +1,4 @@
-
+<!-- https://pt.stackoverflow.com/questions/107933/mostrar-imagem-de-carregamento-no-meio-da-tela  -->
 <!DOCTYPE html>
 <html>
 <head>
