@@ -19,6 +19,7 @@
     "phpunit/phpunit": "7"
   },
     "require": {
-        "henck/rtf-to-html": "^1.1"
+        "henck/rtf-to-html": "^1.1",
+        "phpoffice/phpword": "^0.17.0"
     }
 }
