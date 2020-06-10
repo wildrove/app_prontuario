@@ -84,16 +84,6 @@
 	$objWriter->save('../../file/resumo alta.rtf');
 	$file_path = '../../file/resumo alta.rtf';
 
-/*
-	// Verifica se alguma evolução não foi preenchida.
-	foreach ($pacientEvo as  $key => $value) {
-		$rtf = $pacientEvo[$key]['DIAGNOSTICO_ALTA'];
-		if ($pacientEvo[$key]['DIAGNOSTICO_ALTA'] == "") {
-			header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
-		}
-	}
-	
-*/
 	/*========== Instancia o objeto que convert o RTF ============= */
 	$rtf = trim($rtf);
 	$document = new Document($rtf);
@@ -176,7 +166,7 @@
 						echo $formatter->Format($document) . '<br>';
 						echo '___________________________' . '<br>';	
 						echo 'Assinado digitalmente por: ' . '<br>';
-						echo '<strong>' . $assinged . '</strong>';	;			
+						echo '<strong>' . $assinged . '</strong>';			
 					?>	
 				</span>			
 			</div><!-- Fim texto Descrição -->	

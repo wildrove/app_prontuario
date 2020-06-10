@@ -14,11 +14,13 @@
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
 	use RtfHtmlPhp\Document;
 	use RtfHtmlPhp\Html\HtmlFormatter;
+	use PhpOffice\PhpWord\PhpWord; //usando a classe PhpWord
+	use PhpOffice\PhpWord\IOFactory; //usando a classe IOFactory
+	use PhpOffice\PhpWord\TemplateProcessor;
+	use PhpOffice\PhpWord\Shared\Html;
 
 	$pacientEvolution = new PacientEvolution();
 	$rtf = null;
-
-
 	
 	$pacientProntuary = intval($_GET['regProntuary']);
 	$pacientRegistry = (isset($_GET['regPacient']) ? intval($_GET['regPacient']) : "");
@@ -35,23 +37,49 @@
 	// Procura a alta do paciente na tabela PEP_RESUMO_ALTA 
 	$pacientEvo = $pacientEvolution->pacientImageExameResume($pacientRegistry, $nLaudo, $exameCode, $exameDate);
 
-	// Função para limpar o texto da evolução e remover caracteres indesejados
+
+	/*=========== Atribuição de variáveis para criação do texto e documento ================*/
+
 	foreach ($pacientEvo as $key => $value) {
-		$pacientEvo[$key]['RESULTADO'] = rtf2text(utf8_encode($pacientEvo[$key]['RESULTADO']));
-		// Função para substituir os caracteres especiais por letras com acento.
-		$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, 'RESULTADO');
 		$rtf = $pacientEvo[$key]['RESULTADO'];
+		$rtfDoc = $pacientEvo[$key]['RESULTADO'];
+	}
 		
+	/* ====== Valida se alguma evolução foi criada sem ser preenchida. ===== */
+
+	if (strlen($rtf) <= 0) {
+		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
 	}
 
-	$rtf = strip_tags($rtf);
+	/* ========= Cria um novo documento e salva na pasta File. ========= */
+	$phpWord = new \PhpOffice\PhpWord\PhpWord();
+	$section = $phpWord->addSection();
+	$section->addImage('../../img/hospital-logo.jpg',array('width' => 75, 'height' => 75, 'alignment'=> \PhpOffice\PhpWord\SimpleType\Jc::CENTER));
+	$textrun = $section->addTextRun();
+	$textrun->addText('               HOSPITAL E MATERNIDADE SÃO LUCAS', ['size' => 15, 'bold' => true, 'name' => 'Arial']); // 15 de espaço
+	$textrun->addTextBreak(1);
+	$textrun->addText('                    Rua: Mauri Bueno de Andrade Nº 101 - Extrema/MG - Fone: (35) 3100 - 9550', array('align' => 'center')); //29 space.
+	$textrun->addTextBreak(2);
+	$textrun->addText('Paciente: ', ['size' => 12, 'bold' => true, 'name' => 'Arial']);
+	$textrun->addText($pacientName . '   ');
+	$textrun->addText('Dt. Nasc: ', ['size' => 12, 'bold' => true, 'name' => 'Arial']);
+	$textrun->addText($birthday . '   ');
+	$textrun->addText('Nº Porntuário: ', ['size' => 12, 'bold' => true, 'name' => 'Arial']);
+	$textrun->addText($pacientProntuary);
+	$textrun->addTextBreak(1);
+	$textrun->addText('Mãe: ', ['size' => 12, 'bold' => true, 'name' => 'Arial']);
+	$textrun->addText($mother . '   ');
+	$textrun->addText('Dt. Laudo: ', ['size' => 12, 'bold' => true, 'name' => 'Arial']);
+	$textrun->addText(date('d/m/Y', strtotime($exameDate)) . '   ');
+	$textrun->addTextBreak(2);
+	$textrun->addText('                                       Exame Imagem', ['bold' => true, 'size' => 15, 'name' => 'Arial']);// 20 Space.
+	$textrun->addTextBreak(2);
+	$textrun->addText($rtfDoc);
+	$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+	ob_start();
+	$objWriter->save('../../file/laudo imagem.docx');
+	$file_path = '../../file/laudo imagem.docx';
 
-	// Verifica se alguma evolução não foi preenchida.
-	foreach ($pacientEvo as  $value) {
-		if ($value['RESULTADO'] == "") {
-			header('Location: ../../AlertsHTML/alertNoneEvolutionWritten.html');
-		}
-	}
 ?>
 
 <!DOCTYPE html>
@@ -127,7 +155,7 @@
 				<span class="rtf-evo exibir-resumo print-resume-font">
 
 						<?php 
-							echo wordwrap($rtf);		
+							echo wordwrap(utf8_encode($rtf));	
 						?>	
 				</span>			
 			</div><!-- Fim texto Descrição -->	
@@ -135,9 +163,10 @@
 	</div>
 	<div class="container">
 		<div class="botoes-imprimir botoes-imprimir-evolucao">
-			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
-			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
-			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&exameDate=' . $exameDate  . '&resumeType=' . $resumeType . '&nLaudo=' . $nLaudo . '&exameCode=' . $exameCode;  ?>" class="btn btn-primary btn-lg">Baixar Imagem</a>
+			<button class="btn btn-primary mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
+			<button class="btn btn-primary mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
+			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&exameDate=' . $exameDate  . '&resumeType=' . $resumeType . '&nLaudo=' . $nLaudo . '&exameCode=' . $exameCode;  ?>" class="btn btn-primary">Download</a>
+			<a type="button" class="btn btn-primary" href="<?php echo $file_path ; ?>">Baixar Laudo</a>
 		</div>
 	</div>
 	<script type="text/javascript">
