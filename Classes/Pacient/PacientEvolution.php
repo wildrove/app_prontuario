@@ -352,7 +352,8 @@ namespace Classes\Pacient\PacientEvolution;
 		// Função para encontrar o Resumo de Alta do Paciente
 		public function pacientMedicalRealiseResume($regProntuary, $medicalDate, $medicalHour)
 		{
-			$sql = "SELECT RA.REGISTRO_PRONTUARIO, RA.DIAGNOSTICO_ALTA FROM PEP_RESUMO_ALTA RA
+			$sql = "SELECT RA.DIAGNOSTICO_ALTA, AD.DESCRICAO_CERTIFICADO FROM PEP_RESUMO_ALTA RA
+					INNER JOIN PEP_ASSINATURA_DIGITAL AD ON RA.CODIGO_USUARIO = AD.COD_USUARIO
 					WHERE RA.REGISTRO_PRONTUARIO = ?
 					AND RA.DATA_ALTA = ?
 					AND RA.HORA_DIGITACAO = ?";

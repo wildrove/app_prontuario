@@ -83,10 +83,11 @@ $section->addText('Assinado digitalmente por:', ['size' => 10]);
 //$textrun->addTextBreak(1);
 $section->addText($assinged, ['bold' => true]);
 $textrun->addText($rtfDoc);
+$textrun->addTextBreak(4);
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'RTF');
 ob_start();
-$objWriter->save('../../file/evolução médica.rtf');
-$file_path = '../../file/evolução médica.rtf';
+$objWriter->save('../../file/evolucao medica.rtf');
+$file_path = '../../file/evolucao medica.rtf';
 
 	
 /*========== Instancia o objeto que convert o RTF ============= */

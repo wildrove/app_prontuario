@@ -71,7 +71,7 @@ body{
 
 .exibir-resumo {
     white-space: pre;
-    font-family: Courier New;
+    font-family: Arial;
     display: block;
     unicode-bidi: embed;
     color: #000000 !important;

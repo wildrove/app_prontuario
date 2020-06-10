@@ -158,7 +158,10 @@
 				<span class="rtf-evo exibir-resumo">
 					<span class="exibir-resumo">
 						<?php 
-							echo wordwrap($rtf);		
+							echo wordwrap($rtf) . '<br>';
+							echo '___________________________' . '<br>';	
+							echo 'Assinado digitalmente por: ' . '<br>';
+							echo '<strong>' . $assinged . '</strong>';	;		
 						?>
 					</span>
 						
