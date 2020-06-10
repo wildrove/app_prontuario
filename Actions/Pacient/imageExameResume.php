@@ -37,11 +37,13 @@
 	// Procura a alta do paciente na tabela PEP_RESUMO_ALTA 
 	$pacientEvo = $pacientEvolution->pacientImageExameResume($pacientRegistry, $nLaudo, $exameCode, $exameDate);
 
+	// Função para substituir os caracteres especiais por letras com acento.
+	$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, 'RESULTADO');
 
 	/*=========== Atribuição de variáveis para criação do texto e documento ================*/
 
 	foreach ($pacientEvo as $key => $value) {
-		$rtf = $pacientEvo[$key]['RESULTADO'];
+		$rtf = utf8_encode($pacientEvo[$key]['RESULTADO']);
 		$rtfDoc = $pacientEvo[$key]['RESULTADO'];
 	}
 		
@@ -155,7 +157,7 @@
 				<span class="rtf-evo exibir-resumo print-resume-font">
 
 						<?php 
-							echo wordwrap(utf8_encode($rtf));	
+							echo wordwrap($rtf);	
 						?>	
 				</span>			
 			</div><!-- Fim texto Descrição -->	

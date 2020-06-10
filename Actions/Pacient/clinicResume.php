@@ -14,6 +14,10 @@
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
 	use RtfHtmlPhp\Document;
 	use RtfHtmlPhp\Html\HtmlFormatter;
+	use PhpOffice\PhpWord\PhpWord; //usando a classe PhpWord
+	use PhpOffice\PhpWord\IOFactory; //usando a classe IOFactory
+	use PhpOffice\PhpWord\TemplateProcessor;
+	use PhpOffice\PhpWord\Shared\Html;
 
 	$pacientEvolution = new PacientEvolution();
 	$rtf = null;
@@ -37,15 +41,49 @@
 	// Função para substituir os caracteres especiais por letras com acento.
 	$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, $evoType);
 
-	// Verifica se alguma evolução não foi preenchida.
+	/*=========== Atribuição de variáveis para criação do texto e documento ================*/
+
 	foreach ($pacientEvo as $key => $value) {
 		$rtf = $pacientEvo[$key];
 		$rtf = implode("", $rtf);
-		if ($value[$evoType] == "") {
-			header('Location: ../../AlertsHTML/alertNoneEvolutionWritten.html');
-		}
+		$rtfDoc = $pacientEvo[$key];
+		$rtfDoc = implode("", $rtfDoc);
+	}
+		
+	/* ====== Valida se alguma evolução foi criada sem ser preenchida. ===== */
+
+	if (strlen($rtf) <= 0) {
+		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
 	}
 
+	/* ========= Cria um novo documento e salva na pasta File. ========= */
+	$phpWord = new \PhpOffice\PhpWord\PhpWord();
+	$section = $phpWord->addSection();
+	$section->addImage('../../img/hospital-logo.jpg',array('width' => 75, 'height' => 75, 'alignment'=> \PhpOffice\PhpWord\SimpleType\Jc::CENTER));
+	$textrun = $section->addTextRun();
+	$textrun->addText('                 HOSPITAL E MATERNIDADE SÃO LUCAS', ['size' => 15, 'bold' => true, 'name' => 'Arial']); // 15 de espaço
+	$textrun->addTextBreak(1);
+	$textrun->addText('                    Rua: Mauri Bueno de Andrade Nº 101 - Extrema/MG - Fone: (35) 3100 - 9550', array('align' => 'center')); //29 space.
+	$textrun->addTextBreak(2);
+	$textrun->addText('Paciente: ', ['size' => 12, 'bold' => true, 'name' => 'Arial']);
+	$textrun->addText($pacientName . '   ');
+	$textrun->addText('Dt. Nasc: ', ['size' => 12, 'bold' => true, 'name' => 'Arial']);
+	$textrun->addText($birthday . '   ');
+	$textrun->addText('Nº Porntuário: ', ['size' => 12, 'bold' => true, 'name' => 'Arial']);
+	$textrun->addText($pacientProntuary);
+	$textrun->addTextBreak(1);
+	$textrun->addText('Mãe: ', ['size' => 12, 'bold' => true, 'name' => 'Arial']);
+	$textrun->addText($mother . '   ');
+	$textrun->addText('Data: ', ['size' => 12, 'bold' => true, 'name' => 'Arial']);
+	$textrun->addText(date('d/m/Y', strtotime($dateEvo)) . '   ');
+	$textrun->addTextBreak(2);
+	$textrun->addText('                                       Evolução Consultório', ['bold' => true, 'size' => 15, 'name' => 'Arial']);// 20 Space.
+	$textrun->addTextBreak(2);
+	$textrun->addText($rtfDoc);
+	$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+	ob_start();
+	$objWriter->save('../../file/consultorio.docx');
+	$file_path = '../../file/consultorio.docx';
 ?>
 
 <!DOCTYPE html>
@@ -128,9 +166,10 @@
 	</div>
 	<div class="container">
 		<div class="botoes-imprimir botoes-imprimir-evolucao">
-			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
-			<button class="btn btn-primary btn-lg mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
-			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry . '&hourEvolution=' . $hourEvo . '&dateEvolution=' . $dateEvo . '&resumeType=' . $resumeType . '&evoType=' . $evoType;  ?>" class="btn btn-primary btn-lg">Baixar Evolução</a>
+			<button class="btn btn-primary mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
+			<button class="btn btn-primary mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
+			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry . '&hourEvolution=' . $hourEvo . '&dateEvolution=' . $dateEvo . '&resumeType=' . $resumeType . '&evoType=' . $evoType;  ?>" class="btn btn-primary">Download</a>
+			<a type="button" class="btn btn-primary" href="<?php echo $file_path ; ?>">Baixar Evolução</a>
 		</div>
 	</div>
 	<script type="text/javascript">

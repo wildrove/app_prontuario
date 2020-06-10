@@ -98,7 +98,7 @@
 			            <tr class="text-center border font-italic">
 			              <th scope="row" class="border-right "><?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?></th>
 			              <td class="border-right"><?php echo utf8_encode($rowPacient['NOME']); ?></td>
-			              <td class="border-right"><?php echo date('d-m-Y', strtotime($rowPacient['DATA_NASCIMENTO'])); ?></td>
+			              <td class="border-right"><?php echo date('d/m/Y', strtotime($rowPacient['DATA_NASCIMENTO'])); ?></td>
 			              <td class="border-right"><?php if(empty($rowPacient['DOCUMENTO'])){
                         echo '<b>-</b>';
                        } echo $rowPacient['DOCUMENTO']; ?></td>
