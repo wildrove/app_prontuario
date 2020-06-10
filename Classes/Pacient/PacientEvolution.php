@@ -370,7 +370,8 @@ namespace Classes\Pacient\PacientEvolution;
 		public function pacientCirurgicalRealiseResume($regPacient, $cirugicalDate)
 		{
 			$sql = "
-					SELECT RC.TEXTO FROM CC_RESUMO_CIRURGIA RC
+					SELECT RC.TEXTO, AD.DESCRICAO_CERTIFICADO FROM CC_RESUMO_CIRURGIA RC
+					INNER JOIN PEP_ASSINATURA_DIGITAL AD ON RC.CODIGO_USUARIO = AD.COD_USUARIO
 					WHERE RC.REGISTRO_PACIENTE = ?
 					AND RC.DATA_INC = ? ";
 
