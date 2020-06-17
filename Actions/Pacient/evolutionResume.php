@@ -46,8 +46,9 @@
 foreach ($pacientEvo as $key => $value) {
 	$rtf = $pacientEvo[$key]['EVOLUCAO'];
 	$rtfDoc = $pacientEvo[$key]['EVOLUCAO'];
-	$assinged = $pacientEvo[$key]['DESCRICAO_CERTIFICADO'];
+	$assinged = isset($pacientEvo[$key]['DESCRICAO_CERTIFICADO']) ? $pacientEvo[$key]['DESCRICAO_CERTIFICADO'] : "não existe";
 }
+
 
 /* ====== Valida se alguma evolução foi criada sem ser preenchida. ===== */
 
@@ -77,11 +78,14 @@ $textrun->addText('Dt. Evolução: ', ['size' => 12, 'bold' => true, 'name' => '
 $textrun->addText(date('d/m/Y', strtotime($dateEvo)) . '   ');
 $textrun->addTextBreak(2);
 $textrun->addText('                    EVOLUÇÃO MÉDICA', ['bold' => true, 'size' => 15, 'name' => 'Arial']);// 20 Space.
-$section->addText('_________________________'); //25
-$textrun->addTextBreak(2);
-$section->addText('Assinado digitalmente por:', ['size' => 10]);
-//$textrun->addTextBreak(1);
-$section->addText($assinged, ['bold' => true]);
+if($assinged != "não existe"){
+	$section->addText('_________________________'); //25
+	$textrun->addTextBreak(2);
+	$section->addText('Assinado digitalmente por:', ['size' => 10]);
+	$section->addText($assinged, ['bold' => true]);
+}else{
+	$textrun->addTextBreak(2);
+}
 $textrun->addText($rtfDoc);
 $textrun->addTextBreak(4);
 $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'RTF');
@@ -89,14 +93,18 @@ ob_start();
 $objWriter->save('../../file/evolucao medica.rtf');
 $file_path = '../../file/evolucao medica.rtf';
 
-	
-/*========== Instancia o objeto que convert o RTF ============= */
+/*============= Pegar a Idade atual ====================*/
 
-$rtf = trim($rtf);
-$document = new Document($rtf);
-$formatter = new HtmlFormatter('UTF-8');
+$birthdayDate = str_replace("-", "", $_GET['birthday']);
+$birthdayDate = new DateTime($birthdayDate);
+$currentYear = new DateTime('today');
+$age = $birthdayDate->diff($currentYear)->y . " anos";
+
+/* =========== Separar o nome do paciente ======================== */
+$pacientN = explode(" ", $pacientName);
 
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -144,6 +152,10 @@ $formatter = new HtmlFormatter('UTF-8');
 					<label class="col-form-label">Dt. Nasc:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="dtNascimento" value="<?php echo $birthday ?>" disabled="">
 				</div>
+				<div class="form-group pacient-group pacient-header-input-width">
+					<label class="col-form-label">Idade:</label>
+					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $age ?>" disabled="">
+				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Mãe:</label>
 					<input class="form-control-plaintext input-pacient-names" type="text" name="nomeMae" value="<?php echo $mother ?>" disabled="">
@@ -170,10 +182,25 @@ $formatter = new HtmlFormatter('UTF-8');
 			<div class="row container pacient-discription resume-print"><!-- Inicio Texto descrição -->
 				<span class="rtf-evo">
 					<?php
+					// Verifica o valor da variável $assigned e aplica a formatação do rtf.
+					if ($assinged == "não existe" and strlen($rtf) <= 500) {
+						$rtf = rtf2text(utf8_encode($rtf));
+						echo wordwrap($rtf) . '<br>';
+					}else{
+						$rtf = trim($rtf);
+						$document = new Document($rtf);
+						$formatter = new HtmlFormatter('UTF-8');
 						echo $formatter->Format($document) . '<br>';
-						echo '___________________________' . '<br>';	
-						echo 'Assinado digitalmente por: ' . '<br>';
-						echo '<strong>' . $assinged . '</strong>';		
+						if ($assinged == "não existe") {
+							unset($assinged);
+						}else{
+							echo '___________________________' . '<br>';	
+							echo 'Assinado digitalmente por: ' . '<br>';
+							echo '<strong>' . $assinged . '</strong>';	
+						}
+						
+					}
+							
 					?>	
 				</span>			
 			</div><!-- Fim texto Descrição -->	

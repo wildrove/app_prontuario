@@ -1,6 +1,11 @@
 <?php 
 
 	session_start();
+    /*=== valida se o usuário está logado no sistema antes de permitir acesso aos arquivos .php === */
+    if(!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] != 'SIM'){
+      header('Location: ../index.php?login=erro2');
+     }
+        
 	require '../../vendor/autoload.php';
 	use Classes\Pacient\Pacient;
 
@@ -17,7 +22,7 @@
    // pega a pagina atual
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	//itens por página
-	$itemsPerPage = 10;
+	$itemsPerPage = 30;
    // calcula o inicio da consulta
 	$start = ($currentPage * $itemsPerPage) - $itemsPerPage;
 

@@ -25,6 +25,21 @@
 </head>
 <body>
 	<?php 
+		/* ==== Trecho de código que encerra a sessão do usuário após 1h inativo === */
+        ini_set('session.use_trans_sid', 0);
+        if (!isset($_SESSION['usuario_autenticado'])){
+          $_SESSION['usuario_autenticado'] = "Guest";
+        }
+        if ($_SESSION['usuario_autenticado'] != "Guest"){
+          $counter = time();
+          if (!isset($_SESSION['count'])){
+            $_SESSION['count'] = $counter;
+          }
+          if ($counter - $_SESSION['count'] >= 900){
+            header('Location: ../../App_prontuario/index.php?login=erro4');
+          }
+            $_SESSION['count'] = $counter;
+        }
 		// valida se o usuário está logado no sistema antes de permitir acesso aos arquivos .php
 		if(!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] != 'SIM') {
 			header('Location: index.php?login=erro2');

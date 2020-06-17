@@ -1,4 +1,4 @@
-<!-- https://pt.stackoverflow.com/questions/107933/mostrar-imagem-de-carregamento-no-meio-da-tela  -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,21 +22,39 @@
 	<body>
     <div>
       <?php 
-      session_start();
+        session_start();
         require 'header-admin.php';
-      ?>
-      <?php
-        // valida se o usuário está logado no sistema antes de permitir acesso aos arquivos .php
-        if(!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] != 'SIM') {
+
+        /* ==== Trecho de código que encerra a sessão do usuário após 1h inativo === */
+        ini_set('session.use_trans_sid', 0);
+        if (!isset($_SESSION['usuario_autenticado'])){
+          $_SESSION['usuario_autenticado'] = "Guest";
+        }
+        if ($_SESSION['usuario_autenticado'] != "Guest"){
+          $counter = time();
+          if (!isset($_SESSION['count'])){
+            $_SESSION['count'] = $counter;
+          }
+          if ($counter - $_SESSION['count'] >= 900){
+            header('Location: ../../App_prontuario/index.php?login=erro4');
+          }
+            $_SESSION['count'] = $counter;
+        }
+    
+
+        /*=== valida se o usuário está logado no sistema antes de permitir acesso aos arquivos .php === */
+        if(!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] != 'SIM'){
           header('Location: ../index.php?login=erro2');
           exit();
         }elseif(isset($_SESSION['usuario_nivel_acesso']) && $_SESSION['usuario_nivel_acesso'] != 'Administrador'){
-        header('Location: ../index.php?login=erro3');
-        session_destroy();
-        exit();
+          header('Location: ../index.php?login=erro3');
+          session_destroy();
+          exit();
         }
 
+
       ?>
+
     </div>
   <div class="container">
     <section class="main-section" style="margin-bottom: -70px">

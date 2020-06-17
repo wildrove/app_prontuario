@@ -61,7 +61,15 @@
                     Usuário não tem permissão para acessar!
             </div>
 
-        <?php } ?>    
+        <?php } ?>
+
+        <?php if(isset($_GET['login']) && $_GET['login'] == 'erro4') { ?>
+          <div class="text-danger usuario-invalido ml-5 mb-2">
+              Sessão encerrada automaticamente!
+          </div>
+
+        <?php } ?>
+
         
     <button type="submit" class="btn btn-primary btn-block mb-3">Entrar</button>
   </form>

@@ -83,6 +83,13 @@
 	$objWriter->save('../../file/resumo cirurgia.rtf');
 	$file_path = '../../file/resumo cirurgia.rtf';
 
+	/*============= Pegar a Idade atual ====================*/
+
+	$birthdayDate = str_replace("-", "", $_GET['birthday']);
+	$birthdayDate = new DateTime($birthdayDate);
+	$currentYear = new DateTime('today');
+	$age = $birthdayDate->diff($currentYear)->y . " anos";
+
 ?>
 
 <!DOCTYPE html>
@@ -130,6 +137,10 @@
 				<div class="form-group pacient-group pacient-header-input-width">
 					<label class="col-form-label">Dt. Nasc:</label>
 					<input class="form-control-plaintext input-pacient" type="text" name="dtNascimento" value="<?php echo $birthday ?>" disabled="">
+				</div>
+				<div class="form-group pacient-group pacient-header-input-width">
+					<label class="col-form-label">Idade:</label>
+					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $age ?>" disabled="">
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Mãe:</label>
