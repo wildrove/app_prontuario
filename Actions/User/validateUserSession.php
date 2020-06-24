@@ -39,7 +39,7 @@
 				header('Location: ../../forms/content-home-admin.php');
 
 			} else {
-				header('Location: ../../home.php');
+				header('Location: ../../forms/content-home-user.php');
 			}
 
 	} else {

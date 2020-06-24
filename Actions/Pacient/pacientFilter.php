@@ -125,7 +125,7 @@
 						<div class="form-group btn-filtrar-paciente"><!-- Inicio Div Confirmar -->
 							<button class="btn btn-primary" type="submit" id="enviarFiltro" name="enviarFiltro">Filtrar</button>
 							<a class="btn btn-primary" href="javascript:history.back();">Voltar</a>
-							<a class="btn btn-primary" href="<?php if($redirect == "Administrador"){ echo '../../forms/content-home-admin.php';}else echo '../../home.php'; ?>">Inicio</a>
+							<a class="btn btn-primary" href="<?php if($redirect == "Administrador"){ echo '../../forms/content-home-admin.php';}else echo '../../forms/content-home-user.php'; ?>">Inicio</a>
 						</div><!-- Fim Div Confirmar -->
     				</form>
   				</div>

@@ -11,6 +11,12 @@ body {
 	top: 45%;
 	left: 45%;
 	color: #2b96cc;
+	display: none;
+}
+
+.loading-img {
+	width: 80px;
+	height: 80px;
 }
 
 

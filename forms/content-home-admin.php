@@ -87,9 +87,9 @@
       </div>
     </section>
     <section><!-- Inicio sessão de carregamento -->
-      <div class="load" style="display: none">
+      <div class="load">
          <!--<i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> -->
-         <img src="../img/load.gif" style="width: 80px; height: 80px;">
+         <img class="loading-img" src="../img/load.gif">
          <h6 class="text-dark font-weight-bold">Aguarde...</h6>
       </div>
     </section><!-- Fim sessão de carregamento -->

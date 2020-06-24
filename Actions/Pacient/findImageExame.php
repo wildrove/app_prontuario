@@ -84,7 +84,7 @@
         <h1 class="text-center mb-3"  style="margin-top: 120px;">Exames de Imagem</h1>    
         <div>
         	<div class="d-flex justify-content-end font-italic mb-2">
-            	<a class="btn btn-lg btn-primary border-0" href="<?php if($redirect == "Administrador"){ echo '../../forms/content-home-admin.php';}else echo '../../home.php'; ?>">Inicio</a>
+            	<a class="btn btn-lg btn-primary border-0" href="<?php if($redirect == "Administrador"){ echo '../../forms/content-home-admin.php';}else echo '../../forms/content-home-user.php'; ?>">Inicio</a>
             </div>
 			 <table class="table shadow-lg table-hover table-striped table-bordered">
 			     <thead class="thead-dark">
