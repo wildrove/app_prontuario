@@ -25,7 +25,7 @@
 </head>
 <body>
 	<?php 
-		/* ==== Trecho de código que encerra a sessão do usuário após 1h inativo === */
+		/* ==== Trecho de código que encerra a sessão do usuário após 0:15min inativo === */
         ini_set('session.use_trans_sid', 0);
         if (!isset($_SESSION['usuario_autenticado'])){
           $_SESSION['usuario_autenticado'] = "Guest";

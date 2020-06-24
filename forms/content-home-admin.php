@@ -16,16 +16,15 @@
 
      <!-- Fontawesome link -->
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/v4-shims.css">
-        
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/v4-shims.css">  
 </head>
 	<body>
     <div>
-      <?php 
+     <?php 
         session_start();
         require 'header-admin.php';
 
-        /* ==== Trecho de código que encerra a sessão do usuário após 1h inativo === */
+        /* ==== Trecho de código que encerra a sessão do usuário após 0:15min inativo === 
         ini_set('session.use_trans_sid', 0);
         if (!isset($_SESSION['usuario_autenticado'])){
           $_SESSION['usuario_autenticado'] = "Guest";
@@ -39,9 +38,9 @@
             header('Location: ../../App_prontuario/index.php?login=erro4');
           }
             $_SESSION['count'] = $counter;
-        }
+        } 
     
-
+        */
         /*=== valida se o usuário está logado no sistema antes de permitir acesso aos arquivos .php === */
         if(!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] != 'SIM'){
           header('Location: ../index.php?login=erro2');
@@ -79,7 +78,7 @@
                     <div class="col-3">
                       <div class="form-group mt-2">
                         <label for="pesquisar"></label>
-                        <input type="submit" class="form-control btn btn-primary" value="Pesquisar">
+                        <input id="searchPacient" type="submit" class="form-control btn btn-primary" value="Pesquisar">
                       </div>
                     </div>
                   </div>
@@ -87,6 +86,13 @@
             </div>
       </div>
     </section>
+    <section><!-- Inicio sessão de carregamento -->
+      <div class="load" style="display: none">
+         <!--<i class="fa fa-cog fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> -->
+         <img src="../img/load.gif" style="width: 80px; height: 80px;">
+         <h6 class="text-dark font-weight-bold">Aguarde...</h6>
+      </div>
+    </section><!-- Fim sessão de carregamento -->
     <section class="main-section mb-5">
       <div class="card shadow-lg">
           <h5 class="card-header card-titulo bg-dark text-light">Cadastrar Novo usuário</h5>
@@ -147,6 +153,13 @@
       </div>
     </section>
   </div>
+  <script type="">
+       $(document).ready(function(){
+          $('#searchPacient').click(function(){
+            $('.load').show();
+          });
+       });
+     </script> 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
      	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
      	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
