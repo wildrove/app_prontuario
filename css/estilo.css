@@ -13,6 +13,22 @@ body{
 	margin-left: 0px;
 }
 
+/* ========== Loading image ========== */
+.load{
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: 36%;
+	left: 42%;
+	color: #2b96cc;
+	display: none;
+}
+
+.loading-img {
+	width: 80px;
+	height: 80px;
+}
+
 /*========================== CSS HeaderPacient.php ================================ */
 
 .navbar-header {

@@ -57,6 +57,12 @@
 								<input type="hidden" name="birthday" value="<?php echo $birthday ?>">
 							</div>
 						</div><!-- Fim dados ocultos Paciente -->
+						<div class="row"><!-- Div de loading -->
+							<div class="load">
+         						<img class="loading-img" src="../../img/load.gif">
+         						<h6 class="text-dark font-weight-bold">Aguarde...</h6>
+      						</div>
+						</div><!-- Fim Div de loading -->
     					<div class="row">
 							<label class="label-filtrar-paciente">Paciente:</label>
 						</div>
@@ -74,7 +80,7 @@
 							<label class="label-filtrar-paciente">Tipo Resumo:</label>
 						</div>
 						<div class="row"><!-- Inicio Linha Tipo de Resumo -->
-							<div class="form-check mr-2">
+							<div class="form-check mr-2 enable-filter-button">
 								<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo1" value="evolucao">
 								<label class="form-check-label" for="radioResumo1">Evolução</label>
 							</div>
@@ -93,20 +99,20 @@
 									</select>
 								</div>
 							</div><!-- Fim Menu Evolução -->
-							<div class="form-check mr-2">
+							<div class="form-check mr-2 enable-filter-button">
 								<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo2" value="alta">
 								<label class="form-check-label" for="radioResumo2">Resumo de Alta</label>
 							</div>
-							<div class="form-check mr-2">
+							<div class="form-check mr-2 enable-filter-button">
 								<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo3" value="cirurgia">
 								<label class="form-check-label" for="radioResumo3">Resumo de Cirurgia</label>
 							</div>
-							<div class="form-check mr-2">
+							<div class="form-check mr-2 enable-filter-button">
 								<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo4" value="imagem">
 								<label class="form-check-label" for="radioResumo4">Exame de Imagem</label>
 							</div>
 							<div class="form-check">
-								<input class="form-check-input" type="radio" name="tipoResumo" id="radioResumo5" value="consultorio">
+								<input class="form-check-input enable-filter-button" type="radio" name="tipoResumo" id="radioResumo5" value="consultorio">
 								<label class="form-check-label" for="radioResumo5">Evolução Consultório</label>
 							</div>
 							<div id="clinicEvoType" class="ml-2">
@@ -123,8 +129,8 @@
 							</div>
 						</div><!-- Fim Linha Tipo RESUMO -->
 						<div class="form-group btn-filtrar-paciente"><!-- Inicio Div Confirmar -->
-							<button class="btn btn-primary" type="submit" id="enviarFiltro" name="enviarFiltro">Filtrar</button>
-							<a class="btn btn-primary" href="javascript:history.back();">Voltar</a>
+							<button class="btn btn-primary loadingEvo" type="submit" id="enviarFiltro" name="enviarFiltro">Pesquisar</button>
+							<a class="btn btn-primary back-filter" href="javascript:history.back();">Voltar</a>
 							<a class="btn btn-primary" href="<?php if($redirect == "Administrador"){ echo '../../forms/content-home-admin.php';}else echo '../../forms/content-home-user.php'; ?>">Inicio</a>
 						</div><!-- Fim Div Confirmar -->
     				</form>
@@ -132,7 +138,24 @@
 			</div>
 		</div><!-- Fim Card Principal -->
 	</div>
+	<script> // Habilita o gif de loading da pagina
+		$(document).ready(function(){
+			//Desabilita o botão de pesquisar e habilita quando o radio é clicado
+			$('button').prop('disabled', true);
 
+			$('.enable-filter-button').click(function(){
+				$('button').prop('disabled', false);
+			});
+
+			$('.loadingEvo').click(function(){
+	        	$('.load').show();
+	    	});
+			// habilita o gif no botão voltar
+	    	$('.back-filter').click(function(){
+	    		$('.load').show();
+	    	})
+		});
+	</script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

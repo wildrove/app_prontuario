@@ -4,21 +4,16 @@
   <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Consultar prontuário</title>
-   
-    <!-- Bootstrap Online -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!-- Bootstrap Local -->  
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+   <title>Prontuário Médico</title>
+   <!-- Bootstrap Local -->  
+   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <!-- Link Personal style.css -->
-    <link rel="stylesheet"  href="bootstrap/css/style.css">
-
+   <link rel="stylesheet"  href="css/home-style.css">
+   <!-- Fontawesome -->
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/v4-shims.css">
 
-   <script src="https://unpkg/@babel/standalone/babel.min.js">
-    
-   </script>
+   <script src="https://unpkg/@babel/standalone/babel.min.js"></script>
    <script language=javascript type="text/javascript">
       month = new Array ("Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro");
       now = new Date;

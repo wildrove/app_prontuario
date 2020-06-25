@@ -8,8 +8,6 @@ session_start();
 	}
 require '../../vendor/autoload.php';
 
-echo "<pre>";
-var_dump($_GET);
 $evoType = isset($_GET['tipoResumo']) ? $_GET['tipoResumo'] : "";
 $selectEvo = isset($_GET['selectEvo']) ? $_GET['selectEvo'] : "";
 $selectClinicEvo = isset($_GET['selectClinicEvo']) ? $_GET['selectClinicEvo'] : "";

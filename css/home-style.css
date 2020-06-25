@@ -8,8 +8,8 @@ body {
 	width: 100px;
 	height: 100px;
 	position: absolute;
-	top: 45%;
-	left: 45%;
+	top: 47%;
+	left: 42%;
 	color: #2b96cc;
 	display: none;
 }
@@ -103,10 +103,13 @@ ul, li, span:hover {
 	margin-top: -30px;
 }
 
- /* ============================= FindProntuary.php ============================== */
+/* ====================== Edit User ========================================== */
 
-
-
+.form-edit {
+	margin-top: 150px;
+	padding: 20px;
+	margin-bottom: 30px;
+}
 /* ============================ Média Queries 575.98px ======================================= */
 
 /* Dispositivos extra small (telefones em modo retrato, com menos de 576px) */

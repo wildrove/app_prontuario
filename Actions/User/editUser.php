@@ -18,8 +18,6 @@
 	$editUser = new Users();
 
 	$user = $editUser->getUser($idUser);
-
-
 ?>
 
 
@@ -27,18 +25,15 @@
 <html>
 <head>
 	<title>Prontuário médico eletrônico</title>
-	 <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap Online -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap Local -->  
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
     <!-- Link Personal style.css -->
-    <link rel="stylesheet"  href="../../bootstrap/css/style.css">
-
-     <!-- Fontawesome link -->
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/v4-shims.css">
+    <link rel="stylesheet"  href="../../css/home-style.css">
+    <!-- Fontawesome link -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/v4-shims.css">
         
 </head>
 	<body>
@@ -50,7 +45,7 @@
   			?>
   			<?php foreach ($user as $rowUser) { ?>
 
-  			<form style="margin-top: 150px;" action="validateSaveUser.php" method="post">
+  			<form class=" border form-edit" style="" action="validateSaveUser.php" method="post">
   				<h1 class="text-center mb-3">Editar usuário</h1>
   				  <div class="form-group">
   				  	<input type="hidden" class="form-control" name="userId" value="<?php echo $rowUser['CODIGO_USUARIO']; ?>">

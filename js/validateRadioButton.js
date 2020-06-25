@@ -8,6 +8,7 @@ jQuery(function(){
     if (!isChecked) {
         booleanVlaueIsChecked = true;
         alert('Selecione um tipo de Resumo!');
+     
         return false;
     }
  }
