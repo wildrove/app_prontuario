@@ -114,6 +114,7 @@ $pacientN = explode(" ", $pacientName);
 	<link rel="stylesheet"  href="../../bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet"  href="../../css/estilo.css">
 	<link rel="stylesheet"  href="../../css/print.css" media="print">
+	<script src="../../js/jquery.js"></script>
 	<script type="text/javascript">
 		function printPage(){
 			window.print();
@@ -121,6 +122,12 @@ $pacientN = explode(" ", $pacientName);
 	</script>
 </head>
 <body>
+	<div class="row"><!-- Div de loading -->
+		<div class="load" style="top: 30%; left: 43%; position: fixed;">
+         	<img class="loading-img" src="../../img/load.gif">
+         	<h6 class="text-dark font-weight-bold">Aguarde...</h6>
+      	</div>
+	</div><!-- Fim Div de loading -->
 	<div class="container p-3 mt-2 shadow shadow-lg font-pacient-type">
 		<section class=" border-section"><!-- Sessão Paciente -->
 			<div class="row"><!-- Cabeçalho Hospital -->
@@ -208,22 +215,28 @@ $pacientN = explode(" ", $pacientName);
 	</div>
 	<div class="container">
 		<div class="botoes-imprimir botoes-imprimir-evolucao">
-			<button class="btn btn-primary  mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
+			<a class="btn btn-primary mt-5 mb-5 back-filter" href="javascript:history.back()">Voltar</a>
 			<button class="btn btn-primary  mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
 			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary . '&hourEvolution=' . $hourEvo . '&dateEvolution=' . $dateEvo . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary">Download Evolução</a>
 			<a type="button" class="btn btn-primary" href="<?php echo $file_path ; ?>">Baixar Evolução</a>
 		</div>
 	</div>	
-	<script type="text/javascript">
-		function goBack(){
-			window.history.go(-1);
-		}
-	</script>
-
 	<script>
 		function imprimir(){
 			window.print();
 		}
+		
+		// Habilita o gif de loading da pagina
+		$('.back-filter').click(function(){
+			$('.load').show();
+		});
+
+		$('.back-filter').click(function(){
+			$('html, body').css({
+    			overflow:'hidden',
+   				height:'100%'
+			});
+		});	
 	</script>
 </body>
 </html>

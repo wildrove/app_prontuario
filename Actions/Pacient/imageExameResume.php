@@ -192,7 +192,7 @@
 		function imprimir(){
 			window.print();
 		}
-
+		
 		// Habilita o gif de loading da pagina
 		$('.back-filter').click(function(){
 			$('.load').show();
@@ -204,7 +204,6 @@
    				height:'100%'
 			});
 		});	
-
 	</script>
 </body>
 </html>

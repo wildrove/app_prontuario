@@ -66,18 +66,21 @@
 <head>
 	<title></title>
 	<meta charset="ISO-8859-1">
-    <!-- Bootstrap Online -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<!-- Bootstrap Local -->  
 	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
     <!-- Link Personal style.css -->
     <link rel="stylesheet"  href="../../css/estilo.css">
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<script src="../../js/jquery.js"></script>
 </head>
 <body>
+	<div class="row"><!-- Div de loading -->
+		<div class="load" style="top: 55%; left: 43%;">
+         	<img class="loading-img" src="../../img/load.gif">
+         	<h6 class="text-dark font-weight-bold">Aguarde...</h6>
+      	</div>
+	</div><!-- Fim Div de loading -->
     <div class="container">
         <?php 
             include '../../forms/headerPacient.php';
@@ -107,7 +110,7 @@
 			              <td class="border-right"><?php echo $rowPacient['TIPO']; ?></td>
 			              <td class="border-right"><?php echo $rowPacient['NOME_COMPLETO']; ?></td>
 			              <td>
-			               <a href="evolutionResume.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>&dateEvolution=<?php echo $rowPacient['DATA_EVOLUCAO']; ?>&regPacient=<?php echo $rowPacient['REGISTRO_PACIENTE']; ?>&type=<?php echo $rowPacient['TIPO']; ?>&pacientName=<?php echo $name; ?>&mother=<?php echo $mother; ?>&birthday=<?php echo $birthday; ?>&resumeType=<?php echo $resumeType; ?>" class="btn btn-primary">Visualizar</a>
+			               <a href="evolutionResume.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>&dateEvolution=<?php echo $rowPacient['DATA_EVOLUCAO']; ?>&regPacient=<?php echo $rowPacient['REGISTRO_PACIENTE']; ?>&type=<?php echo $rowPacient['TIPO']; ?>&pacientName=<?php echo $name; ?>&mother=<?php echo $mother; ?>&birthday=<?php echo $birthday; ?>&resumeType=<?php echo $resumeType; ?>" class="btn btn-primary loadingEvo">Visualizar</a>
 			              </td>
 			         </tr>
 			            <?php
@@ -155,8 +158,31 @@
 					      </li>
 					</ul>
 			</nav>
-			<a class="btn btn-primary  mb-5 shadow-lg" href="javascript:history.back()">Voltar</a>
+			<a class="btn btn-primary  mb-5 shadow-lg back-filter" href="javascript:history.back()">Voltar</a>
 	</div>
+	<script> // Habilita o gif de loading da pagina
+		$(document).ready(function(){
+			$('.loadingEvo').click(function(){
+				$('html, body').css({ // Remove o Scroll ao clicar em pesquisar.
+	    			overflow:'hidden',
+	   				height:'100%'
+				});
+
+		        $('.load').show();
+		    });
+			// habilita o gif no botão voltar
+		    $('.back-filter').click(function(){
+		    	$('.load').show();
+		    });
+
+		    $('.back-filter').click(function(){
+				$('html, body').css({
+	    			overflow:'hidden',
+	   				height:'100%'
+				});
+			});	
+		});
+	</script>
 </body>
 </html>	
 
