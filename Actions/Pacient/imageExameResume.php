@@ -99,13 +99,20 @@
 	<link rel="stylesheet"  href="../../bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet"  href="../../css/estilo.css">
 	<link rel="stylesheet"  href="../../css/print.css" media="print">
+	<script src="../../js/jquery.js"></script>
 	<script type="text/javascript">
 		function printPage(){
 			window.print();
 		}
 	</script>
 </head>
-<body>
+<body class=".stop-scrolling">
+	<div class="row"><!-- Div de loading -->
+		<div class="load" style="top: 30%; left: 43%; position: fixed;">
+         	<img class="loading-img" src="../../img/load.gif">
+         		<h6 class="text-dark font-weight-bold">Aguarde...</h6>
+      	</div>
+	</div><!-- Fim Div de loading -->
 	<div class="container mt-3 p-3 shadow shadow-lg font-pacient-type">
 		<section class="" style="border: 1px solid #000000"><!-- Sessão Paciente -->
 			<div class="row">
@@ -166,32 +173,38 @@
 			<div class="row pacient-border-divisor"></div>
 			<div class="row container pacient-discription resume-print"><!-- Inicio Texto descrição -->
 				<span class="rtf-evo exibir-resumo print-resume-font">
-
-						<?php 
-							echo wordwrap($rtf);	
-						?>	
+					<?php 
+						echo wordwrap($rtf);	
+					?>	
 				</span>			
 			</div><!-- Fim texto Descrição -->	
 		</section><!-- Fim Sessão Paciente -->
 	</div>
 	<div class="container">
 		<div class="botoes-imprimir botoes-imprimir-evolucao">
-			<button class="btn btn-primary mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
+			<a class="btn btn-primary mt-5 mb-5 back-filter" href="javascript:history.back()">Voltar</a>
 			<button class="btn btn-primary mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
 			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&exameDate=' . $exameDate  . '&resumeType=' . $resumeType . '&nLaudo=' . $nLaudo . '&exameCode=' . $exameCode;  ?>" class="btn btn-primary">Download</a>
 			<a type="button" class="btn btn-primary" href="<?php echo $file_path ; ?>">Baixar Laudo</a>
 		</div>
 	</div>
-	<script type="text/javascript">
-		function goBack(){
-			window.history.go(-1);
-		}
-	</script>
-
 	<script>
 		function imprimir(){
 			window.print();
 		}
+
+		// Habilita o gif de loading da pagina
+		$('.back-filter').click(function(){
+			$('.load').show();
+		});
+
+		$('.back-filter').click(function(){
+			$('html, body').css({
+    			overflow:'hidden',
+   				height:'100%'
+			});
+		});	
+
 	</script>
 </body>
 </html>
