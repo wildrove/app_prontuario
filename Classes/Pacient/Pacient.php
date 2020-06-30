@@ -23,7 +23,7 @@ namespace Classes\Pacient;
 			$this->$atribute = $value;
 		}
 
-		public function findPacient($name, $birthDay, $page, $limit)
+		public function findPacient($name, $birthDay)
 		{
 
 			$connection = new FirebirdConnection();
@@ -34,7 +34,7 @@ namespace Classes\Pacient;
 			if(($this->pacientBirthday == '') && !empty($this->pacientName)){
 				
 				$likeString = '%' . $this->pacientName . '%';
-				$sql = "SELECT FIRST $limit SKIP $page REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE ? ORDER BY NOME ASC";
+				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE ? ORDER BY NOME ASC";
 
 				$data = $connection->conn->prepare($sql);
 				$data->bindParam(1, $likeString, PDO::PARAM_STR);
@@ -48,8 +48,7 @@ namespace Classes\Pacient;
 			if(($this->pacientName == '') && !empty($this->pacientBirthday)) {
 
 				$likeString = $this->pacientBirthday;
-				$sql = "SELECT FIRST $limit SKIP $page
-				REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = ? ORDER BY NOME ASC";
+				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE DATA_NASCIMENTO = ? ORDER BY NOME ASC";
 
 				$data = $connection->conn->prepare($sql);
 				$data->bindParam(1, $likeString, PDO::PARAM_STR);
@@ -65,8 +64,7 @@ namespace Classes\Pacient;
 				$likeStringName = '%' . $this->pacientName . '%';
 				$likeStringDate = "$this->pacientBirthday";
 
-				$sql = "SELECT FIRST $limit SKIP $page
-				REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE ? AND DATA_NASCIMENTO = ? ORDER BY NOME ASC";
+				$sql = "SELECT REGISTRO_PRONTUARIO,NOME,DATA_NASCIMENTO,DOCUMENTO,NOME_MAE, TELEFONE FROM PRONTUARIO WHERE NOME LIKE ? AND DATA_NASCIMENTO = ? ORDER BY NOME ASC";
 
 				$data = $connection->conn->prepare($sql);
 				$data->bindParam(1, $likeStringName, PDO::PARAM_STR);
