@@ -170,12 +170,12 @@ namespace Classes\Pacient\PacientEvolution;
 				
 		}
 
-		public function findClinicResume($regProntuary, $resumeType, $evoType, $page, $limit)
+		public function findClinicResume($regProntuary, $resumeType, $evoType)
 		{
 			
 			$this->regProntuary = $regProntuary;
 
-			$sql = "SELECT FIRST $limit SKIP $page PC.REGISTRO_PACIENTE_EXTERNO, PC.DATA, PC.HORA, U.NOME_COMPLETO FROM PSA_CONSULTORIO PC 
+			$sql = "SELECT PC.REGISTRO_PACIENTE_EXTERNO, PC.DATA, PC.HORA, U.NOME_COMPLETO FROM PSA_CONSULTORIO PC 
 					INNER JOIN USUARIO U ON PC.CODIGO_CONTA = U.CONTA
 					WHERE PC.REGISTRO_PRONTUARIO = ?
 					ORDER BY PC.DATA DESC";
