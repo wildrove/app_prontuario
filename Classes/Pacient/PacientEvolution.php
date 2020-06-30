@@ -41,11 +41,11 @@ namespace Classes\Pacient\PacientEvolution;
 		}
 
 
-		public function findEvolutionDate($regProntuary, $resumeType, $evoType, $page, $limit)
+		public function findEvolutionDate($regProntuary, $resumeType, $evoType)
 		{
 			try{
 
-				$selectEvoType = $this->validateResumeType($resumeType, $page, $limit);
+				$selectEvoType = $this->validateResumeType($resumeType);
 				$this->regProntuary = $regProntuary;
 				
 
@@ -60,7 +60,7 @@ namespace Classes\Pacient\PacientEvolution;
 
 					}else{
 
-						$sql = "SELECT FIRST $limit SKIP $page PEP.REGISTRO_PRONTUARIO, PEP.DATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP
+						$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.DATA_EVOLUCAO, PEP.HORA_EVOLUCAO, PEP.REGISTRO_PACIENTE, PEP.TIPO, US.NOME_COMPLETO FROM PEP_EVOLUCAO_MEDICA PEP
 								INNER JOIN PRONTUARIO P
 								ON PEP.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO INNER JOIN USUARIO US
 								ON PEP.CODIGO_USUARIO = US.CODIGO_USUARIO
@@ -69,7 +69,7 @@ namespace Classes\Pacient\PacientEvolution;
 
 								UNION ALL
 
-								SELECT FIRST $limit SKIP $page EW.REGISTRO_PRONTUARIO, EW.DATAEVOLUCAO, EW.HORAEVOLUCAO, EW.NROATEND,
+								SELECT EW.REGISTRO_PRONTUARIO, EW.DATAEVOLUCAO, EW.HORAEVOLUCAO, EW.NROATEND,
 							 		EW.TIPOATEND, EW.PRESTADOR FROM EVOLUCAO_WARELINE EW
 							 	INNER JOIN PRONTUARIO P
 							 	ON EW.REGISTRO_PRONTUARIO = P.REGISTRO_PRONTUARIO
