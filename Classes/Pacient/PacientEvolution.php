@@ -93,14 +93,14 @@ namespace Classes\Pacient\PacientEvolution;
 		}
 
 		
-		public function findMedicalRealise($regProntuary, $page, $limit)
+		public function findMedicalRealise($regProntuary)
 		{
 			try {
 					
 				$this->regProntuary = $regProntuary;
 
 				$sql = "
-						SELECT FIRST $limit SKIP $page RA.DATA_ALTA, RA.DATA_DIGITACAO,RA.HORA_DIGITACAO, TA.NOME, U.NOME_COMPLETO, RA.REGISTRO_PRONTUARIO, RA.REGISTRO_PACIENTE FROM PEP_RESUMO_ALTA RA
+						SELECT RA.DATA_ALTA, RA.DATA_DIGITACAO,RA.HORA_DIGITACAO, TA.NOME, U.NOME_COMPLETO, RA.REGISTRO_PRONTUARIO, RA.REGISTRO_PACIENTE FROM PEP_RESUMO_ALTA RA
 						INNER JOIN USUARIO U ON RA.CODIGO_USUARIO = U.CODIGO_USUARIO
 						INNER JOIN TIPO_ALTA TA ON RA.TIPO_ALTA = TA.CODIGO_TIPO_ALTA
 						WHERE RA.REGISTRO_PRONTUARIO = ? 
