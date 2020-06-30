@@ -27,12 +27,11 @@
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
 	}
 
-	// variaveis para o cabeçalho
+    $pacientHeader = $pacientHeader->findPacientHeader($regProntuary);
+    // variaveis para o cabeçalho
     $name;
     $mother;
     $birthday;
-
-    $pacientHeader = $pacientHeader->findPacientHeader($regProntuary);
     foreach ($pacientHeader as $value) {
     	$name = $value['NOME'];
     	$mother = $value['NOME_MAE'];

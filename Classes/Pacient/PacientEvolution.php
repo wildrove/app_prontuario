@@ -118,13 +118,13 @@ namespace Classes\Pacient\PacientEvolution;
 			}
 		}
 
-		public function findCirurgicalRealise($regProntuary, $page, $limit)
+		public function findCirurgicalRealise($regProntuary)
 		{
 			try {
 				$this->regProntuary = $regProntuary;
 
 				$sql = "
-						SELECT FIRST $limit SKIP $page RC.REGISTRO_PACIENTE, RC.DATA_INC, U.NOME_COMPLETO, CC.NOME, RC.CODIGO_CIRURGIA FROM CC_RESUMO_CIRURGIA RC
+						SELECT RC.REGISTRO_PACIENTE, RC.DATA_INC, U.NOME_COMPLETO, CC.NOME, RC.CODIGO_CIRURGIA FROM CC_RESUMO_CIRURGIA RC
 						INNER JOIN USUARIO U ON RC.CODIGO_USUARIO = U.CODIGO_USUARIO
 						INNER JOIN CADASTRO_CIRURGIA CC ON RC.CODIGO_CIRURGIA = CC.CODIGO_CIRUR 
 						INNER JOIN PEP_EVOLUCAO_MEDICA EV ON RC.REGISTRO_PACIENTE = EV.REGISTRO_PACIENTE
@@ -145,11 +145,11 @@ namespace Classes\Pacient\PacientEvolution;
 			}
 		}
 
-		public function findImageExame($regProntuary,$pacientName, $page, $limit)
+		public function findImageExame($regProntuary,$pacientName)
 		{
 			$this->regProntuary = $regProntuary;
 
-			$sql = "SELECT FIRST $limit SKIP $page RX.REG_PACIENTE,RX.DATA_REALIZ,RX.NLAUDO,R.CODIGO_EXAME,E.NOME,U.NOME_COMPLETO FROM EXAMES_RX RX
+			$sql = "SELECT RX.REG_PACIENTE,RX.DATA_REALIZ,RX.NLAUDO,R.CODIGO_EXAME,E.NOME,U.NOME_COMPLETO FROM EXAMES_RX RX
 					INNER JOIN RAIRES R ON RX.NLAUDO = R.NLAUDO
 					INNER JOIN CADASTRO_EXAMES E ON R.CODIGO_EXAME = E.CODIGO_EXAME
 					INNER JOIN USUARIO U ON RX.CODIGO_USUARIO = U.CODIGO_USUARIO
