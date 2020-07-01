@@ -66,7 +66,7 @@
 				  </div>
 				  <div class="form-group font-weight-bold">
 				    <label for="inputAddress2">Senha:</label>
-				    <input type="text" class="form-control" maxlength="10" name="userPass" id="inputPass" value="<?php echo $rowUser['SENHA']; ?>" required="">
+				    <input type="text" class="form-control" maxlength="10" name="userPass" id="inputPass" value="<?php echo utf8_decode($rowUser['SENHA']); ?>" required="">
 				  </div>
 				  <div class="form-row">
 				    <div class="form-group col-md-6 font-weight-bold">

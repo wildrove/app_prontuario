@@ -147,9 +147,9 @@ namespace Classes\Users;
 			return '<h1>Dados removidos com sucesso</h1>';
 		}
 
-		public function userList($page, $limit)
+		public function userList()
 		{
-			$sql = "SELECT FIRST $limit SKIP $page CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE CODIGO_USUARIO >= 700 ORDER BY CODIGO_USUARIO ASC";
+			$sql = "SELECT CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO  ORDER BY CODIGO_USUARIO ASC";
 			$data = $this->connection->conn->prepare($sql);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
@@ -157,18 +157,16 @@ namespace Classes\Users;
 			return $result;
 		}
 
-		public function userSearch($name, $page, $limit)
+		public function userSearch($name)
 		{
 			if(strlen($name) > 10){
-				$sql = "SELECT FIRST $limit SKIP $page CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE NOME_COMPLETO = ?";
-			}else{
-				$sql = "SELECT FIRST $limit SKIP $page CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE NOME = ?";
+				$sql = "SELECT CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE NOME_COMPLETO = ?";
+			}elseif(strlen($name) <= 10){
+				$sql = "SELECT CODIGO_USUARIO, NOME_COMPLETO, NOME, CPF, SENHA, TIPO_USUARIO FROM USUARIO WHERE NOME = ?";
 			}
-			
-			
+				
 			$data = $this->connection->conn->prepare($sql);
 			$data->bindParam(1, $name, PDO::PARAM_STR);
-			//$data->bindParam(2, $name, PDO::PARAM_STR);
 			$data->execute();
 			$result = $data->fetchAll(PDO::FETCH_ASSOC);
 

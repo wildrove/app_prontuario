@@ -22,7 +22,7 @@
 
 	$findDate = new PacientEvolution();
 	// Dados do Paciente para o cabeçalho
-	$pacientHeader = $findDate;
+	$pacientHeader = $findDate->findPacientHeader($regProntuary);
 	$resultPage = $findDate->findEvolutionDate($regProntuary, $resumeType, $selectEvo);
     //Encontrar a evolução por data e trocar o valor da coluna TIPO
 	$resultPage = $findDate->changeColumnValue($findDate->findEvolutionDate($regProntuary, $resumeType, $selectEvo), 'TIPO');
@@ -34,8 +34,6 @@
     $name;
     $mother;
     $birthday;
-
-    $pacientHeader = $pacientHeader->findPacientHeader($regProntuary);
     foreach ($pacientHeader as $value) {
     	$name = $value['NOME'];
     	$mother = $value['NOME_MAE'];

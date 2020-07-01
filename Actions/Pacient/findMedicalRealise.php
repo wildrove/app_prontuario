@@ -19,15 +19,13 @@
 
 	$findDate = new PacientEvolution();
 	// Dados do Paciente para o cabeçalho
-	$pacientHeader = $findDate;
+	$pacientHeader = $findDate->findPacientHeader($regProntuary);
     //Encontrar a evolução por data e trocar o valor da coluna TIPO
 	$resultPage = $findDate->findMedicalRealise($regProntuary);
 
 	if (empty($resultPage)) {
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
 	}
-
-    $pacientHeader = $pacientHeader->findPacientHeader($regProntuary);
     // variaveis para o cabeçalho
     $name;
     $mother;
