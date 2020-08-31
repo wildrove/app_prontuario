@@ -66,7 +66,7 @@ class Zebra_Pagination {
         'reverse'                   =>  false,
 
         // number of selectable pages
-        'selectable_pages'          =>  11,
+        'selectable_pages'          =>  6,
 
         // will be computed later on
         'total_pages'               =>  0,

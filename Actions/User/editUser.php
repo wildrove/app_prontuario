@@ -60,13 +60,15 @@
 				      <input type="text" class="form-control" maxlength="10" name="user" id="inputUser" value="<?php echo $rowUser['NOME']; ?>" required="">
 				    </div>
 				  </div>
-				  <div class="form-group font-weight-bold">
-				    <label for="inputAddress">CPF:</label>
-				    <input type="text" class="form-control" maxlength="11" name="userCpf" id="inputCpf" value="<?php echo $rowUser['CPF']; ?>">
-				  </div>
-				  <div class="form-group font-weight-bold">
-				    <label for="inputAddress2">Senha:</label>
-				    <input type="text" class="form-control" maxlength="10" name="userPass" id="inputPass" value="<?php echo utf8_decode($rowUser['SENHA']); ?>" required="">
+				  <div class="form-row">
+				  	<div class="form-group col-md-6 font-weight-bold">
+				    	<label for="inputAddress">CPF:</label>
+				    	<input type="text" class="form-control" maxlength="11" name="userCpf" id="inputCpf" value="<?php echo $rowUser['CPF']; ?>" required="">
+				  	</div>
+				  	<div class="form-group col-md-6 font-weight-bold">
+				    	<label for="inputAddress2">Senha:</label>
+				    	<input type="text" class="form-control" maxlength="10" name="userPass" id="inputPass" value="<?php echo utf8_decode($rowUser['SENHA']); ?>" required="">
+				  	</div>
 				  </div>
 				  <div class="form-row">
 				    <div class="form-group col-md-6 font-weight-bold">
