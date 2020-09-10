@@ -174,7 +174,17 @@
 			<div class="row container pacient-discription resume-print"><!-- Inicio Texto descrição -->
 				<span class="rtf-evo exibir-resumo print-resume-font">
 					<?php 
-						echo wordwrap($rtf);	
+						
+					if(strlen($rtf) < 1500){
+						echo wordwrap($rtf);
+					}else{
+						
+						$rtf = trim($rtf);
+						$document = new Document($rtf);
+						$formatter = new HtmlFormatter('UTF-8');
+						echo $formatter->Format($document) . '<br>';	
+					}
+
 					?>	
 				</span>			
 			</div><!-- Fim texto Descrição -->	

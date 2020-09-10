@@ -4,14 +4,16 @@ use PDO;
 
 	class FirebirdConnection {
 		public $conn = null;
-		public $hostName = "localhost:/BancoFirebird/SGH.FDB";
+		public $hostName = "localhost:/BancoFirebird/SGH_NEW.FDB";
 		public $user = "SYSDBA";
 		public $pass = "masterkey";
 		public $ibconn = null;
 
 		public function __construct()
 		{
-			$this->createConnection('firebird', 'localhost:/BancoFirebird/SGH.FDB', 'SYSDBA', 'masterkey');
+			
+			$this->createConnection('firebird', 'C:\xampp\htdocs\BancoFirebird\SGH_NEW.FDB', 'SYSDBA', 'masterkey');
+			//$this->createConnection('firebird', 'localhost:/BancoFirebird/SGH.FDB', 'SYSDBA', 'masterkey');
 		}
 
 		private function createConnection($driverName, $hostName, $user, $pass)
