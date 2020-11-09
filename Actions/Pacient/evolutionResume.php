@@ -190,11 +190,12 @@ $pacientN = explode(" ", $pacientName);
 				<span class="rtf-evo">
 					<?php
 					// Verifica o valor da variável $assigned e aplica a formatação do rtf.
+					
 					if ($assinged == "não existe" and strlen($rtf) <= 500) {
 						$rtf = rtf2text(utf8_encode($rtf));
 						echo wordwrap($rtf) . '<br>';
 					}else{
-						$rtf = trim($rtf);
+						$rtf = rtrim($rtf, "\0");
 						$document = new Document($rtf);
 						$formatter = new HtmlFormatter('UTF-8');
 						echo $formatter->Format($document) . '<br>';

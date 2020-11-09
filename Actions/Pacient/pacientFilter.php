@@ -77,7 +77,7 @@
 							</div>						
 						</div><!-- Fim Linha Paciente -->
 						<div class="row">
-							<label class="label-filtrar-paciente">Tipo Resumo:</label>
+							<label class="label-filtrar-paciente">Tipo Documento:</label>
 						</div>
 						<div class="row"><!-- Inicio Linha Tipo de Resumo -->
 							<div class="form-check mr-2 enable-filter-button">

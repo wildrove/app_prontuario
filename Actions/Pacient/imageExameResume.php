@@ -10,6 +10,7 @@
 	$redirect = $_SESSION['usuario_nivel_acesso'];
 	require '../../vendor/autoload.php';
 	require('../../RtfCleanText/cleanRtf.php');
+	
 
 	use Classes\Pacient\PacientEvolution\PacientEvolution;
 	use RtfHtmlPhp\Document;
@@ -18,6 +19,7 @@
 	use PhpOffice\PhpWord\IOFactory; //usando a classe IOFactory
 	use PhpOffice\PhpWord\TemplateProcessor;
 	use PhpOffice\PhpWord\Shared\Html;
+	use Jstewmc\Rtf;
 
 	$pacientEvolution = new PacientEvolution();
 	$rtf = null;
@@ -45,6 +47,7 @@
 	foreach ($pacientEvo as $key => $value) {
 		$rtf = utf8_encode($pacientEvo[$key]['RESULTADO']);
 		$rtfDoc = $pacientEvo[$key]['RESULTADO'];
+		$rtf = rtrim($rtf, "\0");
 	}
 		
 	/* ====== Valida se alguma evolução foi criada sem ser preenchida. ===== */
@@ -174,17 +177,20 @@
 			<div class="row container pacient-discription resume-print"><!-- Inicio Texto descrição -->
 				<span class="rtf-evo exibir-resumo print-resume-font">
 					<?php 
-						
-					if(strlen($rtf) < 1500){
-						echo wordwrap($rtf);
-					}else{
-						
-						$rtf = trim($rtf);
-						$document = new Document($rtf);
-						$formatter = new HtmlFormatter('UTF-8');
-						echo $formatter->Format($document) . '<br>';	
-					}
 
+						// validação para definir qual função irá exibir o resumo vindo do banco
+						// dependendo se é rtf ou texto normal.
+						$db_rtf = $rtf;
+						$string_find = '\par';
+						$verification = strpos($db_rtf, $string_find);
+
+						if ($verification == false) {
+							echo wordwrap($rtf);
+						}else{
+							$document = new Document($rtf);
+							$formatter = new HtmlFormatter('UTF-8');
+							echo $formatter->Format($document); 
+						}
 					?>	
 				</span>			
 			</div><!-- Fim texto Descrição -->	

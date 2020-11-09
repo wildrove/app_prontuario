@@ -100,6 +100,154 @@
         ]
     },
     {
+        "name": "jstewmc/chunker",
+        "version": "v0.1.0",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jstewmc/chunker.git",
+            "reference": "ebd1555fd13a83d88f4b59722d1ab835a240ca4d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jstewmc/chunker/zipball/ebd1555fd13a83d88f4b59722d1ab835a240ca4d",
+            "reference": "ebd1555fd13a83d88f4b59722d1ab835a240ca4d",
+            "shasum": ""
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.2.*"
+        },
+        "time": "2015-07-03T22:35:43+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Jstewmc\\Chunker\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jack Clayton",
+                "email": "clayjs0@gmail.com"
+            }
+        ],
+        "description": "Chunk a very large file or string with PHP (multi-byte safe)",
+        "keywords": [
+            "chunk",
+            "file",
+            "multi-byte",
+            "php",
+            "string"
+        ]
+    },
+    {
+        "name": "jstewmc/rtf",
+        "version": "v0.4.3",
+        "version_normalized": "0.4.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jstewmc/rtf.git",
+            "reference": "4ad8296ec33d8b8d0850281e394f84c02ee61a8e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jstewmc/rtf/zipball/4ad8296ec33d8b8d0850281e394f84c02ee61a8e",
+            "reference": "4ad8296ec33d8b8d0850281e394f84c02ee61a8e",
+            "shasum": ""
+        },
+        "require": {
+            "jstewmc/chunker": "0.1.0",
+            "jstewmc/stream": "0.2.1"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.2.*"
+        },
+        "time": "2015-09-17T19:30:55+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Jstewmc\\Rtf\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jack Clayton",
+                "email": "clayjs0@gmail.com"
+            }
+        ],
+        "description": "Read and write Rich Text Format (RTF) documents with PHP",
+        "keywords": [
+            "format",
+            "lex",
+            "parse",
+            "php",
+            "read",
+            "render",
+            "rich",
+            "rtf",
+            "text",
+            "write"
+        ]
+    },
+    {
+        "name": "jstewmc/stream",
+        "version": "v0.2.1",
+        "version_normalized": "0.2.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jstewmc/stream.git",
+            "reference": "30b5c36b3983e4cf41acb2abc1309f4dbc72a6d6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jstewmc/stream/zipball/30b5c36b3983e4cf41acb2abc1309f4dbc72a6d6",
+            "reference": "30b5c36b3983e4cf41acb2abc1309f4dbc72a6d6",
+            "shasum": ""
+        },
+        "require": {
+            "jstewmc/chunker": "0.1.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.2.*"
+        },
+        "time": "2015-07-06T14:42:56+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Jstewmc\\Stream\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jack Clayton",
+                "email": "clayjs0@gmail.com"
+            }
+        ],
+        "description": "Stream a very large text file or string character-by-character",
+        "keywords": [
+            "character",
+            "file",
+            "php",
+            "split",
+            "stream",
+            "string"
+        ]
+    },
+    {
         "name": "myclabs/deep-copy",
         "version": "1.9.5",
         "version_normalized": "1.9.5.0",
@@ -938,7 +1086,8 @@
         "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
         "keywords": [
             "tokenizer"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "phpunit/phpunit",
