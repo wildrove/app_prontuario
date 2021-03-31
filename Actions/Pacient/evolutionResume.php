@@ -218,7 +218,7 @@ $pacientN = explode(" ", $pacientName);
 		<div class="botoes-imprimir botoes-imprimir-evolucao">
 			<a class="btn btn-primary mt-5 mb-5 back-filter" href="javascript:history.back()">Voltar</a>
 			<button class="btn btn-primary  mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
-			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary . '&hourEvolution=' . $hourEvo . '&dateEvolution=' . $dateEvo . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary">Download Evolução</a>
+			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary . '&hourEvolution=' . $hourEvo . '&dateEvolution=' . $dateEvo . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary" style="display: none">Download Evolução</a>
 			<a type="button" class="btn btn-primary" href="<?php echo $file_path ; ?>">Baixar Evolução</a>
 		</div>
 	</div>	
