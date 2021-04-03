@@ -185,11 +185,11 @@
 						$verification = strpos($db_rtf, $string_find);
 
 						if ($verification == false) {
-							echo wordwrap($rtf);
+							echo wordwrap($rtf, 180);
 						}else{
 							$document = new Document($rtf);
 							$formatter = new HtmlFormatter('UTF-8');
-							echo $formatter->Format($document); 
+							echo wordwrap($formatter->Format($document), 180); 
 						}
 					?>	
 				</span>			
