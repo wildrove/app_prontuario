@@ -68,7 +68,7 @@
 	<!DOCTYPE html>
 	<html>
 	<head>
-	  	<title>Listar Pacientes</title>
+	  	<title>PACIENTE</title>
 	  	<meta charset="UTF-8">
 		<!-- Bootstrap Local -->  
 		<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
@@ -83,15 +83,15 @@
 			<?php 
                include '../../forms/headerPacient.php';
             ?>
-            <h1 class="text-center mb-3" style="margin-top: 140px">Lista de Pacientes</h1>    
-            <div>
+            <h1 class="text-center" style="margin-top: 150px">PACIENTE</h1>    
+            <div style="margin-top: -30px;">
             	<div class="d-flex justify-content-end font-italic mb-2">
             		<a class="btn btn-lg btn-primary border-0" href="<?php if($redirect == "Administrador"){ echo '../../forms/content-home-admin.php';}else echo '../../forms/content-home-user.php'; ?>">Inicio</a>
             	</div>
 			    <table class="table shadow-lg table-hover table-striped table-bordered">
 			        <thead class="thead-dark">
 			        	<tr class="text-center" style="font-size: 15px">
-				            <th scope="col" class="border-right">REG. PRONTUÁRIO</th>
+				            <th scope="col" class="border-right">PRONTUÁRIO</th>
 				            <th scope="col" class="border-right">NOME PACIENTE</th>
 				            <th scope="col" class="border-right">DATA NASCIMENTO</th>
 				            <th scope="col" class="border-right">DOCUMENTO</th>

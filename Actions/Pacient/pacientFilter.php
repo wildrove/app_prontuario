@@ -64,7 +64,7 @@
       						</div>
 						</div><!-- Fim Div de loading -->
     					<div class="row">
-							<label class="label-filtrar-paciente">Paciente:</label>
+							<label class="label-filtrar-paciente">PACIENTE:</label>
 						</div>
 						<div class="row mb-3"><!-- Linha Tipo Paciente -->
 							<div class="form-check mr-2">
@@ -77,7 +77,7 @@
 							</div>						
 						</div><!-- Fim Linha Paciente -->
 						<div class="row">
-							<label class="label-filtrar-paciente">Tipo Documento:</label>
+							<label class="label-filtrar-paciente">TIPO DOCUMENTO:</label>
 						</div>
 						<div class="row"><!-- Inicio Linha Tipo de Resumo -->
 							<div class="form-check mr-2 enable-filter-button">
@@ -113,7 +113,7 @@
 							</div>
 							<div class="form-check">
 								<input class="form-check-input enable-filter-button" type="radio" name="tipoResumo" id="radioResumo5" value="consultorio">
-								<label class="form-check-label" for="radioResumo5">Evolução Consultório</label>
+								<label class="form-check-label" for="radioResumo5">Evolução em Consultório</label>
 							</div>
 							<div id="clinicEvoType" class="ml-2">
 								<div class="form-group mr-2" id="consultorio">
