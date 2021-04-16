@@ -11,7 +11,7 @@
 	$userName = null;
 
 	$userForm = strtoupper($_POST['userName']);
-	$passForm = $_POST['userPass'];
+	$passForm = strtoupper($_POST['userPass']);
 
 	$user = new Users();
 

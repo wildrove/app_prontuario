@@ -75,7 +75,7 @@
 <footer class="page-footer font-small blue">
 
  <!-- Copyright -->
- <div class="footer-copyright text-center py-3">© 2019 Todos direitos reservados.<br>
+ <div class="footer-copyright text-center py-3">© 2021 Todos direitos reservados.<br>
 
  <script language=javascript type="text/javascript">
     document.write(now.getDate() + " de " + month[now.getMonth()]  +  " de " + now.getFullYear());

@@ -20,7 +20,7 @@
 	$name = strtoupper($_POST['userName']);
 	$user = strtoupper($_POST['user']);
 	$cpf = $_POST['userCpf'];
-	$pass = $_POST['userPass'];
+	$pass = strtoupper($_POST['userPass']);
 	$type = $_POST['userType'];
 
 	$userValidate = new Users();

@@ -19,6 +19,7 @@
     $selectEvo = (isset($_GET['selectEvo']) ? $_GET['selectEvo'] : "");
     // Registro vindo do formulário
 	$regProntuary = (isset($_GET['regProntuary']) ? intval($_GET['regProntuary']) : $_GET['regProntuary']);
+	
 
 	$findDate = new PacientEvolution();
 	// Dados do Paciente para o cabeçalho
@@ -117,7 +118,7 @@
 				              		<td class="border-right"><?php echo $rowPacient['TIPO']; ?></td>
 				              		<td class="border-right"><?php echo $rowPacient['NOME_COMPLETO']; ?></td>
 				              		<td>
-			               				<a href="evolutionResume.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>&dateEvolution=<?php echo $rowPacient['DATA_EVOLUCAO']; ?>&regPacient=<?php echo $rowPacient['REGISTRO_PACIENTE']; ?>&type=<?php echo $rowPacient['TIPO']; ?>&pacientName=<?php echo $name; ?>&mother=<?php echo $mother; ?>&birthday=<?php echo $birthday; ?>&resumeType=<?php echo $resumeType; ?>" class="btn btn-primary loadingEvo">Visualizar</a>
+			               				<a href="evolutionResume.php?regProntuary=<?php echo $rowPacient['REGISTRO_PRONTUARIO']; ?>&hourEvolution=<?php echo $rowPacient['HORA_EVOLUCAO']; ?>&dateEvolution=<?php echo $rowPacient['DATA_EVOLUCAO']; ?>&regPacient=<?php echo $rowPacient['REGISTRO_PACIENTE']; ?>&type=<?php echo $selectEvo; ?>&pacientName=<?php echo $name; ?>&mother=<?php echo $mother; ?>&birthday=<?php echo $birthday; ?>&resumeType=<?php echo $resumeType; ?>" class="btn btn-primary loadingEvo">Visualizar</a>
 			              			</td>
 				            	</tr>
 				        <?php }?><!-- Fim do Laço -->

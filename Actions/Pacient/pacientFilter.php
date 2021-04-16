@@ -11,6 +11,7 @@
 	$prontuary = intval($_GET['regProntuary']);
 	$birthday = (isset($_GET['pacientBirthday']) ? $_GET['pacientBirthday'] : "");
 	$mother = (isset($_GET['motherName']) ? $_GET['motherName'] : "");
+	$typeAll = ['CRM', 'CREFITO','COREN', 'CRN', 'CRP', 'A', 'E', 'I'];
 
 ?>
 

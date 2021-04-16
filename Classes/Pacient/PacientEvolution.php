@@ -92,7 +92,7 @@ namespace Classes\Pacient\PacientEvolution;
 			}
 		}
 
-		
+		// FUNÇÃO PARA ENCONTRAR RESUMO DE ALTA
 		public function findMedicalRealise($regProntuary)
 		{
 			try {
@@ -118,6 +118,7 @@ namespace Classes\Pacient\PacientEvolution;
 			}
 		}
 
+		// FUNÇÃO PARA ENCONTRAR RESUMO DE CIRUGIA
 		public function findCirurgicalRealise($regProntuary)
 		{
 			try {
@@ -145,6 +146,7 @@ namespace Classes\Pacient\PacientEvolution;
 			}
 		}
 
+		// FUNÇÃO PARA ENCONTRAR EXAMES DE IMAGEM
 		public function findImageExame($regProntuary,$pacientName)
 		{
 			$this->regProntuary = $regProntuary;
@@ -170,6 +172,7 @@ namespace Classes\Pacient\PacientEvolution;
 				
 		}
 
+		// FUNÇÃO PARA ENCONTRAR EVOLUÇÃO EM AMBULATÓRIO
 		public function findClinicResume($regProntuary, $resumeType, $evoType)
 		{
 			
@@ -189,6 +192,7 @@ namespace Classes\Pacient\PacientEvolution;
 
 		}
 
+		// FUNÇÃO PARA ENCONTRAR TOTAL DE EVOLUÇÕES
 		public function findTotalDate($regProntuary)
 		{
 			$this->regProntuary = $regProntuary;
@@ -215,6 +219,7 @@ namespace Classes\Pacient\PacientEvolution;
 				return $result = count($result);	
 		}
 
+		// FUNÇÃO PARA ENCONTRAR TOTAL DE RESUMOS DE ALTA
 		public function totalMedicalRealise($regProntuary)
 		{
 			try {
@@ -304,26 +309,52 @@ namespace Classes\Pacient\PacientEvolution;
 		}
 
 		// Encontra a Evolução do Paciente no sistema Pongeluppe e Wareline
-		public function pacientEvo($regProntuary,$dateEvo,$hourEvo)
+		public function pacientEvo($regProntuary,$dateEvo,$hourEvo,$type)
 		{	
-
+			
 			try {
 
-				$sql = "SELECT PEP.REGISTRO_PRONTUARIO, AD.DESCRICAO_CERTIFICADO, PEP.EVOLUCAO FROM PEP_EVOLUCAO_MEDICA PEP
-						INNER JOIN PEP_ASSINATURA_DIGITAL AD ON PEP.CODIGO_USUARIO = AD.COD_USUARIO
-						WHERE PEP.REGISTRO_PRONTUARIO = ? 
-						AND PEP.DATA_EVOLUCAO = ?
-						AND PEP.HORA_EVOLUCAO = ?
-						GROUP BY PEP.REGISTRO_PRONTUARIO, AD.DESCRICAO_CERTIFICADO, PEP.EVOLUCAO
-						";
+				if($type == 'TODOS'){
+
+					$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.EVOLUCAO, PEP.TIPO FROM PEP_EVOLUCAO_MEDICA PEP
+					
+							WHERE PEP.REGISTRO_PRONTUARIO = ?
+							ORDER BY PEP.tipo, PEP.data_evolucao, PEP.hora_evolucao DESC";
+					$data = $this->connection->conn->prepare($sql);
+					$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
+					$data->execute();
+					$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+				}else{
+
+					$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.EVOLUCAO, PEP.TIPO FROM PEP_EVOLUCAO_MEDICA PEP
+
+								WHERE PEP.REGISTRO_PRONTUARIO = ?
+								AND PEP.DATA_EVOLUCAO = ?
+								AND PEP.HORA_EVOLUCAO = ?
+								AND PEP.TIPO = ?
+								GROUP BY PEP.REGISTRO_PRONTUARIO, PEP.EVOLUCAO,PEP.TIPO";
 
 						$data = $this->connection->conn->prepare($sql);
 						$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
 						$data->bindParam(2, $dateEvo, PDO::PARAM_STR);
 						$data->bindParam(3, $hourEvo, PDO::PARAM_STR);
+						$data->bindParam(4, $type, PDO::PARAM_STR);
 						$data->execute();
 						$result = $data->fetchAll(PDO::FETCH_ASSOC);
+				}
 
+					
+				/*$sql = "SELECT PEP.REGISTRO_PRONTUARIO, AD.DESCRICAO_CERTIFICADO, PEP.EVOLUCAO, PEP.TIPO FROM PEP_EVOLUCAO_MEDICA PEP
+						INNER JOIN PEP_ASSINATURA_DIGITAL AD ON PEP.CODIGO_USUARIO = AD.COD_USUARIO
+						WHERE PEP.REGISTRO_PRONTUARIO = ?
+						AND PEP.DATA_EVOLUCAO = ?
+						AND PEP.HORA_EVOLUCAO = ?
+						AND PEP.TIPO = ?
+						GROUP BY PEP.REGISTRO_PRONTUARIO, AD.DESCRICAO_CERTIFICADO, PEP.EVOLUCAO,PEP.TIPO
+						"; */
+						
+					
 						if(count($result) == 0){
 							$sql = "SELECT EW.REGISTRO_PRONTUARIO, EW.EVOLUCAO FROM EVOLUCAO_WARELINE EW  
 							WHERE EW.REGISTRO_PRONTUARIO = ? 
