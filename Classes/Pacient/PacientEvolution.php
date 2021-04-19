@@ -317,7 +317,7 @@ namespace Classes\Pacient\PacientEvolution;
 				if($type == 'TODOS'){
 
 					$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.EVOLUCAO, PEP.TIPO FROM PEP_EVOLUCAO_MEDICA PEP
-					
+
 							WHERE PEP.REGISTRO_PRONTUARIO = ?
 							ORDER BY PEP.tipo, PEP.data_evolucao, PEP.hora_evolucao DESC";
 					$data = $this->connection->conn->prepare($sql);
@@ -325,6 +325,24 @@ namespace Classes\Pacient\PacientEvolution;
 					$data->execute();
 					$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
+				}elseif($type == 'CRM'){
+
+					$sql = "SELECT PEP.REGISTRO_PRONTUARIO, AD.DESCRICAO_CERTIFICADO, PEP.EVOLUCAO, PEP.TIPO FROM PEP_EVOLUCAO_MEDICA PEP
+						INNER JOIN PEP_ASSINATURA_DIGITAL AD ON PEP.CODIGO_USUARIO = AD.COD_USUARIO
+						WHERE PEP.REGISTRO_PRONTUARIO = ?
+						AND PEP.DATA_EVOLUCAO = ?
+						AND PEP.HORA_EVOLUCAO = ?
+						GROUP BY PEP.REGISTRO_PRONTUARIO, AD.DESCRICAO_CERTIFICADO, PEP.EVOLUCAO,PEP.TIPO
+						";
+
+						$data = $this->connection->conn->prepare($sql);
+						$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
+						$data->bindParam(2, $dateEvo, PDO::PARAM_STR);
+						$data->bindParam(3, $hourEvo, PDO::PARAM_STR);
+						
+						$data->execute();
+						$result = $data->fetchAll(PDO::FETCH_ASSOC);
+					
 				}else{
 
 					$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.EVOLUCAO, PEP.TIPO FROM PEP_EVOLUCAO_MEDICA PEP
@@ -344,15 +362,10 @@ namespace Classes\Pacient\PacientEvolution;
 						$result = $data->fetchAll(PDO::FETCH_ASSOC);
 				}
 
+
+
 					
-				/*$sql = "SELECT PEP.REGISTRO_PRONTUARIO, AD.DESCRICAO_CERTIFICADO, PEP.EVOLUCAO, PEP.TIPO FROM PEP_EVOLUCAO_MEDICA PEP
-						INNER JOIN PEP_ASSINATURA_DIGITAL AD ON PEP.CODIGO_USUARIO = AD.COD_USUARIO
-						WHERE PEP.REGISTRO_PRONTUARIO = ?
-						AND PEP.DATA_EVOLUCAO = ?
-						AND PEP.HORA_EVOLUCAO = ?
-						AND PEP.TIPO = ?
-						GROUP BY PEP.REGISTRO_PRONTUARIO, AD.DESCRICAO_CERTIFICADO, PEP.EVOLUCAO,PEP.TIPO
-						"; */
+				/**/
 						
 					
 						if(count($result) == 0){

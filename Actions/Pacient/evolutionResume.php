@@ -23,7 +23,7 @@
 	$rtf = null;
 	$assinged = null;
 	$rtfDoc = null;
-
+	
 /* ================== Declaração de variaveis para atribuir valores do Form ========== */
 	// variavel para validar o link de redirecionar para o inicio;
 	$redirect = $_SESSION['usuario_nivel_acesso'];
@@ -36,6 +36,14 @@
 	$birthday = (isset($_GET['birthday']) ? date('d/m/Y', strtotime($_GET['birthday'])) : "");
 	$type = (isset($_GET['type']) ? $_GET['type'] : "");
 	$resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
+	$professional = (isset($_GET['professional']) ? $_GET['professional'] : "");
+
+	$professional = explode(" ", $professional);
+	$firstName = $professional[0];
+	$midName = $professional[1];
+	$lastName = $professional[2];
+
+
 
 	
 	// Procura a evolução do paciente na tabela PEP_EVOLUCAO_MEDICA OU EVOLUCAO_WARELINE (SISTEMA ANTIGO)
@@ -48,6 +56,7 @@ foreach ($pacientEvo as $key => $value) {
 	$rtfDoc = $pacientEvo[$key]['EVOLUCAO'];
 	$assinged = isset($pacientEvo[$key]['DESCRICAO_CERTIFICADO']) ? $pacientEvo[$key]['DESCRICAO_CERTIFICADO'] : "não existe";
 }
+
 
 
 /* ====== Valida se alguma evolução foi criada sem ser preenchida. ===== */
@@ -180,8 +189,8 @@ $pacientN = explode(" ", $pacientName);
 					<input class="form-control-plaintext input-pacient" type="text" name="dtEvo" value="<?php echo date('d/m/Y', strtotime($dateEvo)) ?>" disabled="">
 				</div>
 				<div class="form-group pacient-group">
-					<label class="col-form-label">Tipo Evolução:</label>
-					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $type ?>" disabled="">
+					<label class="col-form-label">Profissional:</label>
+					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $firstName . " " . $midName; ?>" disabled="">
 				</div>
 			</div><!-- Fim Linha 1 -->
 			<!-- Div com borda Divisória -->
