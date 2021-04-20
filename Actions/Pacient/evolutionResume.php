@@ -23,6 +23,7 @@
 	$rtf = null;
 	$assinged = null;
 	$rtfDoc = null;
+	$codUser = null;
 	
 /* ================== Declaração de variaveis para atribuir valores do Form ========== */
 	// variavel para validar o link de redirecionar para o inicio;
@@ -38,11 +39,11 @@
 	$resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
 	$professional = (isset($_GET['professional']) ? $_GET['professional'] : "");
 
+	// pegar nome do profissional p/ colocar no cabeçalho
 	$professional = explode(" ", $professional);
 	$firstName = $professional[0];
 	$midName = $professional[1];
 	$lastName = $professional[2];
-
 
 
 	

@@ -320,6 +320,7 @@ namespace Classes\Pacient\PacientEvolution;
 
 							WHERE PEP.REGISTRO_PRONTUARIO = ?
 							ORDER BY PEP.tipo, PEP.data_evolucao, PEP.hora_evolucao DESC";
+
 					$data = $this->connection->conn->prepare($sql);
 					$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
 					$data->execute();
@@ -391,6 +392,20 @@ namespace Classes\Pacient\PacientEvolution;
 
 				echo $e . getMessage();
 			}
+		}
+
+		public function findDigitalSignature($codUser)
+		{
+			$sql = "SELECT AD.DESCRICAO_CERTIFICADO FROM PEP_ASSINATURA_DIGITAL AD INNER JOIN PEP_EVOLUCAO_MEDICA PEP
+					ON AD.COD_USUARIO = PEP.CODIGO_USUARIO
+						WHERE AD.COD_USUARIO = ? ";
+
+						$data = $this->connection->conn->prepare($sql);
+						$data->bindParam(1, $regProntuary, PDO::PARAM_INT);
+						$data->execute();
+						$result = $data->fetchAll(PDO::FETCH_ASSOC);
+
+						return $result;
 		}
 
 		// Função para encontrar o Resumo de Alta do Paciente
