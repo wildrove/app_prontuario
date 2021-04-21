@@ -326,7 +326,9 @@ namespace Classes\Pacient\PacientEvolution;
 					$data->execute();
 					$result = $data->fetchAll(PDO::FETCH_ASSOC);
 
-				}elseif($type == 'CRM'){
+				}
+
+				/*elseif($type == 'CRM'){
 
 					$sql = "SELECT PEP.REGISTRO_PRONTUARIO, AD.DESCRICAO_CERTIFICADO, PEP.EVOLUCAO, PEP.TIPO FROM PEP_EVOLUCAO_MEDICA PEP
 						INNER JOIN PEP_ASSINATURA_DIGITAL AD ON PEP.CODIGO_USUARIO = AD.COD_USUARIO
@@ -344,7 +346,7 @@ namespace Classes\Pacient\PacientEvolution;
 						$data->execute();
 						$result = $data->fetchAll(PDO::FETCH_ASSOC);
 					
-				}else{
+				} */ else{
 
 					$sql = "SELECT PEP.REGISTRO_PRONTUARIO, PEP.EVOLUCAO, PEP.TIPO FROM PEP_EVOLUCAO_MEDICA PEP
 
@@ -470,6 +472,8 @@ namespace Classes\Pacient\PacientEvolution;
 
 		public function clinicResume($regPacient, $evoType, $date, $hour)
 		{
+		
+
 			$sql = "SELECT $evoType FROM PSA_CONSULTORIO PC 
 					WHERE PC.REGISTRO_PACIENTE_EXTERNO = ?
 					AND PC.DATA = ?

@@ -184,7 +184,7 @@
 		<div class="botoes-imprimir botoes-imprimir-evolucao">
 			<button class="btn btn-primary mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
 			<button class="btn btn-primary mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
-			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&cirurgicalDate=' . $cirurgicalDate  . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary ">Download</a>
+			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&cirurgicalDate=' . $cirurgicalDate  . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary " style="display: none;">Download</a>
 			<a type="button" class="btn btn-primary" href="<?php echo $file_path ; ?>">Baixar Resumo</a>
 		</div>
 	</div>

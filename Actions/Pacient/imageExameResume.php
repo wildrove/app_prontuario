@@ -174,7 +174,7 @@
 			</div><!-- Fim Linha 1 -->
 			<!-- Div com borda Divisória -->
 			<div class="row pacient-border-divisor"></div>
-			<div class="row container pacient-discription resume-print"><!-- Inicio Texto descrição -->
+			<div class="row container pacient-discription resume-print" ><!-- Inicio Texto descrição -->
 				<span class="rtf-evo exibir-resumo print-resume-font">
 					<?php 
 
@@ -185,11 +185,11 @@
 						$verification = strpos($db_rtf, $string_find);
 
 						if ($verification == false) {
-							echo wordwrap($rtf, 180);
+							echo wordwrap($rtf, 140);
 						}else{
 							$document = new Document($rtf);
 							$formatter = new HtmlFormatter('UTF-8');
-							echo wordwrap($formatter->Format($document), 180); 
+							echo wordwrap($formatter->Format($document), 140); 
 						}
 					?>	
 				</span>			
@@ -200,7 +200,7 @@
 		<div class="botoes-imprimir botoes-imprimir-evolucao">
 			<a class="btn btn-primary mt-5 mb-5 back-filter" href="javascript:history.back()">Voltar</a>
 			<button class="btn btn-primary mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
-			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&exameDate=' . $exameDate  . '&resumeType=' . $resumeType . '&nLaudo=' . $nLaudo . '&exameCode=' . $exameCode;  ?>" class="btn btn-primary">Download</a>
+			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&exameDate=' . $exameDate  . '&resumeType=' . $resumeType . '&nLaudo=' . $nLaudo . '&exameCode=' . $exameCode;  ?>" class="btn btn-primary" style="display: none;">Download</a>
 			<a type="button" class="btn btn-primary" href="<?php echo $file_path ; ?>">Baixar Laudo</a>
 		</div>
 	</div>

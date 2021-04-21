@@ -39,6 +39,8 @@
 	$resumeType = (isset($_GET['resumeType']) ? $_GET['resumeType'] : "");
 	$professional = (isset($_GET['professional']) ? $_GET['professional'] : "");
 
+	$rtfPorfessionalValidate = $professional;
+
 	// pegar nome do profissional p/ colocar no cabeçalho
 	$professional = explode(" ", $professional);
 	$firstName = $professional[0];
@@ -57,7 +59,6 @@ foreach ($pacientEvo as $key => $value) {
 	$rtfDoc = $pacientEvo[$key]['EVOLUCAO'];
 	$assinged = isset($pacientEvo[$key]['DESCRICAO_CERTIFICADO']) ? $pacientEvo[$key]['DESCRICAO_CERTIFICADO'] : "não existe";
 }
-
 
 
 /* ====== Valida se alguma evolução foi criada sem ser preenchida. ===== */
@@ -191,7 +192,7 @@ $pacientN = explode(" ", $pacientName);
 				</div>
 				<div class="form-group pacient-group">
 					<label class="col-form-label">Profissional:</label>
-					<input class="form-control-plaintext input-pacient" type="text" name="tipoEvo" value="<?php echo $firstName . " " . $midName; ?>" disabled="">
+					<input class="form-control-plaintext input-pacient-names" type="text" name="tipoEvo" value="<?php echo $rtfPorfessionalValidate; ?>" disabled="">
 				</div>
 			</div><!-- Fim Linha 1 -->
 			<!-- Div com borda Divisória -->
@@ -200,8 +201,27 @@ $pacientN = explode(" ", $pacientName);
 				<span class="rtf-evo">
 					<?php
 					// Verifica o valor da variável $assigned e aplica a formatação do rtf.
+
 					
-					if ($assinged == "não existe" and strlen($rtf) <= 500) {
+					if($rtfPorfessionalValidate == "CARLA SANCHEZ BERGAMIN"){
+
+						echo "<pre>";
+						echo wordwrap(utf8_decode(rtrim($rtf)), 150);
+
+					}elseif($assinged == "não existe" and strlen($rtf) <= 500) {
+
+						if(mb_strpos($rtf, "{{{") || mb_strpos($rtf, "Arial;")){
+						
+							$rtf = str_replace("Arial;"," ", $rtf);
+							$rtf = str_replace("{{{ ", " ", $rtf);
+
+							$rtf = rtrim($rtf, "\0");
+							$document = new Document($rtf);
+							$formatter = new HtmlFormatter('UTF-8');
+							echo $formatter->Format($document) . '<br>';
+						}
+
+						echo "<pre>";
 						$rtf = rtf2text(utf8_encode(rtrim($rtf, "\0")));
 						echo wordwrap($rtf) . '<br>';
 					}else{

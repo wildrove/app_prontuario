@@ -42,13 +42,14 @@
 	$pacientEvo = $pacientEvolution->convertEvoLetter($pacientEvo, $evoType);
 
 	/*=========== Atribuição de variáveis para criação do texto e documento ================*/
-
+	
 	foreach ($pacientEvo as $key => $value) {
 		$rtf = $pacientEvo[$key];
 		$rtf = implode("", $rtf);
 		$rtfDoc = $pacientEvo[$key];
 		$rtfDoc = implode("", $rtfDoc);
 	}
+
 		
 	/* ====== Valida se alguma evolução foi criada sem ser preenchida. ===== */
 
@@ -169,7 +170,7 @@
 			<div class="row container pacient-discription resume-print"><!-- Inicio Texto descrição -->
 				<span class="rtf-evo exibir-resumo print-resume-font">
 					<?php 
-						echo wordwrap($rtf);		
+						echo wordwrap(utf8_encode($rtf));		
 					?>	
 				</span>			
 			</div><!-- Fim texto Descrição -->
@@ -179,7 +180,7 @@
 		<div class="botoes-imprimir botoes-imprimir-evolucao">
 			<button class="btn btn-primary mt-5 mb-5" type="button" name=""onclick="goBack()">Voltar</button>
 			<button class="btn btn-primary mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
-			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry . '&hourEvolution=' . $hourEvo . '&dateEvolution=' . $dateEvo . '&resumeType=' . $resumeType . '&evoType=' . $evoType;  ?>" class="btn btn-primary">Download</a>
+			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry . '&hourEvolution=' . $hourEvo . '&dateEvolution=' . $dateEvo . '&resumeType=' . $resumeType . '&evoType=' . $evoType;  ?>" class="btn btn-primary" style="display: none;">Download</a>
 			<a type="button" class="btn btn-primary" href="<?php echo $file_path ; ?>">Baixar Evolução</a>
 		</div>
 	</div>
