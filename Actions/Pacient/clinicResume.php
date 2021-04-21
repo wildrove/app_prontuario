@@ -50,10 +50,11 @@
 		$rtfDoc = implode("", $rtfDoc);
 	}
 
+
 		
 	/* ====== Valida se alguma evolução foi criada sem ser preenchida. ===== */
 
-	if (strlen($rtf) <= 0) {
+	if (strlen($rtf) < 0) {
 		header('Location: ../../AlertsHTML/alertNoneEvolutionFound.html');
 	}
 

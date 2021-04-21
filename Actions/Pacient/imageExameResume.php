@@ -80,10 +80,10 @@
 	$textrun->addText('                                       Exame Imagem', ['bold' => true, 'size' => 15, 'name' => 'Arial']);// 20 Space.
 	$textrun->addTextBreak(2);
 	$textrun->addText($rtfDoc);
-	$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+	$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'RTF');
 	ob_start();
-	$objWriter->save('../../file/laudo imagem.docx');
-	$file_path = '../../file/laudo imagem.docx';
+	$objWriter->save('../../file/laudo imagem.rtf');
+	$file_path = '../../file/laudo imagem.rtf';
 
 	/*============= Pegar a Idade atual ====================*/
 
