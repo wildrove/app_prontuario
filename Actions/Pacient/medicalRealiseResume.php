@@ -17,7 +17,8 @@
 	use PhpOffice\PhpWord\TemplateProcessor;
 	use PhpOffice\PhpWord\Shared\Html;
 
-	
+	// variavel para validar o link de redirecionar para o inicio;
+	$redirect = $_SESSION['usuario_nivel_acesso'];
 	$pacientProntuary = intval($_GET['regProntuary']);
 	$pacientRegistry = (isset($_GET['regPacient']) ? intval($_GET['regPacient']) : "");
 	$medicalHour = $_GET['medicalHour'];
@@ -189,6 +190,7 @@
 			<button class="btn btn-primary mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
 			<a href="exportEvoDoc.php?regProntuary=<?php echo $pacientProntuary  . '&medicalDate=' . $medicalDate  . '&medicalHour=' . $medicalHour . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary" style="display: none;">Download</a>
 			<a type="button" class="btn btn-primary" href="<?php echo $file_path ; ?>">Baixar Resumo</a>
+			<a type="button" class="btn btn-primary " href="<?php if($redirect == "Administrador"){ echo '../../forms/content-home-admin.php';}else echo '../../forms/content-home-user.php'; ?>">Nova Pesquisa</a>
 		</div>
 	</div>
 	<script type="text/javascript">

@@ -186,6 +186,7 @@
 			<button class="btn btn-primary mt-5 mb-5" type="button" onclick="imprimir();">Imprimir</button>
 			<a href="exportEvoDoc.php?regPacient=<?php echo $pacientRegistry  . '&cirurgicalDate=' . $cirurgicalDate  . '&resumeType=' . $resumeType;  ?>" class="btn btn-primary " style="display: none;">Download</a>
 			<a type="button" class="btn btn-primary" href="<?php echo $file_path ; ?>">Baixar Resumo</a>
+			<a type="button" class="btn btn-primary " href="<?php if($redirect == "Administrador"){ echo '../../forms/content-home-admin.php';}else echo '../../forms/content-home-user.php'; ?>">Nova Pesquisa</a>
 		</div>
 	</div>
 	<script type="text/javascript">
